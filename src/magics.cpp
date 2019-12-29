@@ -6,16 +6,13 @@ Magics::Magics()
 {
 	BishopMagicAttacks = new BitBoard[numSquaresInBoard][MagicBishopMax];
 	RookMagicAttacks = new BitBoard[numSquaresInBoard][MagicRookMax];
-	for (int sq = 0; sq < numSquaresInBoard; ++sq)
-	{
+	for (int sq = 0; sq < numSquaresInBoard; ++sq) {
 		// set bishop magics to full board
-		for (int b = 0; b < MagicBishopMax; b++)
-		{
+		for (int b = 0; b < MagicBishopMax; b++) {
 			BishopMagicAttacks[sq][b] = AllSquares;
 		}
 		// set rook magics to full board
-		for (int r = 0; r < MagicRookMax; r++)
-		{
+		for (int r = 0; r < MagicRookMax; r++) {
 			RookMagicAttacks[sq][r] = AllSquares;
 		}
 	}
@@ -29,15 +26,16 @@ Magics::~Magics()
 	delete[] RookMagicAttacks;
 }
 
-void Magics::initBishops()
-{
-}
+void
+Magics::initBishops()
+{}
 
-void Magics::initRooks()
-{
-}
+void
+Magics::initRooks()
+{}
 
-BitBoard Magics::HQBishopAttack(Square b, BitBoard occ)
+BitBoard
+Magics::HQBishopAttack(Square b, BitBoard occ)
 {
 	BitBoard piecePos = fromSq(b);
 	BitBoard diagonal = AttackVectors::Diagonals[static_cast<int>(b)];
@@ -45,12 +43,17 @@ BitBoard Magics::HQBishopAttack(Square b, BitBoard occ)
 	BitBoard OccupiedInDiagonal = occ & diagonal;
 	BitBoard OccupiedInAntiDiagonal = occ & antiDiagonal;
 	// diagonal attacks
-	BitBoard diagonalAttacks = ((OccupiedInDiagonal - 2 * piecePos) ^ reverse((reverse(OccupiedInDiagonal) - 2 * reverse(piecePos)))) & diagonal;
+	BitBoard diagonalAttacks =
+	  ((OccupiedInDiagonal - 2 * piecePos) ^ reverse((reverse(OccupiedInDiagonal) - 2 * reverse(piecePos)))) &
+	  diagonal;
 	// anti diagonal attacks
-	BitBoard antiDiagonalAttacks = ((OccupiedInAntiDiagonal - 2 * piecePos) ^ reverse((reverse(OccupiedInAntiDiagonal) - 2 * reverse(piecePos)))) & antiDiagonal;
+	BitBoard antiDiagonalAttacks = ((OccupiedInAntiDiagonal - 2 * piecePos) ^
+					reverse((reverse(OccupiedInAntiDiagonal) - 2 * reverse(piecePos)))) &
+				       antiDiagonal;
 	return diagonalAttacks | antiDiagonalAttacks;
 }
-BitBoard Magics::HQRookAttack(Square r, BitBoard occ)
+BitBoard
+Magics::HQRookAttack(Square r, BitBoard occ)
 {
 	BitBoard piecePos = fromSq(r);
 	BitBoard rank = RankBitBoards[static_cast<int>(rankFromSq(r))];
@@ -58,8 +61,10 @@ BitBoard Magics::HQRookAttack(Square r, BitBoard occ)
 	BitBoard OccupiedInRank = occ & rank;
 	BitBoard OccupiedInFile = occ & file;
 	// rank attacks
-	BitBoard rankAttacks = ((OccupiedInRank - 2 * piecePos) ^ reverse((reverse(OccupiedInRank) - 2 * reverse(piecePos)))) & rank;
+	BitBoard rankAttacks =
+	  ((OccupiedInRank - 2 * piecePos) ^ reverse((reverse(OccupiedInRank) - 2 * reverse(piecePos)))) & rank;
 	// file attacks
-	BitBoard fileAttacks = ((OccupiedInFile - 2 * piecePos) ^ reverse((reverse(OccupiedInFile) - 2 * reverse(piecePos)))) & file;
+	BitBoard fileAttacks =
+	  ((OccupiedInFile - 2 * piecePos) ^ reverse((reverse(OccupiedInFile) - 2 * reverse(piecePos)))) & file;
 	return rankAttacks | fileAttacks;
 }

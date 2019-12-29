@@ -4,7 +4,8 @@
 #include "utils.h"
 #include <iostream>
 
-int main()
+int
+main()
 {
 	Square s = Square::A1;
 	Magics m = Magics();

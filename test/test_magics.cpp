@@ -10,13 +10,21 @@ TEST_CASE("Magics", "[Magics]")
 	SECTION("Hyperbola Quintessence Bishop move generation")
 	{
 		Square s = Square::A1;
-		REQUIRE(m.HQBishopAttack(s, 0) == ((AttackVectors::Diagonals[static_cast<int>(s)] | AttackVectors::AntiDiagonals[static_cast<int>(s)]) & ~fromSq(s)));
+		REQUIRE(m.HQBishopAttack(s, 0) == ((AttackVectors::Diagonals[static_cast<int>(s)] |
+						    AttackVectors::AntiDiagonals[static_cast<int>(s)]) &
+						   ~fromSq(s)));
 		s = Square::F6;
-		REQUIRE(m.HQBishopAttack(s, 0) == ((AttackVectors::Diagonals[static_cast<int>(s)] | AttackVectors::AntiDiagonals[static_cast<int>(s)]) & ~fromSq(s)));
+		REQUIRE(m.HQBishopAttack(s, 0) == ((AttackVectors::Diagonals[static_cast<int>(s)] |
+						    AttackVectors::AntiDiagonals[static_cast<int>(s)]) &
+						   ~fromSq(s)));
 		s = Square::C3;
-		REQUIRE(m.HQBishopAttack(s, 0) == ((AttackVectors::Diagonals[static_cast<int>(s)] | AttackVectors::AntiDiagonals[static_cast<int>(s)]) & ~fromSq(s)));
+		REQUIRE(m.HQBishopAttack(s, 0) == ((AttackVectors::Diagonals[static_cast<int>(s)] |
+						    AttackVectors::AntiDiagonals[static_cast<int>(s)]) &
+						   ~fromSq(s)));
 		s = Square::D5;
-		REQUIRE(m.HQBishopAttack(s, 0) == ((AttackVectors::Diagonals[static_cast<int>(s)] | AttackVectors::AntiDiagonals[static_cast<int>(s)]) & ~fromSq(s)));
+		REQUIRE(m.HQBishopAttack(s, 0) == ((AttackVectors::Diagonals[static_cast<int>(s)] |
+						    AttackVectors::AntiDiagonals[static_cast<int>(s)]) &
+						   ~fromSq(s)));
 	}
 	SECTION("Hyperbola Quintessence Bishop move generation")
 	{

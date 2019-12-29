@@ -9,7 +9,7 @@ constexpr int MagicRookMax = 256;
 
 struct Magics
 {
-public:
+      public:
 	Magics();
 	~Magics();
 
@@ -19,7 +19,7 @@ public:
 	BitBoard HQBishopAttack(Square b, BitBoard occ);
 	BitBoard HQRookAttack(Square r, BitBoard occ);
 
-private:
+      private:
 	BitBoard BishopMagics[numSquaresInBoard];
 	BitBoard RookMagics[numSquaresInBoard];
 	BitBoard (*BishopMagicAttacks)[MagicBishopMax];
