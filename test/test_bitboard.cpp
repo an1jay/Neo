@@ -1,9 +1,6 @@
-#define CATCH_CONFIG_MAIN
 #include "catch.h"
 
 #include "bitboard.h"
-// #include "constants.h"
-// #include "types.h"
 
 TEST_CASE("BitBoards", "[BitBoard]")
 {
