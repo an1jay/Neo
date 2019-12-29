@@ -1,7 +1,7 @@
 .PHONY: all clean run test _test
 
 CC		:= clang++
-C_FLAGS := -std=c++17 -Wall -Werror -Wextra -g -O3 -march=native
+C_FLAGS := -std=c++17 -Wall -Werror -Wextra -g -O0 -march=native
 
 BIN			:= bin
 SRC			:= src

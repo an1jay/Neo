@@ -31,6 +31,7 @@ constexpr char RankChars[] = { '1', '2', '3', '4', '5', '6' };
 
 // Equal to 0000000000000000000000000000111111111111111111111111111111111111
 constexpr BitBoard AllSquares = 68719476735;
+constexpr BitBoard NoSquares = 0;
 
 // BitBoards for each file
 constexpr BitBoard FileA = 1090785345;
@@ -58,6 +59,7 @@ constexpr BitBoard FileBitBoards[] = {
 
 constexpr BitBoard Edges = FileA | FileF | RankFirst | RankSixth;
 constexpr BitBoard NoEdges = ~Edges;
+constexpr BitBoard EdgesBitBoards[] = { FileA, FileF, RankFirst, RankSixth };
 
 namespace AttackVectors {
 

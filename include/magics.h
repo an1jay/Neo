@@ -8,7 +8,13 @@
 constexpr int MagicBishopMax = 32;
 constexpr int MagicRookMax = 256;
 
-constexpr int BishopShifts[] = { 5, 5, 5, 5, 5, 5, 5 };
+constexpr int BishopShifts[] = {
+	4, 3, 3, 3, 3, 4, 3, 3, 3, 3, 3, 3, 3, 3, 5, 5, 3, 3, 3, 3, 5, 5, 3, 3, 3, 3, 3, 3, 3, 3, 4, 3, 3, 3, 3, 4,
+};
+
+constexpr int RookShifts[] = {
+	8, 7, 7, 7, 7, 8, 7, 6, 6, 6, 6, 7, 7, 6, 6, 6, 6, 7, 7, 6, 6, 6, 6, 7, 7, 6, 6, 6, 6, 7, 8, 7, 7, 7, 7, 8,
+};
 
 struct Magics
 {
@@ -16,15 +22,16 @@ struct Magics
 	Magics();
 	~Magics();
 
-	BitBoard AttackForBishop(Square sq, BitBoard occupancy) const;
-	BitBoard AttackForRook(Square sq, BitBoard occupancy) const;
+	BitBoard MagicBishopAttack(Square b, BitBoard occupancy);
+	// BitBoard AttackForRook(Square sq, BitBoard occupancy) const;
 
-	BitBoard HQBishopAttack(Square b, BitBoard occ);
-	BitBoard HQRookAttack(Square r, BitBoard occ);
+	BitBoard HQBishopAttack(Square b, BitBoard occupancy);
+	BitBoard HQRookAttack(Square r, BitBoard occupancy);
+	BitBoard HQQueenAttack(Square q, BitBoard occupancy);
 
       private:
 	BitBoard BishopMagics[numSquaresInBoard];
-	BitBoard RookMagics[numSquaresInBoard];
+	// BitBoard RookMagics[numSquaresInBoard];
 	BitBoard (*BishopMagicAttacks)[MagicBishopMax];
 	BitBoard (*RookMagicAttacks)[MagicRookMax];
 
@@ -33,4 +40,4 @@ struct Magics
 };
 
 BitBoard
-genSparseRand(std::mt19937& rng);
+genRand(std::mt19937& rng);

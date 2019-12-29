@@ -26,7 +26,7 @@ TEST_CASE("Magics", "[Magics]")
 						    AttackVectors::AntiDiagonals[static_cast<int>(s)]) &
 						   ~fromSq(s)));
 	}
-	SECTION("Hyperbola Quintessence Bishop move generation")
+	SECTION("Hyperbola Quintessence Rook move generation")
 	{
 		Square s = Square::A1;
 		REQUIRE(m.HQRookAttack(s, 0) == AttackVectors::Rook[static_cast<int>(s)]);
@@ -36,5 +36,13 @@ TEST_CASE("Magics", "[Magics]")
 		REQUIRE(m.HQRookAttack(s, 0) == AttackVectors::Rook[static_cast<int>(s)]);
 		s = Square::F2;
 		REQUIRE(m.HQRookAttack(s, 0) == AttackVectors::Rook[static_cast<int>(s)]);
+	}
+	SECTION("Magics Bishop move generation")
+	{
+		// TODO:
+	}
+	SECTION("Magics Rook move generation")
+	{
+		// TODO:
 	}
 }

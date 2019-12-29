@@ -12,7 +12,7 @@
 // clang-format on
 using BitBoard = uint64_t;
 
-enum class Color : uint8_t
+enum class Color : int
 {
 	Black,
 	White,
@@ -20,7 +20,7 @@ enum class Color : uint8_t
 };
 
 // TODO: might be more useful to have Piece - e.g. WPawn, WKnight, etc.
-enum class PieceType : uint8_t
+enum class PieceType : int
 {
 	Pawn,
 	Knight,
@@ -30,7 +30,7 @@ enum class PieceType : uint8_t
 	NONE,
 };
 
-enum class Square : uint8_t
+enum class Square : int
 {
 	// clang-format off
 	A1, B1, C1, D1, E1, F1,
@@ -42,7 +42,7 @@ enum class Square : uint8_t
 	// clang-format on
 	NONE,
 };
-enum class File : uint8_t
+enum class File : int
 {
 	// clang-format off
 	A, B, C, D, E, F,
@@ -50,7 +50,7 @@ enum class File : uint8_t
 	// clang-format on
 };
 
-enum class Rank : uint8_t
+enum class Rank : int
 {
 	// clang-format off
 	First, Second, Third, Fourth, Fifth, Sixth,

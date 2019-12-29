@@ -1,6 +1,7 @@
 #include "magics.h"
 #include "constants.h"
 #include "utils.h"
+#include <random>
 
 Magics::Magics()
 {
@@ -28,20 +29,75 @@ Magics::~Magics()
 
 void
 Magics::initBishops()
-{}
+{
+	// 1. For each square find a candidate magic
+	// 2. For each possible occupancy, store attack vector in correct index, checking there is no collision
+	// 3. If no collisions, we have valid magic
+	std::mt19937 rng = std::mt19937();
+	BitBoard candidateMagic;
+	BitBoard relevantMoveMask;
+	BitBoard occupancy;
+	BitBoard moves;
+	BitBoard index;
+	bool validMagic;
+	int triedCount;
+	int totalTried = 0;
+	for (int sq = 0; sq < numSquaresInBoard; ++sq) {
+		triedCount = 0;
+		// only care about middle 6x6 occupancies
+		relevantMoveMask = HQBishopAttack(static_cast<Square>(sq), NoSquares) & NoEdges;
+		// assume valid until proven otherwise
+		validMagic = true;
+		// inside this loop, occupancy is equal to every possible relevant occupancy
+		do {
+			// part of Carry Rippler (see https://www.chessprogramming.org/Traversing_Subsets_of_a_Set)
+			occupancy = 0ULL;
+			validMagic = true; // assume valid till proven otherwise
+			candidateMagic =
+			  genRand(rng) & genRand(rng) &
+			  genRand(rng); // find a random magic (see https://www.chessprogramming.org/Looking_for_Magics)
+
+			++triedCount;
+			// set bishop magics to full board
+			for (int b = 0; b < MagicBishopMax; b++) {
+				BishopMagicAttacks[sq][b] = AllSquares;
+			}
+			do {
+				moves = HQBishopAttack(static_cast<Square>(sq), occupancy);
+				index = (occupancy * candidateMagic) >> (64 - BishopShifts[sq]);
+				if (BishopMagicAttacks[sq][index] == moves ||
+				    BishopMagicAttacks[sq][index] == AllSquares) {
+					BishopMagicAttacks[sq][index] = moves;
+				} else {
+					validMagic = false;
+					break;
+				}
+				// Carry Rippler trick to traverse all possible occupancies (see
+				// https://www.chessprogramming.org/Traversing_Subsets_of_a_Set)
+				occupancy = (occupancy - relevantMoveMask) & relevantMoveMask;
+			} while (occupancy);
+		} while (!validMagic);
+		// add candidateMagic if it is not an invalid magic
+		BishopMagics[sq] = candidateMagic;
+		// std::cout << triedCount << " tries " << std::endl;
+		totalTried += triedCount;
+		triedCount = 0;
+	}
+	std::cout << "Magics: Total bishop tries " << totalTried << std::endl;
+}
 
 void
 Magics::initRooks()
 {}
 
 BitBoard
-Magics::HQBishopAttack(Square b, BitBoard occ)
+Magics::HQBishopAttack(Square b, BitBoard occupancy)
 {
 	BitBoard piecePos = fromSq(b);
 	BitBoard diagonal = AttackVectors::Diagonals[static_cast<int>(b)];
 	BitBoard antiDiagonal = AttackVectors::AntiDiagonals[static_cast<int>(b)];
-	BitBoard OccupiedInDiagonal = occ & diagonal;
-	BitBoard OccupiedInAntiDiagonal = occ & antiDiagonal;
+	BitBoard OccupiedInDiagonal = occupancy & diagonal;
+	BitBoard OccupiedInAntiDiagonal = occupancy & antiDiagonal;
 	// diagonal attacks
 	BitBoard diagonalAttacks =
 	  ((OccupiedInDiagonal - 2 * piecePos) ^ reverse((reverse(OccupiedInDiagonal) - 2 * reverse(piecePos)))) &
@@ -53,13 +109,13 @@ Magics::HQBishopAttack(Square b, BitBoard occ)
 	return diagonalAttacks | antiDiagonalAttacks;
 }
 BitBoard
-Magics::HQRookAttack(Square r, BitBoard occ)
+Magics::HQRookAttack(Square r, BitBoard occupancy)
 {
 	BitBoard piecePos = fromSq(r);
 	BitBoard rank = RankBitBoards[static_cast<int>(rankFromSq(r))];
 	BitBoard file = FileBitBoards[static_cast<int>(fileFromSq(r))];
-	BitBoard OccupiedInRank = occ & rank;
-	BitBoard OccupiedInFile = occ & file;
+	BitBoard OccupiedInRank = occupancy & rank;
+	BitBoard OccupiedInFile = occupancy & file;
 	// rank attacks
 	BitBoard rankAttacks =
 	  ((OccupiedInRank - 2 * piecePos) ^ reverse((reverse(OccupiedInRank) - 2 * reverse(piecePos)))) & rank;
@@ -70,7 +126,19 @@ Magics::HQRookAttack(Square r, BitBoard occ)
 }
 
 BitBoard
-genSparseRand(std::mt19937& rng)
+Magics::HQQueenAttack(Square q, BitBoard occupancy)
+{
+	return HQRookAttack(q, occupancy) | HQBishopAttack(q, occupancy);
+}
+BitBoard
+Magics::MagicBishopAttack(Square b, BitBoard occupancy)
+{
+	int sq = static_cast<int>(b);
+	return BishopMagicAttacks[sq][(occupancy * BishopMagics[sq]) >> (64 - BishopShifts[sq])];
+}
+
+BitBoard
+genRand(std::mt19937& rng)
 {
 	const BitBoard bottomTwoBytes = 0xFFFFULL;
 	return (static_cast<BitBoard>(rng()) & bottomTwoBytes) |
