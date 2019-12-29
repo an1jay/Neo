@@ -9,17 +9,17 @@ Square sqFromFileRank(const File f, const Rank r)
 		return Square::NONE;
 	else
 		return static_cast<Square>(
-		    static_cast<int>(f) * numSquaresInRankFile + static_cast<int>(r));
+		    static_cast<int>(r) * numSquaresInRankFile + static_cast<int>(f));
 }
 
 File fileFromSq(const Square s)
 {
-	return static_cast<File>(static_cast<int>(s) / numSquaresInRankFile);
+	return static_cast<File>(static_cast<int>(s) % numSquaresInRankFile);
 }
 
 Rank rankFromSq(const Square s)
 {
-	return static_cast<Rank>(static_cast<int>(s) % numSquaresInRankFile);
+	return static_cast<Rank>(static_cast<int>(s) / numSquaresInRankFile);
 }
 
 std::ostream &operator<<(std::ostream &os, Square s)

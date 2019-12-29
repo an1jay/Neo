@@ -15,9 +15,9 @@ public:
 
 	BitBoard AttackForBishop(Square sq, BitBoard occupancy) const;
 	BitBoard AttackForRook(Square sq, BitBoard occupancy) const;
-	// void PrintMagics() const;
-	BitBoard HQBishopAttacks(Square b, BitBoard occ);
-	BitBoard HQRookAttacks(Square r, BitBoard occ);
+
+	BitBoard HQBishopAttack(Square b, BitBoard occ);
+	BitBoard HQRookAttack(Square r, BitBoard occ);
 
 private:
 	BitBoard BishopMagics[numSquaresInBoard];
@@ -27,7 +27,4 @@ private:
 
 	void initBishops();
 	void initRooks();
-
-	// BitBoard HQBishopAttacks(Square b, BitBoard occ);
-	// BitBoard HQRookAttacks(Square r, BitBoard occ);
 };

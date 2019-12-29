@@ -11,12 +11,12 @@ constexpr int numSquaresShiftFactor = 64 - numSquaresInBoard;
 constexpr Color Colors[] = {Color::Black, Color::White};
 constexpr Square Squares[] = {
     // clang-format off
-    Square::A1, Square::A2, Square::A3, Square::A4, Square::A5, Square::A6,
-    Square::B1, Square::B2, Square::B3, Square::B4, Square::B5, Square::B6,
-    Square::C1, Square::C2, Square::C3, Square::C4, Square::C5, Square::C6,
-    Square::D1, Square::D2, Square::D3, Square::D4, Square::D5, Square::D6,
-    Square::E1, Square::E2, Square::E3, Square::E4, Square::E5, Square::E6,
-    Square::F1, Square::F2, Square::F3, Square::F4, Square::F5, Square::F6,
+    Square::A1, Square::B1, Square::C1, Square::D1, Square::E1, Square::F1,
+    Square::A2, Square::B2, Square::C2, Square::D2, Square::E2, Square::F2,
+    Square::A3, Square::B3, Square::C3, Square::D3, Square::E3, Square::F3,
+    Square::A4, Square::B4, Square::C4, Square::D4, Square::E4, Square::F4,
+    Square::A5, Square::B5, Square::C5, Square::D5, Square::E5, Square::F5,
+    Square::A6, Square::B6, Square::C6, Square::D6, Square::E6, Square::F6,
     // clang-format on
 };
 constexpr File Files[] = {
