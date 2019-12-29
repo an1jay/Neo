@@ -4,7 +4,7 @@
 
 #pragma once
 
-char*
+std::string
 boardPrint(std::function<char(Square s)> mapper);
 
 std::ostream&

@@ -1,7 +1,7 @@
 #include "utils.h"
 #include "constants.h"
 #include "types.h"
-#include <cstring>
+#include <sstream>
 
 Square
 sqFromFileRank(const File f, const Rank r)
@@ -32,26 +32,19 @@ operator<<(std::ostream& os, Square s)
 	return os;
 }
 
-char*
+std::string
 boardPrint(std::function<char(Square s)> mapper)
 {
-	char* board = new char[14 * 7 + 1];
-	int index = 0;
+	std::ostringstream oss;
+	const char* boardSep = "  |---|---|---|---|---|---|";
+
 	for (int f = numSquaresInRankFile - 1; f >= 0; f--) {
-		board[index++] = FileChars[f];
-		// board[index++] = ' ';
+		oss << std::endl << boardSep << std::endl;
+		oss << FileChars[f] << " |";
 		for (int r = 0; r < numSquaresInRankFile; r++) {
-			board[index++] = ' ';
-			board[index++] = mapper(sqFromFileRank(static_cast<File>(f), static_cast<Rank>(r)));
+			oss << " " << mapper(sqFromFileRank(static_cast<File>(f), static_cast<Rank>(r))) << " |";
 		}
-		board[index++] = '\n';
 	}
-	board[index++] = ' ';
-	for (int r = 0; r < numSquaresInRankFile; r++) {
-		board[index++] = ' ';
-		board[index++] = RankChars[r];
-	}
-	board[index++] = '\n';
-	board[index++] = '\0';
-	return board;
+	oss << std::endl << boardSep << std::endl << "    A   B   C   D   E   F" << std::endl;
+	return oss.str();
 }

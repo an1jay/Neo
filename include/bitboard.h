@@ -1,12 +1,13 @@
 #include "constants.h"
 #include "types.h"
+#include <string>
 
 #pragma once
 
-char*
+std::string
 asBitString(const BitBoard b);
 
-char*
+std::string
 asBoardString(const BitBoard b);
 
 // Generate BitBoard from Square

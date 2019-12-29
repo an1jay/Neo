@@ -14,9 +14,7 @@ main()
 
 	BitBoard b = fromSq(s);
 	std::cout << asBoardString(b) << std::endl;
-
 	std::cout << asBoardString(m.HQBishopAttack(s, 0)) << std::endl;
-	std::cout << asBoardString(m.HQRookAttack(s, 0)) << std::endl;
 
 	return 0;
 }

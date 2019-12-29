@@ -68,3 +68,13 @@ Magics::HQRookAttack(Square r, BitBoard occ)
 	  ((OccupiedInFile - 2 * piecePos) ^ reverse((reverse(OccupiedInFile) - 2 * reverse(piecePos)))) & file;
 	return rankAttacks | fileAttacks;
 }
+
+BitBoard
+genSparseRand(std::mt19937& rng)
+{
+	const BitBoard bottomTwoBytes = 0xFFFFULL;
+	return (static_cast<BitBoard>(rng()) & bottomTwoBytes) |
+	       ((static_cast<BitBoard>(rng()) & bottomTwoBytes) << 16) |
+	       ((static_cast<BitBoard>(rng()) & bottomTwoBytes) << 32) |
+	       ((static_cast<BitBoard>(rng()) & bottomTwoBytes) << 48);
+}

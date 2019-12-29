@@ -1,11 +1,14 @@
 #include "bitboard.h"
 #include "constants.h"
 #include "types.h"
+#include <random>
 
 #pragma once
 
 constexpr int MagicBishopMax = 32;
 constexpr int MagicRookMax = 256;
+
+constexpr int BishopShifts[] = { 5, 5, 5, 5, 5, 5, 5 };
 
 struct Magics
 {
@@ -28,3 +31,6 @@ struct Magics
 	void initBishops();
 	void initRooks();
 };
+
+BitBoard
+genSparseRand(std::mt19937& rng);

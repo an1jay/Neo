@@ -2,28 +2,27 @@
 #include "constants.h"
 #include "types.h"
 #include "utils.h"
+#include <sstream>
 
-char*
+std::string
 asBitString(const BitBoard b)
 {
-	char* ret = new char[numSquaresInBoard + 1];
-	int index = 0;
+	std::ostringstream oss;
 	for (int sq = numSquaresInBoard - 1; sq >= 0; sq--) {
 		if (occupiedSq(b, static_cast<Square>(sq)))
-			ret[index++] = '1';
+			oss << '1';
 		else
-			ret[index++] = '0';
+			oss << '0';
 	}
-	ret[index++] = '\0';
-	return ret;
+	return oss.str();
 }
 
-char*
+std::string
 asBoardString(const BitBoard b)
 {
 	auto mapper = [&b](Square s) -> char {
 		if (occupiedSq(b, s))
-			return 'O';
+			return 'X';
 		return ' ';
 	};
 	return boardPrint(mapper);
