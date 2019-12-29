@@ -27,8 +27,8 @@ rankFromSq(const Square s)
 std::ostream&
 operator<<(std::ostream& os, Square s)
 {
-	os << RankChars[static_cast<int>(rankFromSq(s))];
 	os << FileChars[static_cast<int>(fileFromSq(s))];
+	os << RankChars[static_cast<int>(rankFromSq(s))];
 	return os;
 }
 
@@ -38,10 +38,10 @@ boardPrint(std::function<char(Square s)> mapper)
 	std::ostringstream oss;
 	const char* boardSep = "  |---|---|---|---|---|---|";
 
-	for (int f = numSquaresInRankFile - 1; f >= 0; f--) {
+	for (int r = numSquaresInRankFile - 1; r >= 0; r--) {
 		oss << std::endl << boardSep << std::endl;
-		oss << FileChars[f] << " |";
-		for (int r = 0; r < numSquaresInRankFile; r++) {
+		oss << RankChars[r] << " |";
+		for (int f = 0; f < numSquaresInRankFile; f++) {
 			oss << " " << mapper(sqFromFileRank(static_cast<File>(f), static_cast<Rank>(r))) << " |";
 		}
 	}

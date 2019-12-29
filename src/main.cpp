@@ -7,14 +7,14 @@
 int
 main()
 {
-	Square s = Square::A1;
+	Square s = Square::E4;
 	Magics m = Magics();
 
 	std::cout << s << std::endl;
 
 	BitBoard b = fromSq(s);
-	std::cout << asBoardString(b) << std::endl;
-	std::cout << asBoardString(m.HQBishopAttack(s, 0)) << std::endl;
+	std::cout << asBoardString(b);
+	std::cout << asBoardString(m.HQBishopAttack(s, 0));
 
 	return 0;
 }

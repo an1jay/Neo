@@ -24,8 +24,8 @@ constexpr Rank Ranks[] = {
 
 // ***** Display *****
 
-constexpr char RankChars[] = { 'A', 'B', 'C', 'D', 'E', 'F' };
-constexpr char FileChars[] = { '1', '2', '3', '4', '5', '6' };
+constexpr char FileChars[] = { 'A', 'B', 'C', 'D', 'E', 'F' };
+constexpr char RankChars[] = { '1', '2', '3', '4', '5', '6' };
 
 // ***** BitBoard *****
 
