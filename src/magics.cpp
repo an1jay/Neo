@@ -91,7 +91,7 @@ Magics::initRooks()
 {}
 
 BitBoard
-Magics::HQBishopAttack(Square b, BitBoard occupancy)
+HQBishopAttack(Square b, BitBoard occupancy)
 {
 	BitBoard piecePos = fromSq(b);
 	BitBoard diagonal = AttackVectors::Diagonals[static_cast<int>(b)];
@@ -109,7 +109,7 @@ Magics::HQBishopAttack(Square b, BitBoard occupancy)
 	return diagonalAttacks | antiDiagonalAttacks;
 }
 BitBoard
-Magics::HQRookAttack(Square r, BitBoard occupancy)
+HQRookAttack(Square r, BitBoard occupancy)
 {
 	BitBoard piecePos = fromSq(r);
 	BitBoard rank = RankBitBoards[static_cast<int>(rankFromSq(r))];
@@ -126,7 +126,7 @@ Magics::HQRookAttack(Square r, BitBoard occupancy)
 }
 
 BitBoard
-Magics::HQQueenAttack(Square q, BitBoard occupancy)
+HQQueenAttack(Square q, BitBoard occupancy)
 {
 	return HQRookAttack(q, occupancy) | HQBishopAttack(q, occupancy);
 }

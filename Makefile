@@ -1,14 +1,14 @@
 .PHONY: all clean run test _test
 
-CC		:= clang++
-C_FLAGS := -std=c++17 -Wall -Werror -Wextra -g -O0 -march=native
+CC		:= g++
+C_FLAGS := -std=c++17 -Wall -Werror -Wextra -g -O2 -march=native
 
 BIN			:= bin
 SRC			:= src
 INCLUDE		:= include
 LIB			:= lib
 TEST		:= test
-TEST_EXEC	:= _test
+
 
 TEST_FILES	:= $(filter-out src/main.cpp, $(wildcard src/*.cpp))
 
@@ -16,8 +16,10 @@ LIBRARIES	:=
 
 ifeq ($(OS),Windows_NT)
 EXECUTABLE	:= main.exe
+TEST_EXEC	:= _test.exe
 else
 EXECUTABLE	:= main
+TEST_EXEC	:= _test
 endif
 
 all: $(BIN)/$(EXECUTABLE)

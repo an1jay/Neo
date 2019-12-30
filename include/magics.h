@@ -25,10 +25,6 @@ struct Magics
 	BitBoard MagicBishopAttack(Square b, BitBoard occupancy);
 	// BitBoard AttackForRook(Square sq, BitBoard occupancy) const;
 
-	BitBoard HQBishopAttack(Square b, BitBoard occupancy);
-	BitBoard HQRookAttack(Square r, BitBoard occupancy);
-	BitBoard HQQueenAttack(Square q, BitBoard occupancy);
-
       private:
 	BitBoard BishopMagics[numSquaresInBoard];
 	// BitBoard RookMagics[numSquaresInBoard];
@@ -41,3 +37,9 @@ struct Magics
 
 BitBoard
 genRand(std::mt19937& rng);
+BitBoard
+HQBishopAttack(Square b, BitBoard occupancy);
+BitBoard
+HQRookAttack(Square r, BitBoard occupancy);
+BitBoard
+HQQueenAttack(Square q, BitBoard occupancy);

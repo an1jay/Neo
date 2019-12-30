@@ -33,7 +33,7 @@ HQDemo()
 	BitBoard b;
 	for (int sq = 0; sq < numSquaresInBoard; sq++) {
 		s = static_cast<Square>(sq);
-		b = m.HQRookAttack(s, 0);
+		b = HQRookAttack(s, 0);
 		std::cout << s << "  " << popCount(b) << std::endl;
 		std::cout << asBoardString(b);
 		std::cout << "----------------" << std::endl;
