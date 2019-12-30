@@ -5,6 +5,7 @@
 
 TEST_CASE("Magics", "[Magics]")
 {
+	Magics m = Magics();
 	SECTION("Hyperbola Quintessence Bishop move generation")
 	{
 		Square s = Square::A1;
@@ -37,10 +38,20 @@ TEST_CASE("Magics", "[Magics]")
 	}
 	SECTION("Magics Bishop move generation")
 	{
-		// TODO:
+		for (int sq = 0; sq < numSquaresInBoard; sq++) {
+			auto occ = GENERATE(1231233123, 23452345, 245632456);
+			occ = occ & AllSquares;
+			REQUIRE(HQBishopAttack(static_cast<Square>(sq), static_cast<BitBoard>(occ)) ==
+				m.MagicBishopAttack(static_cast<Square>(sq), static_cast<BitBoard>(occ)));
+		}
 	}
 	SECTION("Magics Rook move generation")
 	{
-		// TODO:
+		for (int sq = 0; sq < numSquaresInBoard; sq++) {
+			auto occ = GENERATE(1231233123, 23452345, 245632456);
+			occ = occ & AllSquares;
+			REQUIRE(HQRookAttack(static_cast<Square>(sq), static_cast<BitBoard>(occ)) ==
+				m.MagicRookAttack(static_cast<Square>(sq), static_cast<BitBoard>(occ)));
+		}
 	}
 }

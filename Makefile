@@ -5,9 +5,9 @@ C_FLAGS := -std=c++17 -Wall -Werror -Wextra -g -O2 -march=native
 
 BIN			:= bin
 SRC			:= src
-INCLUDE		:= include
+INCLUDE			:= include
 LIB			:= lib
-TEST		:= test
+TEST			:= test
 
 
 TEST_FILES	:= $(filter-out src/main.cpp, $(wildcard src/*.cpp))

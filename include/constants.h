@@ -7,6 +7,7 @@
 constexpr int numSquaresInBoard = 36;
 constexpr int numSquaresInRankFile = 6;
 constexpr int numSquaresShiftFactor = 64 - numSquaresInBoard;
+constexpr int numEdges = 4;
 
 constexpr Color Colors[] = { Color::Black, Color::White };
 constexpr Square Squares[] = {
@@ -59,7 +60,7 @@ constexpr BitBoard FileBitBoards[] = {
 
 constexpr BitBoard Edges = FileA | FileF | RankFirst | RankSixth;
 constexpr BitBoard NoEdges = ~Edges;
-constexpr BitBoard EdgesBitBoards[] = { FileA, FileF, RankFirst, RankSixth };
+constexpr BitBoard EdgeBitBoards[] = { FileA, FileF, RankFirst, RankSixth };
 
 namespace AttackVectors {
 
