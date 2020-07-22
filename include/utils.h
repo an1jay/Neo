@@ -18,3 +18,4 @@ fileFromSq(const Square s);
 
 Rank
 rankFromSq(const Square s);
+

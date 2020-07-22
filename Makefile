@@ -1,13 +1,13 @@
-.PHONY: all clean run test _test
+.PHONY: all clean run run_test _test
 
 CC		:= g++
 C_FLAGS := -std=c++17 -Wall -Werror -Wextra -g -O2 -march=native -fsanitize=undefined
 
 BIN			:= bin
 SRC			:= src
-INCLUDE			:= include
+INCLUDE		:= include
 LIB			:= lib
-TEST			:= test
+TEST		:= test
 
 
 TEST_FILES	:= $(filter-out src/main.cpp, $(wildcard src/*.cpp))
@@ -26,6 +26,7 @@ all: $(BIN)/$(EXECUTABLE)
 
 clean:
 	$(RM) $(BIN)/$(EXECUTABLE)
+	$(RM) $(TEST_EXEC)
 
 run: all
 	./$(BIN)/$(EXECUTABLE)
@@ -33,7 +34,7 @@ run: all
 _test: $(filter-out src/main.cpp, $(TEST)/*.cpp $(TEST_FILES))
 	$(CC) $(C_FLAGS) -I$(INCLUDE) -I$(LIB) $^ -o $@ $(LIBRARIES)
 
-test: _test
+run_test: _test
 	./$(TEST_EXEC)
 	$(RM) $(TEST_EXEC)
 

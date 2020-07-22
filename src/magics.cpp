@@ -45,18 +45,23 @@ Magics::initBishops()
 	int totalTried = 0;
 	for (int sq = 0; sq < numSquaresInBoard; ++sq) {
 		triedCount = 0;
-		// only care about middle 6x6 occupancies
-		relevantMoveMask = HQBishopAttack(static_cast<Square>(sq), NoSquares) & NoEdges;
+
+		// only care about middle 4x4 occupancies
+		relevantMoveMask = AttackVectors::BishopMagicsOccupancyMask[sq];
+
 		// assume valid until proven otherwise
 		validMagic = true;
+
 		// inside this loop, occupancy is equal to every possible relevant occupancy
 		do {
 			// part of Carry Rippler (see https://www.chessprogramming.org/Traversing_Subsets_of_a_Set)
 			occupancy = 0ULL;
-			validMagic = true; // assume valid till proven otherwise
 			// find a random magic (see https://www.chessprogramming.org/Looking_for_Magics)
 			candidateMagic = genRand(rng) & genRand(rng) & genRand(rng);
+			// assume magic is valid till proven otherwise
+			validMagic = true;
 			++triedCount;
+
 			// set bishop magics to full board
 			for (int b = 0; b < MagicBishopMax; b++) {
 				BishopMagicAttacks[sq][b] = AllSquares;
@@ -64,22 +69,19 @@ Magics::initBishops()
 			do {
 				moves = HQBishopAttack(static_cast<Square>(sq), occupancy);
 				index = (occupancy * candidateMagic) >> (64 - BishopShifts[sq]);
-				if (BishopMagicAttacks[sq][index] == moves ||
-				    BishopMagicAttacks[sq][index] == AllSquares) {
+				if (BishopMagicAttacks[sq][index] == moves || BishopMagicAttacks[sq][index] == AllSquares) {
 					BishopMagicAttacks[sq][index] = moves;
 				} else {
 					validMagic = false;
 					break;
 				}
-				// Carry Rippler trick to traverse all possible occupancies (see
-				// https://www.chessprogramming.org/Traversing_Subsets_of_a_Set)
+				// Carry Rippler trick to traverse all possible occupancies (see https://www.chessprogramming.org/Traversing_Subsets_of_a_Set)
 				occupancy = (occupancy - relevantMoveMask) & relevantMoveMask;
 			} while (occupancy);
 		} while (!validMagic);
 		// add candidateMagic if it is not an invalid magic
 		BishopMagics[sq] = candidateMagic;
-		// std::cout << "Rook Magics: square " << static_cast<Square>(sq) << " " << triedCount << " tries " <<
-		// std::endl;
+
 		totalTried += triedCount;
 		triedCount = 0;
 	}
@@ -98,31 +100,28 @@ Magics::initRooks()
 	BitBoard occupancy;
 	BitBoard moves;
 	BitBoard index;
-	BitBoard piece;
 	bool validMagic;
 	int triedCount;
 	int totalTried = 0;
 	for (int sq = 0; sq < numSquaresInBoard; ++sq) {
 		triedCount = 0;
+
 		// only care about relevant occupances (i.e. middle 4x4 when on edges and middle 5x5 when on corners)
-		relevantMoveMask = HQRookAttack(static_cast<Square>(sq), NoSquares);
-		piece = fromSq(static_cast<Square>(sq));
-		for (int edge = 0; edge < numEdges; edge++) {
-			if ((EdgeBitBoards[edge] & piece) == NoSquares)
-				relevantMoveMask &= ~EdgeBitBoards[edge];
-		}
+		relevantMoveMask = AttackVectors::RookMagicsOccupancyMask[sq];
+
 		// assume valid until proven otherwise
 		validMagic = true;
+
 		// inside this loop, occupancy is equal to every possible relevant occupancy
 		do {
 			// part of Carry Rippler (see https://www.chessprogramming.org/Traversing_Subsets_of_a_Set)
 			occupancy = 0ULL;
-			validMagic = true; // assume valid till proven otherwise
 			// find a random magic (see https://www.chessprogramming.org/Looking_for_Magics)
 			candidateMagic = genRand(rng) & genRand(rng) & genRand(rng);
+			// assume valid till proven otherwise
+			validMagic = true;
+			++triedCount;
 
-			if (++triedCount % 50000 == 0)
-				std::cout << ".";
 			// set rook magics to full board
 			for (int b = 0; b < MagicRookMax; b++) {
 				RookMagicAttacks[sq][b] = AllSquares;
@@ -136,15 +135,13 @@ Magics::initRooks()
 					validMagic = false;
 					break;
 				}
-				// Carry Rippler trick to traverse all possible occupancies (see
-				// https://www.chessprogramming.org/Traversing_Subsets_of_a_Set)
+				// Carry Rippler trick to traverse all possible occupancies (see https://www.chessprogramming.org/Traversing_Subsets_of_a_Set)
 				occupancy = (occupancy - relevantMoveMask) & relevantMoveMask;
 			} while (occupancy);
 		} while (!validMagic);
 		// add candidateMagic if it is not an invalid magic
 		RookMagics[sq] = candidateMagic;
-		// std::cout << "Rook Magics: square " << static_cast<Square>(sq) << " " << triedCount << " tries " <<
-		// std::endl;
+
 		totalTried += triedCount;
 		triedCount = 0;
 	}
@@ -155,14 +152,18 @@ BitBoard
 Magics::MagicBishopAttack(Square b, BitBoard occupancy) const
 {
 	int sq = static_cast<int>(b);
-	return BishopMagicAttacks[sq][(occupancy * BishopMagics[sq]) >> (64 - BishopShifts[sq])];
+	BitBoard relevantOccupancy = AttackVectors::BishopMagicsOccupancyMask[sq] & occupancy;
+	int index = (relevantOccupancy * BishopMagics[sq]) >> (64 - BishopShifts[sq]);
+	return BishopMagicAttacks[sq][index];
 }
 
 BitBoard
 Magics::MagicRookAttack(Square b, BitBoard occupancy) const
 {
 	int sq = static_cast<int>(b);
-	return RookMagicAttacks[sq][(occupancy * RookMagics[sq]) >> (64 - RookShifts[sq])];
+	BitBoard relevantOccupancy = AttackVectors::RookMagicsOccupancyMask[sq] & occupancy;
+	int index = (relevantOccupancy * RookMagics[sq]) >> (64 - RookShifts[sq]);
+	return RookMagicAttacks[sq][index];
 }
 
 BitBoard
@@ -180,13 +181,9 @@ HQBishopAttack(Square b, BitBoard occupancy)
 	BitBoard OccupiedInDiagonal = occupancy & diagonal;
 	BitBoard OccupiedInAntiDiagonal = occupancy & antiDiagonal;
 	// diagonal attacks
-	BitBoard diagonalAttacks =
-	  ((OccupiedInDiagonal - 2 * piecePos) ^ reverse((reverse(OccupiedInDiagonal) - 2 * reverse(piecePos)))) &
-	  diagonal;
+	BitBoard diagonalAttacks = ((OccupiedInDiagonal - 2 * piecePos) ^ reverse((reverse(OccupiedInDiagonal) - 2 * reverse(piecePos)))) & diagonal;
 	// anti diagonal attacks
-	BitBoard antiDiagonalAttacks = ((OccupiedInAntiDiagonal - 2 * piecePos) ^
-					reverse((reverse(OccupiedInAntiDiagonal) - 2 * reverse(piecePos)))) &
-				       antiDiagonal;
+	BitBoard antiDiagonalAttacks = ((OccupiedInAntiDiagonal - 2 * piecePos) ^ reverse((reverse(OccupiedInAntiDiagonal) - 2 * reverse(piecePos)))) & antiDiagonal;
 	return diagonalAttacks | antiDiagonalAttacks;
 }
 BitBoard
@@ -198,11 +195,9 @@ HQRookAttack(Square r, BitBoard occupancy)
 	BitBoard OccupiedInRank = occupancy & rank;
 	BitBoard OccupiedInFile = occupancy & file;
 	// rank attacks
-	BitBoard rankAttacks =
-	  ((OccupiedInRank - 2 * piecePos) ^ reverse((reverse(OccupiedInRank) - 2 * reverse(piecePos)))) & rank;
+	BitBoard rankAttacks = ((OccupiedInRank - 2 * piecePos) ^ reverse((reverse(OccupiedInRank) - 2 * reverse(piecePos)))) & rank;
 	// file attacks
-	BitBoard fileAttacks =
-	  ((OccupiedInFile - 2 * piecePos) ^ reverse((reverse(OccupiedInFile) - 2 * reverse(piecePos)))) & file;
+	BitBoard fileAttacks = ((OccupiedInFile - 2 * piecePos) ^ reverse((reverse(OccupiedInFile) - 2 * reverse(piecePos)))) & file;
 	return rankAttacks | fileAttacks;
 }
 
@@ -216,8 +211,49 @@ BitBoard
 genRand(std::mt19937& rng)
 {
 	const BitBoard bottomTwoBytes = 0xFFFFULL;
-	return (static_cast<BitBoard>(rng()) & bottomTwoBytes) |
-	       ((static_cast<BitBoard>(rng()) & bottomTwoBytes) << 16) |
-	       ((static_cast<BitBoard>(rng()) & bottomTwoBytes) << 32) |
+	return (static_cast<BitBoard>(rng()) & bottomTwoBytes) | ((static_cast<BitBoard>(rng()) & bottomTwoBytes) << 16) | ((static_cast<BitBoard>(rng()) & bottomTwoBytes) << 32) |
 	       ((static_cast<BitBoard>(rng()) & bottomTwoBytes) << 48);
+}
+
+BitBoard
+genBishopMagicOccupancyMask(Square s)
+{
+	return HQBishopAttack(s, NoSquares) & NoEdges;
+}
+
+void
+printBishopMagicOccupancyMask()
+{
+
+	std::cout << "genBishopMagicOccupancyMask: " << std::endl;
+	Square s;
+	for (int sq = 0; sq < numSquaresInBoard; sq++) {
+		s = static_cast<Square>(sq);
+		std::cout << static_cast<uint64_t>(genBishopMagicOccupancyMask(s)) << " , //" << s << std::endl;
+	}
+}
+
+BitBoard
+genRookMagicOccupancyMask(Square s)
+{
+	BitBoard relevantMoveMask = HQRookAttack(static_cast<Square>(s), NoSquares);
+	BitBoard piece = fromSq(static_cast<Square>(s));
+	for (int edge = 0; edge < numEdges; edge++) {
+		if ((EdgeBitBoards[edge] & piece) == NoSquares)
+			relevantMoveMask &= ~EdgeBitBoards[edge];
+	}
+
+	return relevantMoveMask;
+}
+
+void
+printRookMagicOccupancyMask()
+{
+
+	std::cout << "genRookMagicOccupancyMask: " << std::endl;
+	Square s;
+	for (int sq = 0; sq < numSquaresInBoard; sq++) {
+		s = static_cast<Square>(sq);
+		std::cout << static_cast<uint64_t>(genRookMagicOccupancyMask(s)) << " , //" << s << std::endl;
+	}
 }

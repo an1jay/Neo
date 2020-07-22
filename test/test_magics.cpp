@@ -25,17 +25,17 @@ TEST_CASE("Magics", "[Magics]")
 						  AttackVectors::AntiDiagonals[static_cast<int>(s)]) &
 						 ~fromSq(s)));
 	}
-	SECTION("Hyperbola Quintessence Rook move generation")
-	{
-		Square s = Square::A1;
-		REQUIRE(HQRookAttack(s, 0) == AttackVectors::Rook[static_cast<int>(s)]);
-		s = Square::F6;
-		REQUIRE(HQRookAttack(s, 0) == AttackVectors::Rook[static_cast<int>(s)]);
-		s = Square::F4;
-		REQUIRE(HQRookAttack(s, 0) == AttackVectors::Rook[static_cast<int>(s)]);
-		s = Square::F2;
-		REQUIRE(HQRookAttack(s, 0) == AttackVectors::Rook[static_cast<int>(s)]);
-	}
+	// SECTION("Hyperbola Quintessence Rook move generation")
+	// {
+	// 	Square s = Square::A1;
+	// 	REQUIRE(HQRookAttack(s, 0) == AttackVectors::Rook[static_cast<int>(s)]);
+	// 	s = Square::F6;
+	// 	REQUIRE(HQRookAttack(s, 0) == AttackVectors::Rook[static_cast<int>(s)]);
+	// 	s = Square::F4;
+	// 	REQUIRE(HQRookAttack(s, 0) == AttackVectors::Rook[static_cast<int>(s)]);
+	// 	s = Square::F2;
+	// 	REQUIRE(HQRookAttack(s, 0) == AttackVectors::Rook[static_cast<int>(s)]);
+	// }
 	SECTION("Magics Bishop move generation")
 	{
 		for (int sq = 0; sq < numSquaresInBoard; sq++) {
@@ -45,13 +45,13 @@ TEST_CASE("Magics", "[Magics]")
 				m.MagicBishopAttack(static_cast<Square>(sq), static_cast<BitBoard>(occ)));
 		}
 	}
-	SECTION("Magics Rook move generation")
-	{
-		for (int sq = 0; sq < numSquaresInBoard; sq++) {
-			auto occ = GENERATE(1231233123, 23452345, 245632456);
-			occ = occ & AllSquares;
-			REQUIRE(HQRookAttack(static_cast<Square>(sq), static_cast<BitBoard>(occ)) ==
-				m.MagicRookAttack(static_cast<Square>(sq), static_cast<BitBoard>(occ)));
-		}
-	}
+	// SECTION("Magics Rook move generation")
+	// {
+	// 	for (int sq = 0; sq < numSquaresInBoard; sq++) {
+	// 		auto occ = GENERATE(1231233123, 23452345, 245632456);
+	// 		occ = occ & AllSquares;
+	// 		REQUIRE(HQRookAttack(static_cast<Square>(sq), static_cast<BitBoard>(occ)) ==
+	// 			m.MagicRookAttack(static_cast<Square>(sq), static_cast<BitBoard>(occ)));
+	// 	}
+	// }
 }

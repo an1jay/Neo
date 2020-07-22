@@ -1,6 +1,8 @@
 # bin
 bin/*
 
+_test
+
 # VSCode
 .vscode/*
 

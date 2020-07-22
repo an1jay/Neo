@@ -1,5 +1,7 @@
 #include "catch.h"
 
+#include "constants.h"
+#include "magics.h"
 #include "utils.h"
 
 TEST_CASE("Square File Rank", "[SqFileRank]")
@@ -26,5 +28,44 @@ TEST_CASE("Square File Rank", "[SqFileRank]")
 		REQUIRE(rankFromSq(Square::B4) == Rank::Fourth);
 		REQUIRE(rankFromSq(Square::C1) == Rank::First);
 		REQUIRE(rankFromSq(Square::F6) == Rank::Sixth);
+	}
+}
+
+TEST_CASE("Constants", "[Constants]")
+{
+	SECTION("Bishop")
+	{
+		for (int sq = 0; sq < numSquaresInBoard; sq++) {
+			REQUIRE(AttackVectors::Bishop[sq] == HQBishopAttack(static_cast<Square>(sq), NoSquares));
+			REQUIRE(AttackVectors::Bishop[sq] == ((AttackVectors::Diagonals[sq] | AttackVectors::AntiDiagonals[sq]) & ~fromSq(static_cast<Square>(sq))));
+		}
+	}
+
+	SECTION("Rook")
+	{
+		for (int sq = 0; sq < numSquaresInBoard; sq++) {
+			REQUIRE(AttackVectors::Rook[sq] == HQRookAttack(static_cast<Square>(sq), NoSquares));
+		}
+	}
+
+	SECTION("Queen")
+	{
+		for (int sq = 0; sq < numSquaresInBoard; sq++) {
+			REQUIRE(AttackVectors::Queen[sq] == HQQueenAttack(static_cast<Square>(sq), NoSquares));
+		}
+	}
+
+	SECTION("BishopNoEdges")
+	{
+		for (int sq = 0; sq < numSquaresInBoard; sq++) {
+			REQUIRE(AttackVectors::BishopMagicsOccupancyMask[sq] == genBishopMagicOccupancyMask(static_cast<Square>(sq)));
+		}
+	}
+
+	SECTION("RookNoEdges")
+	{
+		for (int sq = 0; sq < numSquaresInBoard; sq++) {
+			REQUIRE(AttackVectors::RookMagicsOccupancyMask[sq] == genRookMagicOccupancyMask(static_cast<Square>(sq)));
+		}
 	}
 }

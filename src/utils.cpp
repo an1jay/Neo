@@ -1,5 +1,6 @@
 #include "utils.h"
 #include "constants.h"
+#include "magics.h"
 #include "types.h"
 #include <sstream>
 
@@ -48,3 +49,4 @@ boardPrint(std::function<char(Square s)> mapper)
 	oss << std::endl << boardSep << std::endl << "    A   B   C   D   E   F" << std::endl;
 	return oss.str();
 }
+

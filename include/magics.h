@@ -9,11 +9,25 @@ constexpr int MagicBishopMax = 32;
 constexpr int MagicRookMax = 256;
 
 constexpr int BishopShifts[] = {
-	4, 3, 3, 3, 3, 4, 3, 3, 3, 3, 3, 3, 3, 3, 5, 5, 3, 3, 3, 3, 5, 5, 3, 3, 3, 3, 3, 3, 3, 3, 4, 3, 3, 3, 3, 4,
+	// clang-format off
+	4, 3, 3, 3, 3, 4,
+	3, 3, 3, 3, 3, 3,
+	3, 3, 5, 5, 3, 3,
+	3, 3, 5, 5, 3, 3,
+	3, 3, 3, 3, 3, 3,
+	4, 3, 3, 3, 3, 4,
+	// clang-format on
 };
 
 constexpr int RookShifts[] = {
-	8, 7, 7, 7, 7, 8, 7, 6, 6, 6, 6, 7, 7, 6, 6, 6, 6, 7, 7, 6, 6, 6, 6, 7, 7, 6, 6, 6, 6, 7, 8, 7, 7, 7, 7, 8,
+	// clang-format off
+	8, 7, 7, 7, 7, 8,
+	7, 6, 6, 6, 6, 7,
+	7, 6, 6, 6, 6, 7,
+	7, 6, 6, 6, 6, 7,
+	7, 6, 6, 6, 6, 7,
+	8, 7, 7, 7, 7, 8,
+	// clang-format on
 };
 
 struct Magics
@@ -47,3 +61,15 @@ HQRookAttack(Square r, BitBoard occupancy);
 
 BitBoard
 HQQueenAttack(Square q, BitBoard occupancy);
+
+BitBoard
+genBishopMagicOccupancyMask(Square s);
+
+void
+printBishopMagicOccupancyMask();
+
+BitBoard
+genRookMagicOccupancyMask(Square s);
+
+void
+printRookMagicOccupancyMask();
