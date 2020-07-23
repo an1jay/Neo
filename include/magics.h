@@ -43,6 +43,8 @@ struct Magics
       private:
 	BitBoard BishopMagics[numSquaresInBoard];
 	BitBoard RookMagics[numSquaresInBoard];
+	// TODO: is this correct? Do we want an array of pointers to other arrays?
+
 	BitBoard (*BishopMagicAttacks)[MagicBishopMax];
 	BitBoard (*RookMagicAttacks)[MagicRookMax];
 
@@ -62,13 +64,13 @@ HQRookAttack(Square r, BitBoard occupancy);
 BitBoard
 HQQueenAttack(Square q, BitBoard occupancy);
 
-BitBoard
+inline BitBoard
 genBishopMagicOccupancyMask(Square s);
 
 void
 printBishopMagicOccupancyMask();
 
-BitBoard
+inline BitBoard
 genRookMagicOccupancyMask(Square s);
 
 void

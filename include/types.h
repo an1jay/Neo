@@ -12,6 +12,17 @@
 // clang-format on
 using BitBoard = uint64_t;
 
+// clang-format off
+// Ply encodes as following:
+// 000000000000000000|  0 0  | 0 0 0 0 0 0 | 0 0 0 0 0 0
+//                   | Prom. |  Origin Sq  |   Dest Sq
+//
+// Bits 0-5 = Destination Square (0-35)
+// Bits 6-11 = Origin Square (0-35)
+// Bits 12-13 = Promotion PieceType (0 = No Promotion; 1,2,3 mean N,R,Q)
+// clang-format on
+using Ply = uint32_t;
+
 enum class Color : int
 {
 	Black,
@@ -30,6 +41,22 @@ enum class PieceType : int
 	NONE,
 };
 
+// TODO: might be more useful to have Piece - e.g. WPawn, WKnight, etc.
+enum class PieceType : int
+{
+	W_Pawn,
+	W_Knight,
+	W_Rook,
+	W_Queen,
+	W_King,
+	B_Pawn,
+	B_Knight,
+	B_Rook,
+	B_Queen,
+	B_King,
+	NONE,
+};
+
 enum class Square : int
 {
 	// clang-format off
@@ -39,8 +66,8 @@ enum class Square : int
 	A4, B4, C4, D4, E4, F4,
 	A5, B5, C5, D5, E5, F5,
 	A6, B6, C6, D6, E6, F6,
-	// clang-format on
 	NONE,
+	// clang-format on
 };
 enum class File : int
 {

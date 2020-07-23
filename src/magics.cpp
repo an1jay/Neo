@@ -215,7 +215,7 @@ genRand(std::mt19937& rng)
 	       ((static_cast<BitBoard>(rng()) & bottomTwoBytes) << 48);
 }
 
-BitBoard
+inline BitBoard
 genBishopMagicOccupancyMask(Square s)
 {
 	return HQBishopAttack(s, NoSquares) & NoEdges;
@@ -233,7 +233,7 @@ printBishopMagicOccupancyMask()
 	}
 }
 
-BitBoard
+inline BitBoard
 genRookMagicOccupancyMask(Square s)
 {
 	BitBoard relevantMoveMask = HQRookAttack(static_cast<Square>(s), NoSquares);
