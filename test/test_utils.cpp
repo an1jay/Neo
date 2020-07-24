@@ -31,6 +31,64 @@ TEST_CASE("Square File Rank", "[SqFileRank]")
 	}
 }
 
+TEST_CASE("PieceType Color", "[PieceTypeColor]")
+{
+	SECTION("get Piece from PieceType Color")
+	{
+		REQUIRE(pieceFromPieceTypeColor(PieceType::Pawn, Color::Black) == Piece::B_Pawn);
+		REQUIRE(pieceFromPieceTypeColor(PieceType::Pawn, Color::White) == Piece::W_Pawn);
+
+		REQUIRE(pieceFromPieceTypeColor(PieceType::Knight, Color::Black) == Piece::B_Knight);
+		REQUIRE(pieceFromPieceTypeColor(PieceType::Knight, Color::White) == Piece::W_Knight);
+
+		REQUIRE(pieceFromPieceTypeColor(PieceType::Rook, Color::Black) == Piece::B_Rook);
+		REQUIRE(pieceFromPieceTypeColor(PieceType::Rook, Color::White) == Piece::W_Rook);
+
+		REQUIRE(pieceFromPieceTypeColor(PieceType::Queen, Color::Black) == Piece::B_Queen);
+		REQUIRE(pieceFromPieceTypeColor(PieceType::Queen, Color::White) == Piece::W_Queen);
+
+		REQUIRE(pieceFromPieceTypeColor(PieceType::King, Color::Black) == Piece::B_King);
+		REQUIRE(pieceFromPieceTypeColor(PieceType::King, Color::White) == Piece::W_King);
+
+		REQUIRE(pieceFromPieceTypeColor(PieceType::Knight, Color::NB_NONE) == Piece::NB_NONE);
+		REQUIRE(pieceFromPieceTypeColor(PieceType::NB_NONE, Color::White) == Piece::NB_NONE);
+	}
+
+	SECTION("get PieceType from Piece")
+	{
+		REQUIRE(pieceTypeFromPiece(Piece::W_Pawn) == PieceType::Pawn);
+		REQUIRE(pieceTypeFromPiece(Piece::W_Knight) == PieceType::Knight);
+		REQUIRE(pieceTypeFromPiece(Piece::W_Rook) == PieceType::Rook);
+		REQUIRE(pieceTypeFromPiece(Piece::W_Queen) == PieceType::Queen);
+		REQUIRE(pieceTypeFromPiece(Piece::W_King) == PieceType::King);
+
+		REQUIRE(pieceTypeFromPiece(Piece::B_Pawn) == PieceType::Pawn);
+		REQUIRE(pieceTypeFromPiece(Piece::B_Knight) == PieceType::Knight);
+		REQUIRE(pieceTypeFromPiece(Piece::B_Rook) == PieceType::Rook);
+		REQUIRE(pieceTypeFromPiece(Piece::B_Queen) == PieceType::Queen);
+		REQUIRE(pieceTypeFromPiece(Piece::B_King) == PieceType::King);
+
+		REQUIRE(pieceTypeFromPiece(Piece::NB_NONE) == PieceType::NB_NONE);
+	}
+
+	SECTION("get Color from Piece")
+	{
+		REQUIRE(colorFromPiece(Piece::W_Pawn) == Color::White);
+		REQUIRE(colorFromPiece(Piece::W_Knight) == Color::White);
+		REQUIRE(colorFromPiece(Piece::W_Rook) == Color::White);
+		REQUIRE(colorFromPiece(Piece::W_Queen) == Color::White);
+		REQUIRE(colorFromPiece(Piece::W_King) == Color::White);
+
+		REQUIRE(colorFromPiece(Piece::B_Pawn) == Color::Black);
+		REQUIRE(colorFromPiece(Piece::B_Knight) == Color::Black);
+		REQUIRE(colorFromPiece(Piece::B_Rook) == Color::Black);
+		REQUIRE(colorFromPiece(Piece::B_Queen) == Color::Black);
+		REQUIRE(colorFromPiece(Piece::B_King) == Color::Black);
+
+		REQUIRE(colorFromPiece(Piece::NB_NONE) == Color::NB_NONE);
+	}
+}
+
 TEST_CASE("Constants", "[Constants]")
 {
 	SECTION("Bishop")

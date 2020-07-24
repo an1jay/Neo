@@ -4,8 +4,8 @@
 
 // ***** Primitives *****
 
-constexpr int numSquaresInBoard = 36;
-constexpr int numSquaresInRankFile = 6;
+constexpr int numSquaresInBoard = static_cast<int>(Square::NB_NONE);
+constexpr int numSquaresInRankFile = static_cast<int>(File::NB_NONE);
 constexpr int numSquaresShiftFactor = 64 - numSquaresInBoard;
 constexpr int numEdges = 4;
 

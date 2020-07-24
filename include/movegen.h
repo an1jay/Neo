@@ -39,7 +39,7 @@ getPromoPieceType(Ply p)
 	Ply promo = ((p >> PromoShift) & PromoMask);
 	if (promo)
 		return static_cast<PieceType>(promo);
-	return PieceType::NONE;
+	return PieceType::NB_NONE;
 }
 
 inline Ply

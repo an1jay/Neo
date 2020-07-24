@@ -25,12 +25,11 @@ using Ply = uint32_t;
 
 enum class Color : int
 {
-	Black,
 	White,
-	NONE,
+	Black,
+	NB_NONE,
 };
 
-// TODO: might be more useful to have Piece - e.g. WPawn, WKnight, etc.
 enum class PieceType : int
 {
 	Pawn,
@@ -38,11 +37,10 @@ enum class PieceType : int
 	Rook,
 	Queen,
 	King,
-	NONE,
+	NB_NONE,
 };
 
-// TODO: might be more useful to have Piece - e.g. WPawn, WKnight, etc.
-enum class PieceType : int
+enum class Piece : int
 {
 	W_Pawn,
 	W_Knight,
@@ -54,7 +52,7 @@ enum class PieceType : int
 	B_Rook,
 	B_Queen,
 	B_King,
-	NONE,
+	NB_NONE,
 };
 
 enum class Square : int
@@ -66,14 +64,14 @@ enum class Square : int
 	A4, B4, C4, D4, E4, F4,
 	A5, B5, C5, D5, E5, F5,
 	A6, B6, C6, D6, E6, F6,
-	NONE,
+	NB_NONE,
 	// clang-format on
 };
 enum class File : int
 {
 	// clang-format off
 	A, B, C, D, E, F,
-	NONE,
+	NB_NONE,
 	// clang-format on
 };
 
@@ -81,6 +79,6 @@ enum class Rank : int
 {
 	// clang-format off
 	First, Second, Third, Fourth, Fifth, Sixth,
-	NONE,
+	NB_NONE,
 	// clang-format on
 };

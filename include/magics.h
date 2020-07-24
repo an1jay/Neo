@@ -1,7 +1,8 @@
+#include <random>
+
 #include "bitboard.h"
 #include "constants.h"
 #include "types.h"
-#include <random>
 
 #pragma once
 
@@ -37,14 +38,14 @@ struct Magics
 	~Magics();
 
 	BitBoard MagicBishopAttack(Square b, BitBoard occupancy) const;
-	BitBoard MagicRookAttack(Square sq, BitBoard occupancy) const;
-	BitBoard MagicQueenAttack(Square sq, BitBoard occupancy) const;
+	BitBoard MagicRookAttack(Square b, BitBoard occupancy) const;
+	BitBoard MagicQueenAttack(Square b, BitBoard occupancy) const;
 
       private:
 	BitBoard BishopMagics[numSquaresInBoard];
 	BitBoard RookMagics[numSquaresInBoard];
-	// TODO: is this correct? Do we want an array of pointers to other arrays?
 
+	// TODO: is this correct? Do we want an array of pointers to other arrays?
 	BitBoard (*BishopMagicAttacks)[MagicBishopMax];
 	BitBoard (*RookMagicAttacks)[MagicRookMax];
 
@@ -53,25 +54,20 @@ struct Magics
 };
 
 BitBoard
-genRand(std::mt19937& rng);
+genRand(std::mt19937&);
 
-BitBoard
-HQBishopAttack(Square b, BitBoard occupancy);
+BitBoard HQBishopAttack(Square, BitBoard);
 
-BitBoard
-HQRookAttack(Square r, BitBoard occupancy);
+BitBoard HQRookAttack(Square, BitBoard);
 
-BitBoard
-HQQueenAttack(Square q, BitBoard occupancy);
+BitBoard HQQueenAttack(Square, BitBoard);
 
-inline BitBoard
-genBishopMagicOccupancyMask(Square s);
+inline BitBoard genBishopMagicOccupancyMask(Square);
 
 void
 printBishopMagicOccupancyMask();
 
-inline BitBoard
-genRookMagicOccupancyMask(Square s);
+inline BitBoard genRookMagicOccupancyMask(Square);
 
 void
 printRookMagicOccupancyMask();

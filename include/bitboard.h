@@ -1,14 +1,15 @@
+#include <string>
+
 #include "constants.h"
 #include "types.h"
-#include <string>
 
 #pragma once
 
 std::string
-asBitString(const BitBoard b);
+asBitString(const BitBoard);
 
 std::string
-asBoardString(const BitBoard b);
+asBoardString(const BitBoard);
 
 // Generate BitBoard from Square
 inline BitBoard
@@ -33,4 +34,4 @@ popCount(const BitBoard b)
 
 // Returns inverted BitBoard (but still in 36 least significant bits)
 BitBoard
-reverse(const BitBoard b);
+reverse(const BitBoard);

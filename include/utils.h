@@ -1,21 +1,29 @@
-#include "types.h"
 #include <functional>
 #include <iostream>
 
+#include "types.h"
+
 #pragma once
 
-std::string
-boardPrint(std::function<char(Square s)> mapper);
+std::string boardPrint(std::function<char(Square)>);
 
 std::ostream&
-operator<<(std::ostream& os, Square s);
+operator<<(std::ostream&, Square);
 
 Square
-sqFromFileRank(const File f, const Rank r);
+sqFromFileRank(const File, const Rank);
 
 File
-fileFromSq(const Square s);
+fileFromSq(const Square);
 
 Rank
-rankFromSq(const Square s);
+rankFromSq(const Square);
 
+Piece
+pieceFromPieceTypeColor(const PieceType pt, const Color c);
+
+PieceType
+pieceTypeFromPiece(const Piece p);
+
+Color
+colorFromPiece(const Piece p);
