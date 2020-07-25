@@ -6,6 +6,15 @@
 
 #pragma once
 
+struct StateInfo
+{
+	Key posKey;
+	double nonPawnMaterial[static_cast<int>(Color::NB_NONE)];
+	Score PSQT;
+	
+
+};
+
 struct Position
 {
       public:
@@ -14,7 +23,7 @@ struct Position
 	Position& operator=(const Position&) = delete;
 
 	// TODO: FEN string input/output
-	Position& SetfromFEN(const std::string& fenStr, bool isChess960);
+	Position& SetfromFEN(const std::string& fenStr);
 	const std::string GetFEN() const;
 
 	// Position representation

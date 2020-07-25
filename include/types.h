@@ -23,6 +23,11 @@ using BitBoard = uint64_t;
 // clang-format on
 using Ply = uint32_t;
 
+// Key is used to hash various things (e.g. Positions via Zobrist, etc.)
+using Key = uint64_t;
+
+using Score = double;
+
 enum class Color : int
 {
 	White,
