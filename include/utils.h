@@ -5,25 +5,29 @@
 
 #pragma once
 
-std::string boardPrint(std::function<char(Square)>);
+std::string
+boardPrint(std::function<char(Square)>);
 
 std::ostream&
 operator<<(std::ostream&, Square);
 
-Square
+constexpr Square
 sqFromFileRank(const File, const Rank);
 
-File
+constexpr File
 fileFromSq(const Square);
 
-Rank
+constexpr Rank
 rankFromSq(const Square);
 
-Piece
+constexpr Piece
 pieceFromPieceTypeColor(const PieceType pt, const Color c);
 
-PieceType
+constexpr PieceType
 pieceTypeFromPiece(const Piece p);
 
-Color
+constexpr Color
 colorFromPiece(const Piece p);
+
+constexpr inline Color
+otherColor(Color c);

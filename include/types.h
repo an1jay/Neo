@@ -28,6 +28,15 @@ using Key = uint64_t;
 
 using Score = double;
 
+enum class GameResult : int
+{
+	WhiteWin,
+	BlackWin,
+	Draw,
+	NB_NONE, // game is still in play
+
+};
+
 enum class Color : int
 {
 	White,
@@ -87,3 +96,4 @@ enum class Rank : int
 	NB_NONE,
 	// clang-format on
 };
+

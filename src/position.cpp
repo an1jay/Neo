@@ -1,0 +1,147 @@
+#include "position.h"
+#include "bitboard.h"
+#include "movegen.h"
+#include <cassert>
+
+void
+Position::movePiece(Square origin, Square destination)
+{
+	assert(PieceOn(origin) != Piece::NB_NONE);
+
+	removePiece(origin);
+	addPiece(destination);
+}
+
+void
+Position::removePiece(Square sq)
+{
+	Piece to_be_removed = PieceOn(sq);
+	assert(to_be_removed != Piece::NB_NONE);
+
+	// 3 things to update
+	// - piece array (mailbox board)
+	// - piece type BB
+	// - color BB
+	_board[static_cast<int>(sq)] = Piece::NB_NONE;
+	_byPieceTypeBB[static_cast<int>(pieceTypeFromPiece(to_be_removed))] ^= fromSq(sq);
+	_byPieceTypeBB[static_cast<int>(colorFromPiece(to_be_removed))] ^= fromSq(sq);
+}
+
+void
+Position::addPiece(Square sq, Piece p)
+{
+	assert(PieceOn(sq) == Piece::NB_NONE);
+
+	// 3 things to update
+	// - piece array (mailbox board)
+	// - piece type BB
+	// - color BB
+	_board[static_cast<int>(sq)] = p;
+	_byPieceTypeBB[static_cast<int>(pieceTypeFromPiece(p))] ^= fromSq(sq);
+	_byPieceTypeBB[static_cast<int>(colorFromPiece(p))] ^= fromSq(sq);
+}
+
+void
+Position::doMove(Ply p)
+{
+	// couple of things to be done
+	// - move piece, remove old piece, promote (if necessary)
+	// - create new stateinfo object & update various position properties
+	//    - side to move
+	//    - half move clock
+	//    - whether side to move is in check
+	//    - check whether game is ended (i.e. checkmate, stalemate,
+	//      insufficient material, 50 move rule, threefold repetition)
+
+	StateInfo* old_st = _st;
+
+	Square origin = getOriginSquare(p);
+	Square destination = getDestSquare(p);
+	PieceType promote = getPromoPieceType(p);
+
+	int rule50clock = old_st->_rule50 + 1;
+
+	Piece capturedPiece = Piece::NB_NONE;
+	if (isCapture(p)) {
+		capturedPiece = PieceOn(destination);
+		rule50clock = 0;
+	}
+
+	if (PieceOn(origin) == pieceFromPieceTypeColor(PieceType::Pawn, _sideToMove))
+		rule50clock = 0;
+
+	_sideToMove = otherColor(_sideToMove);
+	_halfMoveClock++;
+
+	// move piece & if there is a promotion, perform the promotion
+	movePiece(origin, destination);
+	if (promote != PieceType::NB_NONE) {
+		removePiece(destination);
+		addPiece(destination, pieceFromPieceTypeColor(promote, _sideToMove));
+	}
+
+	Key posKey = 0ULL;
+	// TODO do hashing
+
+	BitBoard checkers = calculateCheckers();
+
+	StateInfo* newSt = new StateInfo{
+		posKey, rule50clock, capturedPiece, checkers, old_st,
+
+	};
+
+	_gameResult = calculateGameResult();
+
+	if (checkers == 0ULL)
+		_inCheck = false;
+	else
+		_inCheck = true;
+}
+
+void
+Position::undoMove(Ply p)
+{
+	// couple of things to be done
+	// - remove moved piece, add back old piece, reverse promotion (if necessary)
+	// - reset to old stateinfo object & update various position properties
+	//    - side to move
+	//    - half move clock
+	//    - whether side to move is in check (use checkers from state info object)
+	//    - check whether game is ended (i.e. checkmate, stalemate,
+	//      insufficient material, 50 move rule, threefold repetition)
+
+	StateInfo* old_st = _st->_previous;
+
+	// TODO - What to do with new ST?
+	// for now delete it
+	delete _st;
+	_st = old_st;
+
+	// Reverse various positions specific game state 
+	_sideToMove = otherColor(_sideToMove);
+	_halfMoveClock--;
+	if (old_st->_checkersBB == 0ULL)
+		_inCheck = false;
+	else
+		_inCheck = true;
+
+	
+	// Move pieces
+	Square origin = getOriginSquare(p);
+	Square destination = getDestSquare(p);
+	PieceType promote = getPromoPieceType(p);
+
+	// Move piece back
+	movePiece(destination, origin);
+	// Replace destination with captured piece
+	// (this is Piece::NB_NONE if no capture happened previously)
+	addPiece(destination, old_st->_capturedPiece);
+
+	// if promotion, demote the piece to a pawn
+	if (promote != PieceType::NB_NONE)
+	{
+		removePiece(destination);
+		addPiece(destination, pieceFromPieceTypeColor(PieceType::Pawn, _sideToMove));
+	}
+
+}

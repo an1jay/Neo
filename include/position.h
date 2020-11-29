@@ -8,11 +8,11 @@
 
 struct StateInfo
 {
-	Key posKey;
-	double nonPawnMaterial[static_cast<int>(Color::NB_NONE)];
-	Score PSQT;
-	
-
+	Key _posKey;
+	int _rule50;
+	Piece _capturedPiece;
+	BitBoard _checkersBB;
+	StateInfo* _previous;
 };
 
 struct Position
@@ -32,15 +32,20 @@ struct Position
 	BitBoard PieceBB(Color c, PieceType pt) const;
 	Piece PieceOn(Square s) const;
 	bool isSqEmpty(Square s) const;
-	int PieceCount(PieceType pt, Color c) const;
 	int PieceCount(PieceType pt) const;
+	int PieceCount(PieceType pt, Color c) const;
 
 	// Position properties
 	Color sideToMove() const;
 
+	// Move properties
+	bool isLegalMove(Ply p);
+	bool isPseudoLegalMove(Ply p);
+	bool isCapture(Ply p);
+
 	// Do and undo moves
-	void do_move();
-	void undo_move();
+	void doMove(Ply p);
+	void undoMove(Ply p);
 
 	// For debugging purposes
 	bool isValid() const;
@@ -54,10 +59,18 @@ struct Position
 
 	int _pieceCount[static_cast<int>(Piece::NB_NONE)];
 
+	void movePiece(Square origin, Square destination);
+	void removePiece(Square sq);
+	void addPiece(Square sq, Piece p);
+	BitBoard calculateCheckers();
+	GameResult calculateGameResult();
+
 	// Position information
 	Color _sideToMove;
 	int _halfMoveClock;
 	bool _inCheck;
+	GameResult _gameResult;
+	StateInfo* _st;
 };
 
 inline BitBoard

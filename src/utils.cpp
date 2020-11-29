@@ -4,7 +4,7 @@
 #include "types.h"
 #include <sstream>
 
-Square
+constexpr Square
 sqFromFileRank(const File f, const Rank r)
 {
 	if (f == File::NB_NONE || r == Rank::NB_NONE)
@@ -13,13 +13,13 @@ sqFromFileRank(const File f, const Rank r)
 		return static_cast<Square>(static_cast<int>(r) * numSquaresInRankFile + static_cast<int>(f));
 }
 
-File
+constexpr File
 fileFromSq(const Square s)
 {
 	return static_cast<File>(static_cast<int>(s) % numSquaresInRankFile);
 }
 
-Rank
+constexpr Rank
 rankFromSq(const Square s)
 {
 	return static_cast<Rank>(static_cast<int>(s) / numSquaresInRankFile);
@@ -50,7 +50,7 @@ boardPrint(std::function<char(Square s)> mapper)
 	return oss.str();
 }
 
-Piece
+constexpr Piece
 pieceFromPieceTypeColor(const PieceType pt, const Color c)
 {
 	if (pt == PieceType::NB_NONE || c == Color::NB_NONE)
@@ -58,7 +58,7 @@ pieceFromPieceTypeColor(const PieceType pt, const Color c)
 	return static_cast<Piece>(static_cast<int>(pt) * (static_cast<int>(c) + 1));
 }
 
-PieceType
+constexpr PieceType
 pieceTypeFromPiece(const Piece p)
 {
 	if (p == Piece::NB_NONE)
@@ -66,7 +66,7 @@ pieceTypeFromPiece(const Piece p)
 	return static_cast<PieceType>(static_cast<int>(p) % static_cast<int>(Piece::B_Pawn));
 }
 
-Color
+constexpr Color
 colorFromPiece(const Piece p)
 {
 	if (p == Piece::NB_NONE)
@@ -74,4 +74,14 @@ colorFromPiece(const Piece p)
 	if (static_cast<int>(p) <= static_cast<int>(Piece::W_King))
 		return Color::White;
 	return Color::Black;
+}
+
+constexpr inline Color
+otherColor(Color c)
+{
+	if (c == Color::Black)
+		return Color::White;
+	else if (c == Color::White)
+		return Color::Black;
+	return Color::NB_NONE;
 }
