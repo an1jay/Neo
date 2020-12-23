@@ -4,6 +4,7 @@
 - [ ] Framework
   - [ ] Board representation
     - [ ] Position
+      - [ ] do / undo move hashing
       - [ ] is Legal Move
       - [ ] is Pseudo Legal Move
       - [ ] calculate Checkers
