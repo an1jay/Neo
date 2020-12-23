@@ -3,13 +3,20 @@
 #include "movegen.h"
 #include <cassert>
 
+bool
+Position::isCapture(Ply p){
+	Square destination = getDestSquare(p);
+	return PieceOn(destination) != Piece::NB_NONE;
+}
+
 void
 Position::movePiece(Square origin, Square destination)
 {
-	assert(PieceOn(origin) != Piece::NB_NONE);
+	Piece p = PieceOn(origin);
+	assert(p != Piece::NB_NONE);
 
 	removePiece(origin);
-	addPiece(destination);
+	addPiece(destination, p);
 }
 
 void
@@ -24,7 +31,7 @@ Position::removePiece(Square sq)
 	// - color BB
 	_board[static_cast<int>(sq)] = Piece::NB_NONE;
 	_byPieceTypeBB[static_cast<int>(pieceTypeFromPiece(to_be_removed))] ^= fromSq(sq);
-	_byPieceTypeBB[static_cast<int>(colorFromPiece(to_be_removed))] ^= fromSq(sq);
+	_byColorBB[static_cast<int>(colorFromPiece(to_be_removed))] ^= fromSq(sq);
 }
 
 void
@@ -38,7 +45,7 @@ Position::addPiece(Square sq, Piece p)
 	// - color BB
 	_board[static_cast<int>(sq)] = p;
 	_byPieceTypeBB[static_cast<int>(pieceTypeFromPiece(p))] ^= fromSq(sq);
-	_byPieceTypeBB[static_cast<int>(colorFromPiece(p))] ^= fromSq(sq);
+	_byColorBB[static_cast<int>(colorFromPiece(p))] ^= fromSq(sq);
 }
 
 void
@@ -70,9 +77,6 @@ Position::doMove(Ply p)
 	if (PieceOn(origin) == pieceFromPieceTypeColor(PieceType::Pawn, _sideToMove))
 		rule50clock = 0;
 
-	_sideToMove = otherColor(_sideToMove);
-	_halfMoveClock++;
-
 	// move piece & if there is a promotion, perform the promotion
 	movePiece(origin, destination);
 	if (promote != PieceType::NB_NONE) {
@@ -90,6 +94,9 @@ Position::doMove(Ply p)
 
 	};
 
+	_st = newSt;
+	_sideToMove = otherColor(_sideToMove);
+	_halfMoveClock++;
 	_gameResult = calculateGameResult();
 
 	if (checkers == 0ULL)
@@ -117,7 +124,7 @@ Position::undoMove(Ply p)
 	delete _st;
 	_st = old_st;
 
-	// Reverse various positions specific game state 
+	// Reverse various positions specific game state
 	_sideToMove = otherColor(_sideToMove);
 	_halfMoveClock--;
 	if (old_st->_checkersBB == 0ULL)
@@ -125,7 +132,6 @@ Position::undoMove(Ply p)
 	else
 		_inCheck = true;
 
-	
 	// Move pieces
 	Square origin = getOriginSquare(p);
 	Square destination = getDestSquare(p);
@@ -138,10 +144,8 @@ Position::undoMove(Ply p)
 	addPiece(destination, old_st->_capturedPiece);
 
 	// if promotion, demote the piece to a pawn
-	if (promote != PieceType::NB_NONE)
-	{
+	if (promote != PieceType::NB_NONE) {
 		removePiece(destination);
 		addPiece(destination, pieceFromPieceTypeColor(PieceType::Pawn, _sideToMove));
 	}
-
 }

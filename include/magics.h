@@ -62,12 +62,27 @@ BitBoard HQRookAttack(Square, BitBoard);
 
 BitBoard HQQueenAttack(Square, BitBoard);
 
-inline BitBoard genBishopMagicOccupancyMask(Square);
-
 void
 printBishopMagicOccupancyMask();
 
-inline BitBoard genRookMagicOccupancyMask(Square);
-
 void
 printRookMagicOccupancyMask();
+
+inline BitBoard
+genBishopMagicOccupancyMask(Square s)
+{
+	return HQBishopAttack(s, NoSquares) & NoEdges;
+}
+
+inline BitBoard
+genRookMagicOccupancyMask(Square s)
+{
+	BitBoard relevantMoveMask = HQRookAttack(static_cast<Square>(s), NoSquares);
+	BitBoard piece = fromSq(static_cast<Square>(s));
+	for (int edge = 0; edge < numEdges; edge++) {
+		if ((EdgeBitBoards[edge] & piece) == NoSquares)
+			relevantMoveMask &= ~EdgeBitBoards[edge];
+	}
+
+	return relevantMoveMask;
+}
