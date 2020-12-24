@@ -1,7 +1,9 @@
 #include "magics.h"
+
 #include "bitboard.h"
 #include "constants.h"
 #include "utils.h"
+
 #include <random>
 
 Magics::Magics()
@@ -32,7 +34,8 @@ void
 Magics::initBishops()
 {
 	// 1. For each square find a candidate magic
-	// 2. For each possible occupancy, store attack vector in correct index, checking there is no collision
+	// 2. For each possible occupancy, store attack vector in correct index, checking there is
+	// no collision
 	// 3. If no collisions, we have valid magic
 	std::mt19937 rng = std::mt19937();
 	BitBoard candidateMagic;
@@ -54,9 +57,11 @@ Magics::initBishops()
 
 		// inside this loop, occupancy is equal to every possible relevant occupancy
 		do {
-			// part of Carry Rippler (see https://www.chessprogramming.org/Traversing_Subsets_of_a_Set)
+			// part of Carry Rippler (see
+			// https://www.chessprogramming.org/Traversing_Subsets_of_a_Set)
 			occupancy = 0ULL;
-			// find a random magic (see https://www.chessprogramming.org/Looking_for_Magics)
+			// find a random magic (see
+			// https://www.chessprogramming.org/Looking_for_Magics)
 			candidateMagic = genRand(rng) & genRand(rng) & genRand(rng);
 			// assume magic is valid till proven otherwise
 			validMagic = true;
@@ -69,13 +74,15 @@ Magics::initBishops()
 			do {
 				moves = HQBishopAttack(static_cast<Square>(sq), occupancy);
 				index = (occupancy * candidateMagic) >> (64 - BishopShifts[sq]);
-				if (BishopMagicAttacks[sq][index] == moves || BishopMagicAttacks[sq][index] == AllSquares) {
+				if (BishopMagicAttacks[sq][index] == moves ||
+				    BishopMagicAttacks[sq][index] == AllSquares) {
 					BishopMagicAttacks[sq][index] = moves;
 				} else {
 					validMagic = false;
 					break;
 				}
-				// Carry Rippler trick to traverse all possible occupancies (see https://www.chessprogramming.org/Traversing_Subsets_of_a_Set)
+				// Carry Rippler trick to traverse all possible occupancies (see
+				// https://www.chessprogramming.org/Traversing_Subsets_of_a_Set)
 				occupancy = (occupancy - relevantMoveMask) & relevantMoveMask;
 			} while (occupancy);
 		} while (!validMagic);
@@ -92,7 +99,8 @@ void
 Magics::initRooks()
 {
 	// 1. For each square find a candidate magic
-	// 2. For each possible occupancy, store attack vector in correct index, checking there is no collision
+	// 2. For each possible occupancy, store attack vector in correct index, checking there is
+	// no collision
 	// 3. If no collisions, we have valid magic
 	std::mt19937 rng = std::mt19937(92);
 	BitBoard candidateMagic;
@@ -106,7 +114,8 @@ Magics::initRooks()
 	for (int sq = 0; sq < numSquaresInBoard; ++sq) {
 		triedCount = 0;
 
-		// only care about relevant occupances (i.e. middle 4x4 when on edges and middle 5x5 when on corners)
+		// only care about relevant occupances (i.e. middle 4x4 when on edges and middle 5x5
+		// when on corners)
 		relevantMoveMask = AttackVectors::RookMagicsOccupancyMask[sq];
 
 		// assume valid until proven otherwise
@@ -114,9 +123,11 @@ Magics::initRooks()
 
 		// inside this loop, occupancy is equal to every possible relevant occupancy
 		do {
-			// part of Carry Rippler (see https://www.chessprogramming.org/Traversing_Subsets_of_a_Set)
+			// part of Carry Rippler (see
+			// https://www.chessprogramming.org/Traversing_Subsets_of_a_Set)
 			occupancy = 0ULL;
-			// find a random magic (see https://www.chessprogramming.org/Looking_for_Magics)
+			// find a random magic (see
+			// https://www.chessprogramming.org/Looking_for_Magics)
 			candidateMagic = genRand(rng) & genRand(rng) & genRand(rng);
 			// assume valid till proven otherwise
 			validMagic = true;
@@ -129,13 +140,15 @@ Magics::initRooks()
 			do {
 				moves = HQRookAttack(static_cast<Square>(sq), occupancy);
 				index = (occupancy * candidateMagic) >> (64 - RookShifts[sq]);
-				if (RookMagicAttacks[sq][index] == moves || RookMagicAttacks[sq][index] == AllSquares) {
+				if (RookMagicAttacks[sq][index] == moves ||
+				    RookMagicAttacks[sq][index] == AllSquares) {
 					RookMagicAttacks[sq][index] = moves;
 				} else {
 					validMagic = false;
 					break;
 				}
-				// Carry Rippler trick to traverse all possible occupancies (see https://www.chessprogramming.org/Traversing_Subsets_of_a_Set)
+				// Carry Rippler trick to traverse all possible occupancies (see
+				// https://www.chessprogramming.org/Traversing_Subsets_of_a_Set)
 				occupancy = (occupancy - relevantMoveMask) & relevantMoveMask;
 			} while (occupancy);
 		} while (!validMagic);
@@ -158,18 +171,18 @@ Magics::MagicBishopAttack(Square b, BitBoard occupancy) const
 }
 
 BitBoard
-Magics::MagicRookAttack(Square b, BitBoard occupancy) const
+Magics::MagicRookAttack(Square r, BitBoard occupancy) const
 {
-	int sq = static_cast<int>(b);
+	int sq = static_cast<int>(r);
 	BitBoard relevantOccupancy = AttackVectors::RookMagicsOccupancyMask[sq] & occupancy;
 	int index = (relevantOccupancy * RookMagics[sq]) >> (64 - RookShifts[sq]);
 	return RookMagicAttacks[sq][index];
 }
 
 BitBoard
-Magics::MagicQueenAttack(Square b, BitBoard occupancy) const
+Magics::MagicQueenAttack(Square q, BitBoard occupancy) const
 {
-	return MagicBishopAttack(b, occupancy) | MagicRookAttack(b, occupancy);
+	return MagicBishopAttack(q, occupancy) | MagicRookAttack(q, occupancy);
 }
 
 BitBoard
@@ -181,9 +194,15 @@ HQBishopAttack(Square b, BitBoard occupancy)
 	BitBoard OccupiedInDiagonal = occupancy & diagonal;
 	BitBoard OccupiedInAntiDiagonal = occupancy & antiDiagonal;
 	// diagonal attacks
-	BitBoard diagonalAttacks = ((OccupiedInDiagonal - 2 * piecePos) ^ reverse((reverse(OccupiedInDiagonal) - 2 * reverse(piecePos)))) & diagonal;
+	BitBoard diagonalAttacks =
+	  ((OccupiedInDiagonal - 2 * piecePos) ^
+	   reverse((reverse(OccupiedInDiagonal) - 2 * reverse(piecePos)))) &
+	  diagonal;
 	// anti diagonal attacks
-	BitBoard antiDiagonalAttacks = ((OccupiedInAntiDiagonal - 2 * piecePos) ^ reverse((reverse(OccupiedInAntiDiagonal) - 2 * reverse(piecePos)))) & antiDiagonal;
+	BitBoard antiDiagonalAttacks =
+	  ((OccupiedInAntiDiagonal - 2 * piecePos) ^
+	   reverse((reverse(OccupiedInAntiDiagonal) - 2 * reverse(piecePos)))) &
+	  antiDiagonal;
 	return diagonalAttacks | antiDiagonalAttacks;
 }
 BitBoard
@@ -195,9 +214,13 @@ HQRookAttack(Square r, BitBoard occupancy)
 	BitBoard OccupiedInRank = occupancy & rank;
 	BitBoard OccupiedInFile = occupancy & file;
 	// rank attacks
-	BitBoard rankAttacks = ((OccupiedInRank - 2 * piecePos) ^ reverse((reverse(OccupiedInRank) - 2 * reverse(piecePos)))) & rank;
+	BitBoard rankAttacks = ((OccupiedInRank - 2 * piecePos) ^
+				reverse((reverse(OccupiedInRank) - 2 * reverse(piecePos)))) &
+			       rank;
 	// file attacks
-	BitBoard fileAttacks = ((OccupiedInFile - 2 * piecePos) ^ reverse((reverse(OccupiedInFile) - 2 * reverse(piecePos)))) & file;
+	BitBoard fileAttacks = ((OccupiedInFile - 2 * piecePos) ^
+				reverse((reverse(OccupiedInFile) - 2 * reverse(piecePos)))) &
+			       file;
 	return rankAttacks | fileAttacks;
 }
 
@@ -211,7 +234,9 @@ BitBoard
 genRand(std::mt19937& rng)
 {
 	const BitBoard bottomTwoBytes = 0xFFFFULL;
-	return (static_cast<BitBoard>(rng()) & bottomTwoBytes) | ((static_cast<BitBoard>(rng()) & bottomTwoBytes) << 16) | ((static_cast<BitBoard>(rng()) & bottomTwoBytes) << 32) |
+	return (static_cast<BitBoard>(rng()) & bottomTwoBytes) |
+	       ((static_cast<BitBoard>(rng()) & bottomTwoBytes) << 16) |
+	       ((static_cast<BitBoard>(rng()) & bottomTwoBytes) << 32) |
 	       ((static_cast<BitBoard>(rng()) & bottomTwoBytes) << 48);
 }
 
@@ -223,7 +248,8 @@ printBishopMagicOccupancyMask()
 	Square s;
 	for (int sq = 0; sq < numSquaresInBoard; sq++) {
 		s = static_cast<Square>(sq);
-		std::cout << static_cast<uint64_t>(genBishopMagicOccupancyMask(s)) << " , //" << s << std::endl;
+		std::cout << static_cast<uint64_t>(genBishopMagicOccupancyMask(s)) << " , //" << s
+			  << std::endl;
 	}
 }
 
@@ -235,6 +261,7 @@ printRookMagicOccupancyMask()
 	Square s;
 	for (int sq = 0; sq < numSquaresInBoard; sq++) {
 		s = static_cast<Square>(sq);
-		std::cout << static_cast<uint64_t>(genRookMagicOccupancyMask(s)) << " , //" << s << std::endl;
+		std::cout << static_cast<uint64_t>(genRookMagicOccupancyMask(s)) << " , //" << s
+			  << std::endl;
 	}
 }

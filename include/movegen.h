@@ -45,5 +45,10 @@ getPromoPieceType(Ply p)
 inline Ply
 encodePly(Square destSq, Square originSq, PieceType promo)
 {
-	return static_cast<Ply>((static_cast<Ply>(destSq) << DestSqShift) | (static_cast<Ply>(originSq) << OriginSqShift) | (static_cast<Ply>(promo) << PromoShift));
+	return static_cast<Ply>((static_cast<Ply>(destSq) << DestSqShift) |
+				(static_cast<Ply>(originSq) << OriginSqShift) |
+				(static_cast<Ply>(promo) << PromoShift));
 }
+
+BitBoard
+attackVector(Piece p, Square sq, BitBoard ourOccupancy, BitBoard theirOccupancy);

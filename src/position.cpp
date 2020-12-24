@@ -1,10 +1,13 @@
 #include "position.h"
+
 #include "bitboard.h"
 #include "movegen.h"
+
 #include <cassert>
 
 bool
-Position::isCapture(Ply p){
+Position::isCapture(Ply p)
+{
 	Square destination = getDestSquare(p);
 	return PieceOn(destination) != Piece::NB_NONE;
 }
@@ -48,6 +51,19 @@ Position::addPiece(Square sq, Piece p)
 	_byColorBB[static_cast<int>(colorFromPiece(p))] ^= fromSq(sq);
 }
 
+BitBoard
+Position::calculateCheckers()
+{
+	BitBoard kingBB = _byColorBB[static_cast<int>(_sideToMove)] &
+			  _byPieceTypeBB[static_cast<int>(PieceType::King)];
+	Square kingSq = sqFromBB(kingBB);
+
+	// Given location of King:
+	// 1) calculate attacks from this location for: pawn, knight, rook & queen (a king cannot
+	// attack king) 2) for these attacks check if the piece is present at those identified
+	// locations points 3) if a piece is present, then this piece is a checker
+}
+
 void
 Position::doMove(Ply p)
 {
@@ -87,6 +103,7 @@ Position::doMove(Ply p)
 	Key posKey = 0ULL;
 	// TODO do hashing
 
+	_sideToMove = otherColor(_sideToMove);
 	BitBoard checkers = calculateCheckers();
 
 	StateInfo* newSt = new StateInfo{
@@ -95,7 +112,6 @@ Position::doMove(Ply p)
 	};
 
 	_st = newSt;
-	_sideToMove = otherColor(_sideToMove);
 	_halfMoveClock++;
 	_gameResult = calculateGameResult();
 
@@ -109,11 +125,13 @@ void
 Position::undoMove(Ply p)
 {
 	// couple of things to be done
-	// - remove moved piece, add back old piece, reverse promotion (if necessary)
+	// - remove moved piece, add back old piece, reverse promotion (if
+	// necessary)
 	// - reset to old stateinfo object & update various position properties
 	//    - side to move
 	//    - half move clock
-	//    - whether side to move is in check (use checkers from state info object)
+	//    - whether side to move is in check (use checkers from state info
+	//    object)
 	//    - check whether game is ended (i.e. checkmate, stalemate,
 	//      insufficient material, 50 move rule, threefold repetition)
 

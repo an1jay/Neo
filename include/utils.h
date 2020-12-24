@@ -1,8 +1,9 @@
-#include <functional>
-#include <iostream>
-
 #include "constants.h"
 #include "types.h"
+
+#include <cassert>
+#include <functional>
+#include <iostream>
 
 #pragma once
 
@@ -17,7 +18,8 @@ sqFromFileRank(const File f, const Rank r)
 	if (f == File::NB_NONE || r == Rank::NB_NONE)
 		return Square::NB_NONE;
 	else
-		return static_cast<Square>(static_cast<int>(r) * numSquaresInRankFile + static_cast<int>(f));
+		return static_cast<Square>(static_cast<int>(r) * numSquaresInRankFile +
+					   static_cast<int>(f));
 }
 
 constexpr File
@@ -30,6 +32,13 @@ constexpr Rank
 rankFromSq(const Square s)
 {
 	return static_cast<Rank>(static_cast<int>(s) / numSquaresInRankFile);
+}
+
+constexpr Square
+sqFromBB(const BitBoard b)
+{
+	assert(b != 0ULL);
+	return static_cast<Square>(__builtin_ctzll(b));
 }
 
 constexpr Piece

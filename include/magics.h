@@ -1,8 +1,8 @@
-#include <random>
-
 #include "bitboard.h"
 #include "constants.h"
 #include "types.h"
+
+#include <random>
 
 #pragma once
 
@@ -56,11 +56,14 @@ struct Magics
 BitBoard
 genRand(std::mt19937&);
 
-BitBoard HQBishopAttack(Square, BitBoard);
+BitBoard
+HQBishopAttack(Square b, BitBoard occupancy);
 
-BitBoard HQRookAttack(Square, BitBoard);
+BitBoard
+HQRookAttack(Square r, BitBoard occupancy);
 
-BitBoard HQQueenAttack(Square, BitBoard);
+BitBoard
+HQQueenAttack(Square q, BitBoard occupancy);
 
 void
 printBishopMagicOccupancyMask();

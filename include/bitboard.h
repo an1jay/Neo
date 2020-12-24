@@ -1,7 +1,7 @@
-#include <string>
-
 #include "constants.h"
 #include "types.h"
+
+#include <string>
 
 #pragma once
 

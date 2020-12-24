@@ -96,4 +96,3 @@ enum class Rank : int
 	NB_NONE,
 	// clang-format on
 };
-

@@ -1,7 +1,9 @@
 #include "utils.h"
+
 #include "constants.h"
 #include "magics.h"
 #include "types.h"
+
 #include <sstream>
 
 std::ostream&
@@ -22,7 +24,9 @@ boardPrint(std::function<char(Square s)> mapper)
 		oss << std::endl << boardSep << std::endl;
 		oss << RankChars[r] << " |";
 		for (int f = 0; f < numSquaresInRankFile; f++) {
-			oss << " " << mapper(sqFromFileRank(static_cast<File>(f), static_cast<Rank>(r))) << " |";
+			oss << " "
+			    << mapper(sqFromFileRank(static_cast<File>(f), static_cast<Rank>(r)))
+			    << " |";
 		}
 	}
 	oss << std::endl << boardSep << std::endl << "    A   B   C   D   E   F" << std::endl;

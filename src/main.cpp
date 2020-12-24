@@ -2,6 +2,7 @@
 #include "constants.h"
 #include "magics.h"
 #include "utils.h"
+
 #include <iostream>
 
 int

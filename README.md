@@ -11,9 +11,9 @@
       - [ ] calculate Game Result
       - [ ] is Valid
     - [ ] Move generation
-      - [ ] Incorporate magic bitboards
-      - [ ] Pawns
-      - [ ] Knights / King
+      - [x] Incorporate magic bitboards
+      - [x] Pawns
+      - [x] Knights / King
     - [ ] Game playing
 - [ ] Testing
 - [ ] AI
