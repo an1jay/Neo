@@ -5,4 +5,5 @@ TabWidth: '8'
 UseTab: Always
 SortIncludes: true
 IncludeBlocks: Regroup
+ReflowComments: false
 

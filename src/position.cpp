@@ -5,6 +5,17 @@
 
 #include <cassert>
 
+Position::Position()
+{
+	// TODO think about instantiating other members to sensible defaults
+	_magics = Magics();
+}
+
+Position::~Position()
+{
+	// TODO
+}
+
 bool
 Position::isCapture(Ply p)
 {
@@ -28,13 +39,15 @@ Position::removePiece(Square sq)
 	Piece to_be_removed = PieceOn(sq);
 	assert(to_be_removed != Piece::NB_NONE);
 
-	// 3 things to update
+	// 4 things to update
 	// - piece array (mailbox board)
 	// - piece type BB
 	// - color BB
+	// - piece count
 	_board[static_cast<int>(sq)] = Piece::NB_NONE;
-	_byPieceTypeBB[static_cast<int>(pieceTypeFromPiece(to_be_removed))] ^= fromSq(sq);
-	_byColorBB[static_cast<int>(colorFromPiece(to_be_removed))] ^= fromSq(sq);
+	_byPieceTypeBB[static_cast<int>(pieceTypeFromPiece(to_be_removed))] ^= BBfromSq(sq);
+	_byColorBB[static_cast<int>(colorFromPiece(to_be_removed))] ^= BBfromSq(sq);
+	_pieceCount[static_cast<int>(to_be_removed)]--;
 }
 
 void
@@ -42,37 +55,64 @@ Position::addPiece(Square sq, Piece p)
 {
 	assert(PieceOn(sq) == Piece::NB_NONE);
 
-	// 3 things to update
+	// 4 things to update
 	// - piece array (mailbox board)
 	// - piece type BB
 	// - color BB
+	// - piece count
 	_board[static_cast<int>(sq)] = p;
-	_byPieceTypeBB[static_cast<int>(pieceTypeFromPiece(p))] ^= fromSq(sq);
-	_byColorBB[static_cast<int>(colorFromPiece(p))] ^= fromSq(sq);
+	_byPieceTypeBB[static_cast<int>(pieceTypeFromPiece(p))] ^= BBfromSq(sq);
+	_byColorBB[static_cast<int>(colorFromPiece(p))] ^= BBfromSq(sq);
+	_pieceCount[static_cast<int>(p)]++;
 }
 
 BitBoard
 Position::calculateCheckers()
 {
-	BitBoard kingBB = _byColorBB[static_cast<int>(_sideToMove)] &
-			  _byPieceTypeBB[static_cast<int>(PieceType::King)];
-	Square kingSq = sqFromBB(kingBB);
+	BitBoard ourKingBB = _byColorBB[static_cast<int>(_sideToMove)] &
+			     _byPieceTypeBB[static_cast<int>(PieceType::King)];
+	Square ourKingSq = sqFromBB(ourKingBB);
 
 	// Given location of King:
-	// 1) calculate attacks from this location for: pawn, knight, rook & queen (a king cannot
-	// attack king) 2) for these attacks check if the piece is present at those identified
-	// locations points 3) if a piece is present, then this piece is a checker
+	// 1) check if pieces exists
+	// 2) calculate attacks from this location for: pawn (only captures), knight, rook & queen (a king cannot another king)
+	// 3) for these attacks check if the piece is present at those identified locations points
+	// 4) if a piece is present, then this piece is a checker
+
+	BitBoard checkers;
+	BitBoard ourOccupancy = ColorBB(_sideToMove);
+	BitBoard theirOccupancy = ColorBB(otherColor(_sideToMove));
+
+	// Handle normal (i.e. symmetric attack) cases (i.e. not pawns)
+	PieceType normalCases[] = { PieceType::Queen, PieceType::Rook, PieceType::Knight };
+	for (PieceType nc : normalCases) {
+		if (PieceCount(nc, otherColor(_sideToMove)) > 0) {
+			BitBoard attacks =
+			  calculateAttackBB(nc, ourKingSq, ourOccupancy, theirOccupancy, _magics);
+			checkers |= attacks & PieceBB(otherColor(_sideToMove), nc);
+		}
+	}
+
+	// Handle pawns
+	if (PieceCount(PieceType::Pawn, otherColor(_sideToMove)) > 0) {
+		BitBoard pAttacks = AttackVectors::WhitePawnCapture[static_cast<int>(ourKingSq)];
+		if (_sideToMove == Color::Black)
+			pAttacks = AttackVectors::BlackPawnCapture[static_cast<int>(ourKingSq)];
+		checkers |= pAttacks & PieceBB(otherColor(_sideToMove), PieceType::Pawn);
+	}
+
+	return checkers;
 }
 
 void
 Position::doMove(Ply p)
 {
-	// couple of things to be done
+	// Things to be done
 	// - move piece, remove old piece, promote (if necessary)
 	// - create new stateinfo object & update various position properties
 	//    - side to move
 	//    - half move clock
-	//    - whether side to move is in check
+	//    - checkers of the (now updated) side to move
 	//    - check whether game is ended (i.e. checkmate, stalemate,
 	//      insufficient material, 50 move rule, threefold repetition)
 
@@ -83,13 +123,14 @@ Position::doMove(Ply p)
 	PieceType promote = getPromoPieceType(p);
 
 	int rule50clock = old_st->_rule50 + 1;
+	_halfMoveClock++;
 
+	// reset Rule 50 Clock if capture or pawn move
 	Piece capturedPiece = Piece::NB_NONE;
 	if (isCapture(p)) {
 		capturedPiece = PieceOn(destination);
 		rule50clock = 0;
 	}
-
 	if (PieceOn(origin) == pieceFromPieceTypeColor(PieceType::Pawn, _sideToMove))
 		rule50clock = 0;
 
@@ -105,50 +146,37 @@ Position::doMove(Ply p)
 
 	_sideToMove = otherColor(_sideToMove);
 	BitBoard checkers = calculateCheckers();
+	GameResult _gameResult = calculateGameResult();
 
 	StateInfo* newSt = new StateInfo{
-		posKey, rule50clock, capturedPiece, checkers, old_st,
+		posKey, rule50clock, capturedPiece, checkers, _gameResult, old_st,
 
 	};
 
 	_st = newSt;
-	_halfMoveClock++;
-	_gameResult = calculateGameResult();
-
-	if (checkers == 0ULL)
-		_inCheck = false;
-	else
-		_inCheck = true;
 }
 
 void
 Position::undoMove(Ply p)
 {
 	// couple of things to be done
-	// - remove moved piece, add back old piece, reverse promotion (if
-	// necessary)
+	// - remove moved piece, add back old piece, reverse promotion (if necessary)
 	// - reset to old stateinfo object & update various position properties
 	//    - side to move
 	//    - half move clock
-	//    - whether side to move is in check (use checkers from state info
-	//    object)
+	//    - whether side to move is in check (use checkers from state info object)
 	//    - check whether game is ended (i.e. checkmate, stalemate,
 	//      insufficient material, 50 move rule, threefold repetition)
 
 	StateInfo* old_st = _st->_previous;
 
-	// TODO - What to do with new ST?
-	// for now delete it
+	// TODO - What to do with new ST? For now, delete it
 	delete _st;
 	_st = old_st;
 
 	// Reverse various positions specific game state
 	_sideToMove = otherColor(_sideToMove);
 	_halfMoveClock--;
-	if (old_st->_checkersBB == 0ULL)
-		_inCheck = false;
-	else
-		_inCheck = true;
 
 	// Move pieces
 	Square origin = getOriginSquare(p);
@@ -157,8 +185,7 @@ Position::undoMove(Ply p)
 
 	// Move piece back
 	movePiece(destination, origin);
-	// Replace destination with captured piece
-	// (this is Piece::NB_NONE if no capture happened previously)
+	// Replace destination with captured piece (this is Piece::NB_NONE if no capture happened previously)
 	addPiece(destination, old_st->_capturedPiece);
 
 	// if promotion, demote the piece to a pawn

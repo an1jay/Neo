@@ -59,7 +59,7 @@ Magics::initBishops()
 		do {
 			// part of Carry Rippler (see
 			// https://www.chessprogramming.org/Traversing_Subsets_of_a_Set)
-			occupancy = 0ULL;
+			occupancy = NoSquares;
 			// find a random magic (see
 			// https://www.chessprogramming.org/Looking_for_Magics)
 			candidateMagic = genRand(rng) & genRand(rng) & genRand(rng);
@@ -125,7 +125,7 @@ Magics::initRooks()
 		do {
 			// part of Carry Rippler (see
 			// https://www.chessprogramming.org/Traversing_Subsets_of_a_Set)
-			occupancy = 0ULL;
+			occupancy = NoSquares;
 			// find a random magic (see
 			// https://www.chessprogramming.org/Looking_for_Magics)
 			candidateMagic = genRand(rng) & genRand(rng) & genRand(rng);
@@ -188,7 +188,7 @@ Magics::MagicQueenAttack(Square q, BitBoard occupancy) const
 BitBoard
 HQBishopAttack(Square b, BitBoard occupancy)
 {
-	BitBoard piecePos = fromSq(b);
+	BitBoard piecePos = BBfromSq(b);
 	BitBoard diagonal = AttackVectors::Diagonals[static_cast<int>(b)];
 	BitBoard antiDiagonal = AttackVectors::AntiDiagonals[static_cast<int>(b)];
 	BitBoard OccupiedInDiagonal = occupancy & diagonal;
@@ -208,7 +208,7 @@ HQBishopAttack(Square b, BitBoard occupancy)
 BitBoard
 HQRookAttack(Square r, BitBoard occupancy)
 {
-	BitBoard piecePos = fromSq(r);
+	BitBoard piecePos = BBfromSq(r);
 	BitBoard rank = RankBitBoards[static_cast<int>(rankFromSq(r))];
 	BitBoard file = FileBitBoards[static_cast<int>(fileFromSq(r))];
 	BitBoard OccupiedInRank = occupancy & rank;

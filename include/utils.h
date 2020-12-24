@@ -37,7 +37,7 @@ rankFromSq(const Square s)
 constexpr Square
 sqFromBB(const BitBoard b)
 {
-	assert(b != 0ULL);
+	assert(b != NoSquares);
 	return static_cast<Square>(__builtin_ctzll(b));
 }
 

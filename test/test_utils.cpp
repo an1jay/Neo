@@ -1,5 +1,4 @@
 #include "catch.h"
-
 #include "constants.h"
 #include "magics.h"
 #include "utils.h"
@@ -38,8 +37,10 @@ TEST_CASE("PieceType Color", "[PieceTypeColor]")
 		REQUIRE(pieceFromPieceTypeColor(PieceType::Pawn, Color::Black) == Piece::B_Pawn);
 		REQUIRE(pieceFromPieceTypeColor(PieceType::Pawn, Color::White) == Piece::W_Pawn);
 
-		REQUIRE(pieceFromPieceTypeColor(PieceType::Knight, Color::Black) == Piece::B_Knight);
-		REQUIRE(pieceFromPieceTypeColor(PieceType::Knight, Color::White) == Piece::W_Knight);
+		REQUIRE(pieceFromPieceTypeColor(PieceType::Knight, Color::Black) ==
+			Piece::B_Knight);
+		REQUIRE(pieceFromPieceTypeColor(PieceType::Knight, Color::White) ==
+			Piece::W_Knight);
 
 		REQUIRE(pieceFromPieceTypeColor(PieceType::Rook, Color::Black) == Piece::B_Rook);
 		REQUIRE(pieceFromPieceTypeColor(PieceType::Rook, Color::White) == Piece::W_Rook);
@@ -50,8 +51,10 @@ TEST_CASE("PieceType Color", "[PieceTypeColor]")
 		REQUIRE(pieceFromPieceTypeColor(PieceType::King, Color::Black) == Piece::B_King);
 		REQUIRE(pieceFromPieceTypeColor(PieceType::King, Color::White) == Piece::W_King);
 
-		REQUIRE(pieceFromPieceTypeColor(PieceType::Knight, Color::NB_NONE) == Piece::NB_NONE);
-		REQUIRE(pieceFromPieceTypeColor(PieceType::NB_NONE, Color::White) == Piece::NB_NONE);
+		REQUIRE(pieceFromPieceTypeColor(PieceType::Knight, Color::NB_NONE) ==
+			Piece::NB_NONE);
+		REQUIRE(pieceFromPieceTypeColor(PieceType::NB_NONE, Color::White) ==
+			Piece::NB_NONE);
 	}
 
 	SECTION("get PieceType from Piece")
@@ -94,36 +97,43 @@ TEST_CASE("Constants", "[Constants]")
 	SECTION("Bishop")
 	{
 		for (int sq = 0; sq < numSquaresInBoard; sq++) {
-			REQUIRE(AttackVectors::Bishop[sq] == HQBishopAttack(static_cast<Square>(sq), NoSquares));
-			REQUIRE(AttackVectors::Bishop[sq] == ((AttackVectors::Diagonals[sq] | AttackVectors::AntiDiagonals[sq]) & ~fromSq(static_cast<Square>(sq))));
+			REQUIRE(AttackVectors::Bishop[sq] ==
+				HQBishopAttack(static_cast<Square>(sq), NoSquares));
+			REQUIRE(AttackVectors::Bishop[sq] ==
+				((AttackVectors::Diagonals[sq] | AttackVectors::AntiDiagonals[sq]) &
+				 ~BBfromSq(static_cast<Square>(sq))));
 		}
 	}
 
 	SECTION("Rook")
 	{
 		for (int sq = 0; sq < numSquaresInBoard; sq++) {
-			REQUIRE(AttackVectors::Rook[sq] == HQRookAttack(static_cast<Square>(sq), NoSquares));
+			REQUIRE(AttackVectors::Rook[sq] ==
+				HQRookAttack(static_cast<Square>(sq), NoSquares));
 		}
 	}
 
 	SECTION("Queen")
 	{
 		for (int sq = 0; sq < numSquaresInBoard; sq++) {
-			REQUIRE(AttackVectors::Queen[sq] == HQQueenAttack(static_cast<Square>(sq), NoSquares));
+			REQUIRE(AttackVectors::Queen[sq] ==
+				HQQueenAttack(static_cast<Square>(sq), NoSquares));
 		}
 	}
 
 	SECTION("BishopNoEdges")
 	{
 		for (int sq = 0; sq < numSquaresInBoard; sq++) {
-			REQUIRE(AttackVectors::BishopMagicsOccupancyMask[sq] == genBishopMagicOccupancyMask(static_cast<Square>(sq)));
+			REQUIRE(AttackVectors::BishopMagicsOccupancyMask[sq] ==
+				genBishopMagicOccupancyMask(static_cast<Square>(sq)));
 		}
 	}
 
 	SECTION("RookNoEdges")
 	{
 		for (int sq = 0; sq < numSquaresInBoard; sq++) {
-			REQUIRE(AttackVectors::RookMagicsOccupancyMask[sq] == genRookMagicOccupancyMask(static_cast<Square>(sq)));
+			REQUIRE(AttackVectors::RookMagicsOccupancyMask[sq] ==
+				genRookMagicOccupancyMask(static_cast<Square>(sq)));
 		}
 	}
 }

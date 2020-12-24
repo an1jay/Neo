@@ -16,5 +16,8 @@
       - [x] Knights / King
     - [ ] Game playing
 - [ ] Testing
+  - [ ] Pawn Pushes & Capture AttackVectors
+  - [ ] Knight & King Moves AttackVectors
+  - [ ] Diagonals & Anti Diagonals AttackVectors
 - [ ] AI
   - [ ] TBD.

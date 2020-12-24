@@ -13,16 +13,16 @@ asBoardString(const BitBoard);
 
 // Generate BitBoard from Square
 inline BitBoard
-fromSq(const Square s)
+BBfromSq(const Square s)
 {
 	return static_cast<BitBoard>(1) << static_cast<int>(s);
 }
 
 // Checks whether provided square is occupied in provided BitBoard
 inline bool
-occupiedSq(const BitBoard b, const Square s)
+BBoccupiedSq(const BitBoard b, const Square s)
 {
-	return b & fromSq(s);
+	return b & BBfromSq(s);
 }
 
 // Counts number of occupancies in provided BitBoard

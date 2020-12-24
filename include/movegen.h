@@ -1,3 +1,4 @@
+#include "magics.h"
 #include "types.h"
 
 #pragma once
@@ -51,4 +52,7 @@ encodePly(Square destSq, Square originSq, PieceType promo)
 }
 
 BitBoard
-attackVector(Piece p, Square sq, BitBoard ourOccupancy, BitBoard theirOccupancy);
+calculateAttackBB(Piece p, Square sq, BitBoard ourOccupancy, BitBoard theirOccupancy, Magics& m);
+
+BitBoard
+calculateAttackBB(PieceType p, Square sq, BitBoard ourOccupancy, BitBoard theirOccupancy, Magics& m);

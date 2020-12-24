@@ -1,7 +1,7 @@
 #define CATCH_CONFIG_ENABLE_BENCHMARKING
 #include "catch.h"
-
 #include "magics.h"
+
 #include <random>
 
 // TEST_CASE("Attack Vector Generation")

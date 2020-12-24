@@ -11,7 +11,7 @@ asBitString(const BitBoard b)
 {
 	std::ostringstream oss;
 	for (int sq = numSquaresInBoard - 1; sq >= 0; sq--) {
-		if (occupiedSq(b, static_cast<Square>(sq)))
+		if (BBoccupiedSq(b, static_cast<Square>(sq)))
 			oss << '1';
 		else
 			oss << '0';
@@ -23,7 +23,7 @@ std::string
 asBoardString(const BitBoard b)
 {
 	auto mapper = [&b](Square s) -> char {
-		if (occupiedSq(b, s))
+		if (BBoccupiedSq(b, s))
 			return 'X';
 		return ' ';
 	};
