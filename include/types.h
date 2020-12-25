@@ -30,6 +30,7 @@ using Score = double;
 
 enum class GameResult : int
 {
+	NotEnded,
 	WhiteWin,
 	BlackWin,
 	Draw,

@@ -1,7 +1,7 @@
 .PHONY: all clean run run_test _test
 
 CC		:= g++
-C_FLAGS := -std=c++17 -Wall -Werror -Wextra -g -O2 -march=native -fsanitize=undefined
+C_FLAGS := -std=c++17 -Wall -Werror -Wextra -g -O2 -march=native -fsanitize=undefined -fsanitize=address
 
 BIN			:= bin
 SRC			:= src

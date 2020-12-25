@@ -36,6 +36,8 @@ struct Magics
       public:
 	Magics();
 	~Magics();
+	Magics(const Magics&) = delete;
+	Magics& operator=(const Magics&) = delete;
 
 	BitBoard MagicBishopAttack(Square b, BitBoard occupancy) const;
 	BitBoard MagicRookAttack(Square b, BitBoard occupancy) const;

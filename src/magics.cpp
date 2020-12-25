@@ -4,6 +4,7 @@
 #include "constants.h"
 #include "utils.h"
 
+#include <iostream>
 #include <random>
 
 Magics::Magics()
@@ -34,8 +35,7 @@ void
 Magics::initBishops()
 {
 	// 1. For each square find a candidate magic
-	// 2. For each possible occupancy, store attack vector in correct index, checking there is
-	// no collision
+	// 2. For each possible occupancy, store attack vector in correct index, checking there is no collision
 	// 3. If no collisions, we have valid magic
 	std::mt19937 rng = std::mt19937();
 	BitBoard candidateMagic;
@@ -99,8 +99,7 @@ void
 Magics::initRooks()
 {
 	// 1. For each square find a candidate magic
-	// 2. For each possible occupancy, store attack vector in correct index, checking there is
-	// no collision
+	// 2. For each possible occupancy, store attack vector in correct index, checking there is no collision
 	// 3. If no collisions, we have valid magic
 	std::mt19937 rng = std::mt19937(92);
 	BitBoard candidateMagic;

@@ -8,9 +8,6 @@
 std::string
 asBitString(const BitBoard);
 
-std::string
-asBoardString(const BitBoard);
-
 // Generate BitBoard from Square
 inline BitBoard
 BBfromSq(const Square s)

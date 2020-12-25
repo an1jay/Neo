@@ -9,12 +9,16 @@
 
 struct StateInfo
 {
+      public:
 	Key _posKey;
 	int _rule50;
 	Piece _capturedPiece;
 	BitBoard _checkersBB;
 	GameResult _gameResult;
 	StateInfo* _previous;
+
+	StateInfo() = default;
+	// ~StateInfo();
 };
 
 struct Position
@@ -28,48 +32,51 @@ struct Position
 	// TODO: FEN string input/output
 	Position& SetfromFEN(const std::string& fenStr);
 	const std::string GetFEN() const;
+	friend std::ostream& operator<<(std::ostream& os, Position& p);
 
 	// Position representation
 	BitBoard PieceBB(PieceType pt) const;
-	BitBoard ColorBB(Color c) const;
 	BitBoard PieceBB(Color c, PieceType pt) const;
+	BitBoard ColorBB(Color c) const;
 	Piece PieceOn(Square s) const;
 	bool isSqEmpty(Square s) const;
 	int PieceCount(PieceType pt) const;
 	int PieceCount(PieceType pt, Color c) const;
 
+	std::vector<Ply>& generatePseudoLegalPlies();
+
 	// Move properties
-	bool isLegalMove(Ply p);
-	bool isPseudoLegalMove(Ply p);
+	bool isLegalPly(Ply p);
+	bool isPseudoLegalPly(Ply p);
 	bool isCapture(Ply p);
 
-	// Do and undo moves
-	void doMove(Ply p);
-	void undoMove(Ply p);
+	// Do and undo plies
+	void doPly(Ply p);
+	void undoPly(Ply p);
 
 	// For debugging purposes
 	bool isValid() const;
 
       private:
 	// ******* Data Members *******
-	// Board Representation
+	// Board representation
 	BitBoard _byColorBB[2];
 	BitBoard _byPieceTypeBB[5];
 	Piece _board[numSquaresInBoard];
-
 	int _pieceCount[static_cast<int>(Piece::NB_NONE)];
+	// Other info
+	Color _sideToMove;
+	int _halfMoveClock;
+	StateInfo* _st; // TODO TBD whether this needs to be heap allocated
+
+	Magics _magics;
 
 	void movePiece(Square origin, Square destination);
 	void removePiece(Square sq);
 	void addPiece(Square sq, Piece p);
 	BitBoard calculateCheckers();
 	GameResult calculateGameResult();
-
-	Magics _magics;
-	// Position information
-	Color _sideToMove;
-	int _halfMoveClock;
-	StateInfo* _st;
+	void updateMembersFromPieceList();
 };
 
 inline BitBoard

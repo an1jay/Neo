@@ -51,6 +51,8 @@ calculateAttackBB(Piece p, Square sq, BitBoard ourOccupancy, BitBoard theirOccup
 		case Piece::B_King:
 			attackVector = AttackVectors::King[static_cast<int>(sq)] & ~ourOccupancy;
 			break;
+		case Piece::NB_NONE:
+			break;
 	};
 	return attackVector;
 }

@@ -7,10 +7,22 @@
 
 #pragma once
 
-std::string boardPrint(std::function<char(Square)>);
+std::string boardPrint(std::function<std::pair<char, Color>(Square)>);
 
 std::ostream&
-operator<<(std::ostream&, Square);
+operator<<(std::ostream& os, Square s);
+
+std::ostream&
+operator<<(std::ostream& os, Color c);
+
+std::ostream&
+operator<<(std::ostream& os, Piece p);
+
+std::ostream&
+operator<<(std::ostream& os, GameResult gr);
+
+std::string
+asBoardString(const BitBoard);
 
 constexpr Square
 sqFromFileRank(const File f, const Rank r)

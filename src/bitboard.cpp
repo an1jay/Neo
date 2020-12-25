@@ -19,17 +19,6 @@ asBitString(const BitBoard b)
 	return oss.str();
 }
 
-std::string
-asBoardString(const BitBoard b)
-{
-	auto mapper = [&b](Square s) -> char {
-		if (BBoccupiedSq(b, s))
-			return 'X';
-		return ' ';
-	};
-	return boardPrint(mapper);
-}
-
 BitBoard
 reverse(const BitBoard b)
 {

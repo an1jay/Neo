@@ -4,10 +4,10 @@
 - [ ] Framework
   - [ ] Board representation
     - [ ] Position
+      - [x] calculate Checkers
       - [ ] do / undo move hashing
-      - [ ] is Legal Move
-      - [ ] is Pseudo Legal Move
-      - [ ] calculate Checkers
+      - [ ] generate Pseudo Legal Moves
+      - [ ] generate Legal Moves
       - [ ] calculate Game Result
       - [ ] is Valid
     - [ ] Move generation
@@ -21,3 +21,9 @@
   - [ ] Diagonals & Anti Diagonals AttackVectors
 - [ ] AI
   - [ ] TBD.
+
+
+## Sources
+
+- catch.h - https://github.com/catchorg/Catch2
+- colors.h - slightly modified version of https://github.com/gon1332/fort320/blob/master/include/Utils/colors.h

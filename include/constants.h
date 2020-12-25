@@ -30,6 +30,10 @@ constexpr Rank Ranks[] = {
 constexpr char FileChars[] = { 'A', 'B', 'C', 'D', 'E', 'F' };
 constexpr char RankChars[] = { '1', '2', '3', '4', '5', '6' };
 
+constexpr char PieceChars[] = {
+	'P', 'N', 'R', 'Q', 'K', 'p', 'n', 'r', 'q', 'k', ' ',
+};
+
 // ***** BitBoard *****
 
 // Equal to 0000000000000000000000000000111111111111111111111111111111111111
