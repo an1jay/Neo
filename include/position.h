@@ -77,6 +77,7 @@ struct Position
 	BitBoard calculateCheckers();
 	GameResult calculateGameResult();
 	void updateMembersFromPieceList();
+	bool isNonStalemateDraw();
 };
 
 inline BitBoard

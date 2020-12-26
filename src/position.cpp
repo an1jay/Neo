@@ -254,9 +254,26 @@ Position::undoPly(Ply p)
 	}
 }
 
+
+// Move search should not use this method - this is slow
 GameResult
 Position::calculateGameResult()
 {
+	std::vector<Ply> legalMoves = generateLegalPlies();
+	const int numberOfLegalMoves = legalMoves.size();
+	const bool inCheck = this->_st->_checkersBB != NoSquares;
+
+	
+	// Checkmate
+	if (numberOfLegalMoves == 0 && inCheck)
+		return (_sideToMove == Color::White) ? GameResult::BlackWin : GameResult::WhiteWin;
+
+	// Stalemate
+	if (numberOfLegalMoves == 0 && !inCheck)
+		return GameResult::Draw;
+
+	// Draw by 3 fold repetition / 50 move rule
+
 	// FIXME
 	return GameResult::NB_NONE;
 }
