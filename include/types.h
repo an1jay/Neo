@@ -14,14 +14,15 @@ using BitBoard = uint64_t;
 
 // clang-format off
 // Ply encodes as following:
-// 000000000000000000|  0 0  | 0 0 0 0 0 0 | 0 0 0 0 0 0
+// 00000000000000000 | 0 0 0 | 0 0 0 0 0 0 | 0 0 0 0 0 0
 //                   | Prom. |  Origin Sq  |   Dest Sq
 //
 // Bits 0-5 = Destination Square (0-35)
 // Bits 6-11 = Origin Square (0-35)
-// Bits 12-13 = Promotion PieceType (0 = No Promotion; 1,2,3 mean N,R,Q)
+// Bits 12-14 = Promotion PieceType (Uses PieceType Enum Class)
 // clang-format on
-using Ply = uint32_t;
+// using Ply = uint32_t;
+using Ply = uint16_t;
 
 // Key is used to hash various things (e.g. Positions via Zobrist, etc.)
 using Key = uint64_t;
@@ -30,12 +31,10 @@ using Score = double;
 
 enum class GameResult : int
 {
-	NotEnded,
 	WhiteWin,
 	BlackWin,
 	Draw,
 	NB_NONE, // game is still in play
-
 };
 
 enum class Color : int
@@ -82,6 +81,7 @@ enum class Square : int
 	NB_NONE,
 	// clang-format on
 };
+
 enum class File : int
 {
 	// clang-format off

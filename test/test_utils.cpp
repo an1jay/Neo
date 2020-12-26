@@ -1,4 +1,5 @@
 #include "catch.h"
+// include catch first
 #include "constants.h"
 #include "magics.h"
 #include "utils.h"

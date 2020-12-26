@@ -30,24 +30,24 @@ struct Position
 	Position& operator=(const Position&) = delete;
 
 	// TODO: FEN string input/output
-	Position& SetfromFEN(const std::string& fenStr);
-	const std::string GetFEN() const;
+	Position& setfromFEN(const std::string& fenStr);
+	const std::string getFEN() const;
 	friend std::ostream& operator<<(std::ostream& os, Position& p);
 
 	// Position representation
-	BitBoard PieceBB(PieceType pt) const;
-	BitBoard PieceBB(Color c, PieceType pt) const;
-	BitBoard ColorBB(Color c) const;
-	Piece PieceOn(Square s) const;
+	BitBoard pieceBB(PieceType pt) const;
+	BitBoard pieceBB(Color c, PieceType pt) const;
+	BitBoard colorBB(Color c) const;
+	Piece pieceOn(Square s) const;
 	bool isSqEmpty(Square s) const;
-	int PieceCount(PieceType pt) const;
-	int PieceCount(PieceType pt, Color c) const;
+	int pieceCount(PieceType pt) const;
+	int pieceCount(PieceType pt, Color c) const;
 
-	std::vector<Ply>& generatePseudoLegalPlies();
+	std::vector<Ply> generatePseudoLegalPlies();
+	std::vector<Ply> generateLegalPlies();
 
 	// Move properties
-	bool isLegalPly(Ply p);
-	bool isPseudoLegalPly(Ply p);
+	bool isLegalPly(Ply p); // TODO
 	bool isCapture(Ply p);
 
 	// Do and undo plies
@@ -80,25 +80,25 @@ struct Position
 };
 
 inline BitBoard
-Position::PieceBB(PieceType pt) const
+Position::pieceBB(PieceType pt) const
 {
 	return _byPieceTypeBB[static_cast<int>(pt)];
 }
 
 inline BitBoard
-Position::ColorBB(Color c) const
+Position::colorBB(Color c) const
 {
 	return _byColorBB[static_cast<int>(c)];
 }
 
 inline BitBoard
-Position::PieceBB(Color c, PieceType pt) const
+Position::pieceBB(Color c, PieceType pt) const
 {
-	return ColorBB(c) & PieceBB(pt);
+	return colorBB(c) & pieceBB(pt);
 }
 
 inline Piece
-Position::PieceOn(Square s) const
+Position::pieceOn(Square s) const
 {
 	return _board[static_cast<int>(s)];
 }
@@ -106,17 +106,17 @@ Position::PieceOn(Square s) const
 inline bool
 Position::isSqEmpty(Square s) const
 {
-	return PieceOn(s) == Piece::NB_NONE;
+	return pieceOn(s) == Piece::NB_NONE;
 }
 
 inline int
-Position::PieceCount(PieceType pt, Color c) const
+Position::pieceCount(PieceType pt, Color c) const
 {
 	return _pieceCount[static_cast<int>(pieceFromPieceTypeColor(pt, c))];
 }
 
 inline int
-Position::PieceCount(PieceType pt) const
+Position::pieceCount(PieceType pt) const
 {
-	return PieceCount(pt, Color::White) + PieceCount(pt, Color::Black);
+	return pieceCount(pt, Color::White) + pieceCount(pt, Color::Black);
 }

@@ -1,5 +1,7 @@
-#include "bitboard.h"
 #include "catch.h"
+// include catch first
+#include "bitboard.h"
+#include "utils.h"
 
 TEST_CASE("BitBoards", "[BitBoard]")
 {
@@ -15,6 +17,15 @@ TEST_CASE("BitBoards", "[BitBoard]")
 						  << static_cast<int>(Square::F5));
 	}
 
+	SECTION("generating a Square from the BitBoard")
+	{
+		REQUIRE(sqFromBB(BBfromSq(Square::D5)) == Square::D5);
+		REQUIRE(sqFromBB(BBfromSq(Square::A1)) == Square::A1);
+		REQUIRE(sqFromBB(BBfromSq(Square::A2)) == Square::A2);
+		REQUIRE(sqFromBB(BBfromSq(Square::E2)) == Square::E2);
+		REQUIRE(sqFromBB(BBfromSq(Square::F6)) == Square::F6);
+	}
+
 	SECTION("counting ones in a BitBoard")
 	{
 		BitBoard b = BBfromSq(Square::D5);
@@ -25,6 +36,16 @@ TEST_CASE("BitBoards", "[BitBoard]")
 		REQUIRE(popCount(b) == 3);
 		b |= BBfromSq(Square::C3);
 		REQUIRE(popCount(b) == 4);
+	}
+
+	SECTION("popping most significant bit in a BitBoard")
+	{
+		BitBoard b = BBfromSq(Square::A1) | BBfromSq(Square::B6);
+		REQUIRE(popMSB(b) == BBfromSq(Square::A1));
+		b = BBfromSq(Square::A4) | BBfromSq(Square::F6);
+		REQUIRE(popMSB(b) == BBfromSq(Square::A4));
+		b = BBfromSq(Square::D4) | BBfromSq(Square::F6);
+		REQUIRE(popMSB(b) == BBfromSq(Square::D4));
 	}
 
 	SECTION("checking whether a Square is occupied in a BitBoard")

@@ -9,8 +9,7 @@
 Position::Position()
 {
 	_st = new StateInfo{
-		0ULL, 0, Piece::NB_NONE, NoSquares, GameResult::NotEnded, nullptr,
-
+		0ULL, 0, Piece::NB_NONE, NoSquares, GameResult::NB_NONE, nullptr,
 	};
 
 	// **** Instantiate Piece List ****
@@ -70,7 +69,7 @@ Position::Position()
 
 Position::~Position()
 {
-	// TODO
+	// TODO manage ST memory leak
 	delete _st;
 }
 
@@ -78,13 +77,13 @@ bool
 Position::isCapture(Ply p)
 {
 	Square destination = getDestSquare(p);
-	return PieceOn(destination) != Piece::NB_NONE;
+	return pieceOn(destination) != Piece::NB_NONE;
 }
 
 void
 Position::movePiece(Square origin, Square destination)
 {
-	Piece p = PieceOn(origin);
+	Piece p = pieceOn(origin);
 	assert(p != Piece::NB_NONE);
 
 	removePiece(origin);
@@ -94,9 +93,9 @@ Position::movePiece(Square origin, Square destination)
 void
 Position::removePiece(Square sq)
 {
-	Piece to_be_removed = PieceOn(sq);
-	assert(to_be_removed != Piece::NB_NONE);
-
+	Piece to_be_removed = pieceOn(sq);
+	if (to_be_removed == Piece::NB_NONE)
+		return;
 	// 4 things to update
 	// - piece array (mailbox board)
 	// - piece type BB
@@ -111,17 +110,17 @@ Position::removePiece(Square sq)
 void
 Position::addPiece(Square sq, Piece p)
 {
-	assert(PieceOn(sq) == Piece::NB_NONE);
-
 	// 4 things to update
 	// - piece array (mailbox board)
 	// - piece type BB
 	// - color BB
 	// - piece count
 	_board[static_cast<int>(sq)] = p;
-	_byPieceTypeBB[static_cast<int>(pieceTypeFromPiece(p))] ^= BBfromSq(sq);
-	_byColorBB[static_cast<int>(colorFromPiece(p))] ^= BBfromSq(sq);
-	_pieceCount[static_cast<int>(p)]++;
+	if (p != Piece::NB_NONE) {
+		_byPieceTypeBB[static_cast<int>(pieceTypeFromPiece(p))] ^= BBfromSq(sq);
+		_byColorBB[static_cast<int>(colorFromPiece(p))] ^= BBfromSq(sq);
+		_pieceCount[static_cast<int>(p)]++;
+	}
 }
 
 BitBoard
@@ -138,25 +137,25 @@ Position::calculateCheckers()
 	// 4) if a piece is present, then this piece is a checker
 
 	BitBoard checkers = NoSquares;
-	BitBoard ourOccupancy = ColorBB(_sideToMove);
-	BitBoard theirOccupancy = ColorBB(otherColor(_sideToMove));
+	BitBoard ourOccupancy = colorBB(_sideToMove);
+	BitBoard theirOccupancy = colorBB(otherColor(_sideToMove));
 
 	// Handle normal (i.e. symmetric attack) cases (i.e. not pawns)
 	PieceType normalCases[] = { PieceType::Queen, PieceType::Rook, PieceType::Knight };
 	for (PieceType nc : normalCases) {
-		if (PieceCount(nc, otherColor(_sideToMove)) > 0) {
+		if (pieceCount(nc, otherColor(_sideToMove)) > 0) {
 			BitBoard attacks =
 			  calculateAttackBB(nc, ourKingSq, ourOccupancy, theirOccupancy, _magics);
-			checkers |= attacks & PieceBB(otherColor(_sideToMove), nc);
+			checkers |= attacks & pieceBB(otherColor(_sideToMove), nc);
 		}
 	}
 
 	// Handle pawns
-	if (PieceCount(PieceType::Pawn, otherColor(_sideToMove)) > 0) {
+	if (pieceCount(PieceType::Pawn, otherColor(_sideToMove)) > 0) {
 		BitBoard pAttacks = AttackVectors::WhitePawnCapture[static_cast<int>(ourKingSq)];
 		if (_sideToMove == Color::Black)
 			pAttacks = AttackVectors::BlackPawnCapture[static_cast<int>(ourKingSq)];
-		checkers |= pAttacks & PieceBB(otherColor(_sideToMove), PieceType::Pawn);
+		checkers |= pAttacks & pieceBB(otherColor(_sideToMove), PieceType::Pawn);
 	}
 
 	return checkers;
@@ -174,11 +173,11 @@ Position::doPly(Ply p)
 	//    - check whether game is ended (i.e. checkmate, stalemate,
 	//      insufficient material, 50 move rule, threefold repetition)
 
-	StateInfo* old_st = _st;
+	const StateInfo* old_st = _st;
 
-	Square origin = getOriginSquare(p);
-	Square destination = getDestSquare(p);
-	PieceType promote = getPromoPieceType(p);
+	const Square origin = getOriginSquare(p);
+	const Square destination = getDestSquare(p);
+	const PieceType promote = getPromoPieceType(p);
 
 	int rule50clock = old_st->_rule50 + 1;
 	_halfMoveClock++;
@@ -186,10 +185,11 @@ Position::doPly(Ply p)
 	// reset Rule 50 Clock if capture or pawn move
 	Piece capturedPiece = Piece::NB_NONE;
 	if (isCapture(p)) {
-		capturedPiece = PieceOn(destination);
+		capturedPiece = pieceOn(destination);
+		removePiece(destination);
 		rule50clock = 0;
 	}
-	if (PieceOn(origin) == pieceFromPieceTypeColor(PieceType::Pawn, _sideToMove))
+	if (pieceOn(origin) == pieceFromPieceTypeColor(PieceType::Pawn, _sideToMove))
 		rule50clock = 0;
 
 	// move piece & if there is a promotion, perform the promotion
@@ -207,7 +207,8 @@ Position::doPly(Ply p)
 	GameResult _gameResult = calculateGameResult();
 
 	StateInfo* newSt = new StateInfo{
-		posKey, rule50clock, capturedPiece, checkers, _gameResult, old_st,
+		posKey,	  rule50clock, capturedPiece,
+		checkers, _gameResult, const_cast<StateInfo*>(old_st),
 
 	};
 
@@ -226,20 +227,20 @@ Position::undoPly(Ply p)
 	//    - check whether game is ended (i.e. checkmate, stalemate,
 	//      insufficient material, 50 move rule, threefold repetition)
 
-	StateInfo* old_st = _st->_previous;
+	const StateInfo* old_st = _st->_previous;
 
 	// TODO - What to do with new ST? For now, delete it
 	delete _st;
-	_st = old_st;
+	_st = const_cast<StateInfo*>(old_st);
 
 	// Reverse various positions specific game state
 	_sideToMove = otherColor(_sideToMove);
 	_halfMoveClock--;
 
 	// Move pieces
-	Square origin = getOriginSquare(p);
-	Square destination = getDestSquare(p);
-	PieceType promote = getPromoPieceType(p);
+	const Square origin = getOriginSquare(p);
+	const Square destination = getDestSquare(p);
+	const PieceType promote = getPromoPieceType(p);
 
 	// Move piece back
 	movePiece(destination, origin);
@@ -257,7 +258,7 @@ GameResult
 Position::calculateGameResult()
 {
 	// FIXME
-	return GameResult::NotEnded;
+	return GameResult::NB_NONE;
 }
 
 void
@@ -275,4 +276,89 @@ Position::updateMembersFromPieceList()
 			_pieceCount[static_cast<int>(pieceOnSq)]++;
 		}
 	}
+}
+
+std::vector<Ply>
+Position::generatePseudoLegalPlies()
+{
+	BitBoard ourPieces = _byColorBB[static_cast<int>(_sideToMove)];
+	Square pieceSq;
+	Square destSq;
+	Piece pc;
+	BitBoard attackVector;
+
+	const BitBoard ourOccupancy = _byColorBB[static_cast<int>(_sideToMove)];
+	const BitBoard theirOccupancy = _byColorBB[static_cast<int>(otherColor(_sideToMove))];
+
+	std::vector<Ply> plies;
+
+	while (ourPieces != NoSquares) {
+		// Find piece square and remove from bitboard of our pieces
+		pieceSq = findMSB(ourPieces);
+		ourPieces = ourPieces ^ BBfromSq(pieceSq);
+		pc = pieceOn(pieceSq);
+		attackVector =
+		  calculateAttackBB(pc, pieceSq, ourOccupancy, theirOccupancy, _magics);
+
+		while (attackVector != NoSquares) {
+			// Find destination square and remove from attack vector
+			destSq = findMSB(attackVector);
+			attackVector = attackVector ^ BBfromSq(destSq);
+
+			if ((pieceTypeFromPiece(pc) == PieceType::Pawn) &&
+			    ((_sideToMove == Color::Black && rankFromSq(destSq) == Rank::First) ||
+			     (_sideToMove == Color::White && rankFromSq(destSq) == Rank::Sixth))) {
+				plies.push_back(encodePly(destSq, pieceSq, PieceType::Queen));
+				plies.push_back(encodePly(destSq, pieceSq, PieceType::Rook));
+				plies.push_back(encodePly(destSq, pieceSq, PieceType::Knight));
+			} else
+				plies.push_back(encodePly(destSq, pieceSq, PieceType::NB_NONE));
+		}
+	}
+	return plies;
+}
+
+std::vector<Ply>
+Position::generateLegalPlies()
+{
+	std::vector<Ply> pseudoLegalPlies = generatePseudoLegalPlies();
+	std::vector<Ply> legalPlies;
+
+	for (Ply p : pseudoLegalPlies) {
+		if (isLegalPly(p))
+			legalPlies.push_back(p);
+	}
+	return legalPlies;
+}
+
+bool
+Position::isLegalPly(Ply p)
+{
+	// Decode ply information
+	const Square origin = getOriginSquare(p);
+	const Square destination = getDestSquare(p);
+	const PieceType promote = getPromoPieceType(p);
+
+	// **** Make Move ****
+	const Piece capturedPiece = pieceOn(destination);
+
+	removePiece(destination);
+	movePiece(origin, destination);
+	if (promote != PieceType::NB_NONE) {
+		removePiece(destination);
+		addPiece(destination, pieceFromPieceTypeColor(promote, _sideToMove));
+	}
+	BitBoard checkers = calculateCheckers();
+
+	const bool isLegal = checkers == NoSquares;
+
+	// **** Un-Make Move ****
+	movePiece(destination, origin);
+	addPiece(destination, capturedPiece);
+	if (promote != PieceType::NB_NONE) {
+		removePiece(destination);
+		addPiece(destination, pieceFromPieceTypeColor(PieceType::Pawn, _sideToMove));
+	}
+
+	return isLegal;
 }

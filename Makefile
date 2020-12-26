@@ -1,7 +1,8 @@
 .PHONY: all clean run run_test _test
 
 CC		:= g++
-C_FLAGS := -std=c++17 -Wall -Werror -Wextra -g -O2 -march=native -fsanitize=undefined -fsanitize=address
+OPT_DBG_C_FLAGS := -std=c++17 -Wall -Werror -Wextra -g -O2 -march=native -fsanitize=undefined -fsanitize=address
+TEST_C_FLAGS := -std=c++17 -Wall -Werror -Wextra -g -O0 -march=native
 
 BIN			:= bin
 SRC			:= src
@@ -32,11 +33,11 @@ run: all
 	./$(BIN)/$(EXECUTABLE)
 
 _test: $(filter-out src/main.cpp, $(TEST)/*.cpp $(TEST_FILES))
-	$(CC) $(C_FLAGS) -I$(INCLUDE) -I$(LIB) $^ -o $@ $(LIBRARIES)
+	$(CC) $(TEST_C_FLAGS) -I$(INCLUDE) -I$(LIB) $^ -o $@ $(LIBRARIES)
 
 run_test: _test
 	./$(TEST_EXEC)
 	$(RM) $(TEST_EXEC)
 
 $(BIN)/$(EXECUTABLE): $(SRC)/*.cpp
-	$(CC) $(C_FLAGS) -I$(INCLUDE) -I$(LIB) $^ -o $@ $(LIBRARIES)
+	$(CC) $(OPT_DBG_C_FLAGS) -I$(INCLUDE) -I$(LIB) $^ -o $@ $(LIBRARIES)

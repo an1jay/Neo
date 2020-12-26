@@ -3,6 +3,7 @@
 #include "bitboard.h"
 #include "constants.h"
 #include "magics.h"
+#include "movegen.h"
 #include "position.h"
 #include "terminal_colors.h"
 #include "types.h"
@@ -46,7 +47,6 @@ operator<<(std::ostream& os, Piece p)
 		else if (colorFromPiece(p) == Color::Black)
 			os << BLKIO(PieceChars[static_cast<int>(p)]);
 	}
-
 	return os;
 }
 
@@ -54,7 +54,7 @@ std::ostream&
 operator<<(std::ostream& os, GameResult gr)
 {
 	switch (gr) {
-		case GameResult::NotEnded:
+		case GameResult::NB_NONE:
 			os << "Not Ended";
 			break;
 		case GameResult::Draw:
@@ -66,10 +66,15 @@ operator<<(std::ostream& os, GameResult gr)
 		case GameResult::BlackWin:
 			os << BLKIO("BlackWin");
 			break;
-		case GameResult::NB_NONE:
-			os << "GameResultNone";
-			break;
 	}
+	return os;
+}
+
+std::ostream&
+operator<<(std::ostream& os, PieceType pt)
+{
+
+	os << EMPHIO(PieceTypeChars[static_cast<int>(pt)]);
 	return os;
 }
 
@@ -77,14 +82,12 @@ std::ostream&
 operator<<(std::ostream& os, Position& p)
 {
 	auto mapper = [&p](Square s) -> std::pair<char, Color> {
-		Piece pc = p.PieceOn(s);
+		Piece pc = p.pieceOn(s);
 		return std::pair<char, Color>{ PieceChars[static_cast<int>(pc)],
 					       colorFromPiece(pc) };
 	};
 	os << boardPrint(mapper);
-
 	os << std::endl << " ---------------------------" << std::endl;
-
 	os << EMPHIO("  To move:        ") << p._sideToMove << std::endl
 	   << EMPHIO("  In check:       ") << ((p._st->_checkersBB != NoSquares) ? "true" : "false")
 	   << std::endl
@@ -92,9 +95,7 @@ operator<<(std::ostream& os, Position& p)
 	   << EMPHIO("  Game result:    ") << p._st->_gameResult << std::endl
 	   << EMPHIO("  Captured piece: ") << p._st->_capturedPiece << std::endl
 	   << EMPHIO("  Rule 50 plies:  ") << p._st->_rule50 << std::endl;
-
 	os << " ---------------------------" << std::endl << std::endl;
-
 	return os;
 }
 
@@ -107,6 +108,14 @@ asBoardString(const BitBoard b)
 		return std::pair<char, Color>(' ', Color::NB_NONE);
 	};
 	return boardPrint(mapper);
+}
+
+std::string
+asPlyString(const Ply p)
+{
+	std::ostringstream oss;
+	oss << getOriginSquare(p) << getDestSquare(p) << "=" << getPromoPieceType(p);
+	return oss.str();
 }
 
 std::string
@@ -132,8 +141,6 @@ boardPrint(std::function<std::pair<char, Color>(Square s)> mapper)
 				oss << " " << BLKIO(piece) << " |";
 			else
 				oss << " " << piece << " |";
-
-			// oss << " " << ((c == Color::White) ? WHTIO(piece) : BLKIO(piece)) << " |";
 		}
 	}
 	oss << std::endl << boardSep << std::endl << "     A   B   C   D   E   F" << std::endl;

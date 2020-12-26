@@ -34,6 +34,10 @@ constexpr char PieceChars[] = {
 	'P', 'N', 'R', 'Q', 'K', 'p', 'n', 'r', 'q', 'k', ' ',
 };
 
+constexpr char PieceTypeChars[] = {
+	'P', 'N', 'R', 'Q', 'K', ' ',
+};
+
 // ***** BitBoard *****
 
 // Equal to 0000000000000000000000000000111111111111111111111111111111111111

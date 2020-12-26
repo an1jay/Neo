@@ -29,6 +29,20 @@ popCount(const BitBoard b)
 	return __builtin_popcountll(b);
 }
 
+// Find position of most significant bit in BitBoard
+inline Square
+findMSB(const BitBoard b)
+{
+	return static_cast<Square>(63 - __builtin_clzll(b));
+}
+
+// Pops Most Significant Bit in provided BitBoard
+inline BitBoard
+popMSB(const BitBoard b)
+{
+	return b ^ BBfromSq(findMSB(b));
+}
+
 // Returns inverted BitBoard (but still in 36 least significant bits)
 BitBoard
 reverse(const BitBoard);

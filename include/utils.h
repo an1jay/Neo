@@ -21,8 +21,14 @@ operator<<(std::ostream& os, Piece p);
 std::ostream&
 operator<<(std::ostream& os, GameResult gr);
 
+std::ostream&
+operator<<(std::ostream& os, PieceType pt);
+
 std::string
-asBoardString(const BitBoard);
+asBoardString(const BitBoard b);
+
+std::string
+asPlyString(const Ply p);
 
 constexpr Square
 sqFromFileRank(const File f, const Rank r)
@@ -58,7 +64,7 @@ pieceFromPieceTypeColor(const PieceType pt, const Color c)
 {
 	if (pt == PieceType::NB_NONE || c == Color::NB_NONE)
 		return Piece::NB_NONE;
-	return static_cast<Piece>(static_cast<int>(pt) * (static_cast<int>(c) + 1));
+	return static_cast<Piece>(static_cast<int>(pt) + (static_cast<int>(c) * static_cast<int>(Piece::B_Pawn)));
 }
 
 constexpr PieceType
