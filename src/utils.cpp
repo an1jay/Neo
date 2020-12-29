@@ -19,6 +19,21 @@ plyInList(Ply p, std::vector<Ply> plyList)
 			return true;
 	return false;
 }
+void
+printMoveList(std::vector<Ply> pList)
+{
+	const int pliesPerLine = 16;
+	for (int i = 0; i < static_cast<int>(pList.size()); i++) {
+		std::cout << asPlyString(pList[i]);
+		if (i < (static_cast<int>(pList.size()) - 1)) {
+			if (i > 0 && i % pliesPerLine == 0)
+				std::cout << " |\n";
+			else
+				std::cout << " | ";
+		}
+	}
+	std::cout << std::endl;
+}
 
 std::ostream&
 operator<<(std::ostream& os, Square s)
@@ -133,6 +148,18 @@ asPlyString(const Ply p)
 		oss << getOriginSquare(p) << getDestSquare(p) << "=" << getPromoPieceType(p);
 	else
 		oss << getOriginSquare(p) << getDestSquare(p);
+	return oss.str();
+}
+
+std::string
+asPaddedPlyString(const Ply p, const int width)
+{
+	std::string plyStr = asPlyString(p);
+	std::ostringstream oss;
+	const int padding = plyStr.length() == 4
+			      ? std::max(2, (static_cast<int>(plyStr.length()) - width) / 2)
+			      : std::max(1, (static_cast<int>(plyStr.length()) - width) / 2 - 1);
+	oss << std::string(padding, ' ') << plyStr << std::string(padding, ' ');
 	return oss.str();
 }
 

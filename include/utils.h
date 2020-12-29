@@ -22,6 +22,9 @@ genRand(std::mt19937& rng)
 bool
 plyInList(Ply p, std::vector<Ply> plyList);
 
+void
+printMoveList(std::vector<Ply> pList);
+
 std::string boardPrint(std::function<std::pair<char, Color>(Square)>);
 
 std::ostream&
@@ -44,6 +47,9 @@ asBoardString(const BitBoard b);
 
 std::string
 asPlyString(const Ply p);
+
+std::string
+asPaddedPlyString(const Ply p, const int width);
 
 constexpr Square
 sqFromFileRank(const File f, const Rank r)

@@ -13,9 +13,13 @@ main()
 	// printRookMagicOccupancyMask();
 	// std::cout << asBoardString(AllSquares) << std::endl;
 
-	auto consolePlayerCreater = []() { return new ConsolePlayer(); };
+	// auto consolePlayerCreater = []() { return new ConsolePlayer(); };
 
-	Game g(consolePlayerCreater, consolePlayerCreater);
+	auto randomPlayerCreaterCreater = [](int s) {
+		return [s]() { return new RandomPlayer(s); };
+	};
+
+	Game g(randomPlayerCreaterCreater(1), randomPlayerCreaterCreater(2));
 
 	g.play();
 

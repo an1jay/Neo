@@ -1,6 +1,10 @@
 #include "playing_interface.h"
 
 #include "move_gen.h"
+#include "terminal_colors.h"
+#include "utils.h"
+
+#include <iomanip>
 
 Game::Game(std::function<Player*()> wht, std::function<Player*()> blk)
 {
@@ -37,9 +41,6 @@ Game::play(bool verbose)
 		assert(sideToMove != Color::NB_NONE);
 		playerToMove = sideToMove == Color::White ? _wht : _blk;
 
-		std::cout << "Game::play - sideToMove= " << sideToMove << std::endl;
-		std::cout << "Game::play - halfmoveclock= " << _pos.currentPlyClock() << std::endl;
-
 		// update player on last move made
 		if (previousMove != INVALID_PLY)
 			playerToMove->updatePosition(previousMove);
@@ -47,6 +48,7 @@ Game::play(bool verbose)
 		// get move from player to move; make the move; set previous move to current move
 		currentMove = playerToMove->getNextMove();
 		_pos.doPly(currentMove);
+		_pliesList.push_back(currentMove);
 		previousMove = currentMove;
 
 		// update game information
@@ -55,23 +57,26 @@ Game::play(bool verbose)
 
 	if (verbose) {
 		std::cout << "Game finished in " << _pos.currentPlyClock() << " plies." << std::endl
-			  << "Result: " << res << std::endl;
+			  << "Result: " << res << std::endl
+			  << std::endl
+			  << "Move List: " << std::endl;
+
+		for (int i = 0; i < static_cast<int>(_pliesList.size()); i += 2) {
+			std::cout << std::left << std::setfill(' ') << std::setw(3) << (i / 2) + 1
+				  << asPaddedPlyString(_pliesList[i], 10) << "|"
+				  << asPaddedPlyString(_pliesList[i + 1], 10) << std::endl;
+		}
 	}
 
 	return res;
 }
 
 Ply
-ConsolePlayer::getNextMove()
+ConsolePlayer::_getPly()
 {
 	std::vector<Ply> legalPlies = _pos.generateLegalPlies();
 	std::cout << _pos;
-	for (int i = 0; i < static_cast<int>(legalPlies.size()); i++) {
-		std::cout << asPlyString(legalPlies[i]);
-		if (i < (static_cast<int>(legalPlies.size()) - 1))
-			std::cout << " | ";
-	}
-	std::cout << std::endl;
+	printMoveList(legalPlies);
 
 	bool validPly = true;
 	std::string plyStr;
@@ -93,20 +98,14 @@ ConsolePlayer::getNextMove()
 Ply
 ConsolePlayer::parsePly(std::string ply)
 {
-	assert(ply.length() == 4 || ply.length() == 6);
-
-	// std::cout << "Ply len" << ply.length() << std::endl;
+	if (!(ply.length() == 4 || ply.length() == 6))
+		return INVALID_PLY;
 
 	std::pair<Square, bool> origin = parseSq(ply.substr(0, 2));
 	std::pair<Square, bool> dest = parseSq(ply.substr(2, 2));
 	std::pair<PieceType, bool> promotion = { PieceType::NB_NONE, true };
 
-	// std::cout << "origin " << origin.first << " | " << origin.second << std::endl;
-	// std::cout << "dest " << dest.first << " | " << dest.second << std::endl;
-	// std::cout << "promotion " << promotion.first << " | " << promotion.second << std::endl;
-
 	if (ply.length() == 6) {
-		// std::cout << "Ply length = 6" << std::endl;
 		promotion = parsePieceType(ply[5]);
 	}
 
@@ -120,15 +119,11 @@ std::pair<Square, bool>
 ConsolePlayer::parseSq(std::string s)
 {
 
-	// std::cout << "parse Sq: s=" << s << std::endl;
-
 	bool valid =
 	  (s.length() == 2) && (s[0] >= 'A' && s[0] <= 'F') && (s[1] >= '1' && s[1] <= '6');
 	if (!valid)
 		return { Square::NB_NONE, true };
 
-	// std::cout << "static_cast<File>(s[0] - 'A') " << (s[0] - 'A') << std::endl;
-	// std::cout << "static_cast<File>(s[1] - '1') " << (s[1] - '1') << std::endl;
 	return { sqFromFileRank(static_cast<File>(s[0] - 'A'), static_cast<Rank>(s[1] - '1')),
 		 true };
 }
@@ -146,4 +141,17 @@ ConsolePlayer::parsePieceType(char s)
 		return { PieceType::Knight, true };
 
 	return { PieceType::NB_NONE, false };
+}
+
+Ply
+RandomPlayer::_getPly()
+{
+
+	std::vector<Ply> legalPlies = _pos.generateLegalPlies();
+	srand(_seed);
+	int moveIndex = rand() % legalPlies.size();
+	std::cout << _pos;
+	printMoveList(legalPlies);
+	std::cout << "Chosen Move " << asPlyString(legalPlies[moveIndex]) << std::endl;
+	return legalPlies[moveIndex];
 }
