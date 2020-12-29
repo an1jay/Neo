@@ -43,12 +43,6 @@ struct ConsolePlayer : Player
 	ConsolePlayer() = default;
 	~ConsolePlayer() = default;
 	void updatePosition(Ply p) override { _pos.doPly(p); }
-	// Ply getNextMove() override
-	// {
-	// 	Ply p = _getPly();
-	// 	updatePosition(p);
-	// 	return p;
-	// }
 
       private:
 	Ply _getPly() override;
@@ -62,8 +56,9 @@ struct ConsolePlayer : Player
 struct RandomPlayer : Player
 {
       public:
-	RandomPlayer(int seed)
+	RandomPlayer(int seed, bool verbose)
 	  : _seed(seed)
+	  , _verbose(verbose)
 	{}
 	~RandomPlayer() = default;
 	void updatePosition(Ply p) override { _pos.doPly(p); }
@@ -72,4 +67,5 @@ struct RandomPlayer : Player
 	Ply _getPly() override;
 	Position _pos;
 	int _seed;
+	bool _verbose;
 };

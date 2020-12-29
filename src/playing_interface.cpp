@@ -150,8 +150,11 @@ RandomPlayer::_getPly()
 	std::vector<Ply> legalPlies = _pos.generateLegalPlies();
 	srand(_seed);
 	int moveIndex = rand() % legalPlies.size();
-	std::cout << _pos;
-	printMoveList(legalPlies);
-	std::cout << "Chosen Move " << asPlyString(legalPlies[moveIndex]) << std::endl;
+	if (_verbose) {
+		std::cout << _pos;
+		std::cout << "Legal Moves: " << std::endl;
+		printMoveList(legalPlies);
+		std::cout << "Chosen Move " << asPlyString(legalPlies[moveIndex]) << std::endl;
+	}
 	return legalPlies[moveIndex];
 }

@@ -7,7 +7,7 @@
 #include <iostream>
 #include <random>
 
-Magics::Magics()
+Magics::Magics(const bool verbose)
 {
 	BishopMagicAttacks = new BitBoard[numSquaresInBoard][MagicBishopMax];
 	RookMagicAttacks = new BitBoard[numSquaresInBoard][MagicRookMax];
@@ -21,8 +21,8 @@ Magics::Magics()
 			RookMagicAttacks[sq][r] = AllSquares;
 		}
 	}
-	initBishops();
-	initRooks();
+	initBishops(verbose);
+	initRooks(verbose);
 }
 
 Magics::~Magics()
@@ -32,7 +32,7 @@ Magics::~Magics()
 }
 
 void
-Magics::initBishops()
+Magics::initBishops(const bool verbose)
 {
 	// 1. For each square find a candidate magic
 	// 2. For each possible occupancy, store attack vector in correct index, checking there is no collision
@@ -93,11 +93,12 @@ Magics::initBishops()
 		totalTried += triedCount;
 		triedCount = 0;
 	}
-	std::cout << "Magics: Total bishop tries " << totalTried << std::endl;
+	if (verbose)
+		std::cout << "Magics: Total bishop tries " << totalTried << std::endl;
 }
 
 void
-Magics::initRooks()
+Magics::initRooks(const bool verbose)
 {
 	// 1. For each square find a candidate magic
 	// 2. For each possible occupancy, store attack vector in correct index, checking there is no collision
@@ -159,7 +160,8 @@ Magics::initRooks()
 		totalTried += triedCount;
 		triedCount = 0;
 	}
-	std::cout << "Magics: Total rook tries " << totalTried << std::endl;
+	if (verbose)
+		std::cout << "Magics: Total rook tries " << totalTried << std::endl;
 }
 
 BitBoard

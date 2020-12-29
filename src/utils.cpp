@@ -22,7 +22,7 @@ plyInList(Ply p, std::vector<Ply> plyList)
 void
 printMoveList(std::vector<Ply> pList)
 {
-	const int pliesPerLine = 16;
+	const int pliesPerLine = 12;
 	for (int i = 0; i < static_cast<int>(pList.size()); i++) {
 		std::cout << asPlyString(pList[i]);
 		if (i < (static_cast<int>(pList.size()) - 1)) {

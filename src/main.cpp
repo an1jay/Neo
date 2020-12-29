@@ -16,7 +16,7 @@ main()
 	// auto consolePlayerCreater = []() { return new ConsolePlayer(); };
 
 	auto randomPlayerCreaterCreater = [](int s) {
-		return [s]() { return new RandomPlayer(s); };
+		return [s]() { return new RandomPlayer(s, false); };
 	};
 
 	Game g(randomPlayerCreaterCreater(1), randomPlayerCreaterCreater(2));

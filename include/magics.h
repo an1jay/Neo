@@ -34,7 +34,7 @@ constexpr int RookShifts[] = {
 struct Magics
 {
       public:
-	Magics();
+	Magics(const bool verbose = false);
 	~Magics();
 	Magics(const Magics&) = delete;
 	Magics& operator=(const Magics&) = delete;
@@ -51,8 +51,8 @@ struct Magics
 	BitBoard (*BishopMagicAttacks)[MagicBishopMax];
 	BitBoard (*RookMagicAttacks)[MagicRookMax];
 
-	void initBishops();
-	void initRooks();
+	void initBishops(const bool verbose);
+	void initRooks(const bool verbose);
 };
 
 BitBoard
