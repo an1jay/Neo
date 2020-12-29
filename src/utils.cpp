@@ -3,7 +3,7 @@
 #include "bitboard.h"
 #include "constants.h"
 #include "magics.h"
-#include "movegen.h"
+#include "move_gen.h"
 #include "position.h"
 #include "terminal_colors.h"
 #include "types.h"
@@ -11,11 +11,24 @@
 #include <sstream>
 #include <utility>
 
+bool
+plyInList(Ply p, std::vector<Ply> plyList)
+{
+	for (Ply canPly : plyList)
+		if (canPly == p)
+			return true;
+	return false;
+}
+
 std::ostream&
 operator<<(std::ostream& os, Square s)
 {
-	os << FileChars[static_cast<int>(fileFromSq(s))];
-	os << RankChars[static_cast<int>(rankFromSq(s))];
+	if (s == Square::NB_NONE)
+		os << "SquareNone";
+	else {
+		os << FileChars[static_cast<int>(fileFromSq(s))];
+		os << RankChars[static_cast<int>(rankFromSq(s))];
+	}
 	return os;
 }
 
@@ -73,8 +86,10 @@ operator<<(std::ostream& os, GameResult gr)
 std::ostream&
 operator<<(std::ostream& os, PieceType pt)
 {
-
-	os << EMPHIO(PieceTypeChars[static_cast<int>(pt)]);
+	if (pt == PieceType::NB_NONE)
+		os << "PieceTypeNone";
+	else
+		os << EMPHIO(PieceTypeChars[static_cast<int>(pt)]);
 	return os;
 }
 
@@ -114,7 +129,10 @@ std::string
 asPlyString(const Ply p)
 {
 	std::ostringstream oss;
-	oss << getOriginSquare(p) << getDestSquare(p) << "=" << getPromoPieceType(p);
+	if (getPromoPieceType(p) != PieceType::NB_NONE)
+		oss << getOriginSquare(p) << getDestSquare(p) << "=" << getPromoPieceType(p);
+	else
+		oss << getOriginSquare(p) << getDestSquare(p);
 	return oss.str();
 }
 
@@ -145,15 +163,4 @@ boardPrint(std::function<std::pair<char, Color>(Square s)> mapper)
 	}
 	oss << std::endl << boardSep << std::endl << "     A   B   C   D   E   F" << std::endl;
 	return oss.str();
-}
-
-template<typename T>
-T
-genRand(std::mt19937& rng)
-{
-	const uint64_t bottomTwoBytes = 0xFFFFULL;
-	return static_cast<T>((static_cast<uint64_t>(rng()) & bottomTwoBytes) |
-			      ((static_cast<uint64_t>(rng()) & bottomTwoBytes) << 16) |
-			      ((static_cast<uint64_t>(rng()) & bottomTwoBytes) << 32) |
-			      ((static_cast<uint64_t>(rng()) & bottomTwoBytes) << 48));
 }

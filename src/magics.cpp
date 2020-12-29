@@ -62,7 +62,8 @@ Magics::initBishops()
 			occupancy = NoSquares;
 			// find a random magic (see
 			// https://www.chessprogramming.org/Looking_for_Magics)
-			candidateMagic = genRand<BitBoard>(rng) & genRand<BitBoard>(rng) & genRand<BitBoard>(rng);
+			candidateMagic =
+			  genRand<BitBoard>(rng) & genRand<BitBoard>(rng) & genRand<BitBoard>(rng);
 			// assume magic is valid till proven otherwise
 			validMagic = true;
 			++triedCount;
@@ -127,7 +128,8 @@ Magics::initRooks()
 			occupancy = NoSquares;
 			// find a random magic (see
 			// https://www.chessprogramming.org/Looking_for_Magics)
-			candidateMagic = genRand<BitBoard>(rng) & genRand<BitBoard>(rng) & genRand<BitBoard>(rng);
+			candidateMagic =
+			  genRand<BitBoard>(rng) & genRand<BitBoard>(rng) & genRand<BitBoard>(rng);
 			// assume valid till proven otherwise
 			validMagic = true;
 			++triedCount;

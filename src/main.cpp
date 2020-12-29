@@ -1,6 +1,7 @@
 #include "bitboard.h"
 #include "constants.h"
 #include "magics.h"
+#include "playing_interface.h"
 #include "position.h"
 #include "utils.h"
 
@@ -11,9 +12,22 @@ main()
 {
 	// printRookMagicOccupancyMask();
 	// std::cout << asBoardString(AllSquares) << std::endl;
+
+	auto consolePlayerCreater = []() { return new ConsolePlayer(); };
+
+	Game g(consolePlayerCreater, consolePlayerCreater);
+
+	g.play();
+
+	return 0;
+}
+
+void
+demoPlay()
+{
 	Position p;
 
-	for (int i = 0; i < 25; i++) {
+	for (int i = 0; i < 200; i++) {
 		std::cout << i;
 		std::cout << p;
 
@@ -31,5 +45,4 @@ main()
 		std::cout << std::endl;
 		p.doPly(moveList[0]);
 	}
-	return 0;
 }

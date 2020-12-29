@@ -4,8 +4,23 @@
 #include <cassert>
 #include <functional>
 #include <iostream>
+#include <random>
 
 #pragma once
+
+template<typename T>
+T
+genRand(std::mt19937& rng)
+{
+	const uint64_t bottomTwoBytes = 0xFFFFULL;
+	return static_cast<T>((static_cast<uint64_t>(rng()) & bottomTwoBytes) |
+			      ((static_cast<uint64_t>(rng()) & bottomTwoBytes) << 16) |
+			      ((static_cast<uint64_t>(rng()) & bottomTwoBytes) << 32) |
+			      ((static_cast<uint64_t>(rng()) & bottomTwoBytes) << 48));
+}
+
+bool
+plyInList(Ply p, std::vector<Ply> plyList);
 
 std::string boardPrint(std::function<std::pair<char, Color>(Square)>);
 
@@ -86,7 +101,7 @@ colorFromPiece(const Piece p)
 	return Color::Black;
 }
 
-constexpr inline Color
+constexpr Color
 otherColor(Color c)
 {
 	if (c == Color::Black)
@@ -95,7 +110,3 @@ otherColor(Color c)
 		return Color::Black;
 	return Color::NB_NONE;
 }
-
-template<typename T>
-T
-genRand(std::mt19937&);

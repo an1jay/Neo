@@ -5,12 +5,12 @@
   - [ ] Board representation
     - [ ] Position
       - [x] calculate Checkers
-      - [ ] do / undo move hashing
-      - [ ] generate Pseudo Legal Moves
-      - [ ] generate Legal Moves
-      - [ ] calculate Game Result
+      - [x] do / undo move hashing
+      - [x] generate Pseudo Legal Moves
+      - [x] generate Legal Moves
+      - [x] calculate Game Result
       - [ ] is Valid
-    - [ ] Move generation
+    - [x] Move generation
       - [x] Incorporate magic bitboards
       - [x] Pawns
       - [x] Knights / King
@@ -24,6 +24,8 @@
 
 ## Possible Extensions
 - [ ] Faster Zobrist 3 fold repetition detection - https://marcelk.net/2013-04-06/paper/upcoming-rep-v2.pdf
+- [ ] Pre-allocate StateInfos? - don't allocate / free in the hotpath
+- [ ] remove `GameResult _gameResult = calculateGameResult();` from `Position::doPly` - move search will already do this
 
 ## Sources
 

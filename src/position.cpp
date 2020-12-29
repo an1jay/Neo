@@ -1,7 +1,7 @@
 #include "position.h"
 
 #include "bitboard.h"
-#include "movegen.h"
+#include "move_gen.h"
 #include "terminal_colors.h"
 
 #include <cassert>
@@ -85,7 +85,8 @@ Position::Position()
 	Key posHash = 0ULL;
 
 	for (int sq = 0; sq < numSquaresInBoard; sq++)
-		posHash ^= _zobristHasher.getPieceKey(_board[sq], static_cast<Square>(sq));
+		if (_board[sq] != Piece::NB_NONE)
+			posHash ^= _zobristHasher.getPieceKey(_board[sq], static_cast<Square>(sq));
 
 	_st = new StateInfo{
 		posHash, 0, Piece::NB_NONE, NoSquares, GameResult::NB_NONE, nullptr,
@@ -94,8 +95,16 @@ Position::Position()
 
 Position::~Position()
 {
-	// TODO manage ST memory leak
-	delete _st;
+	std::vector<StateInfo*> sts;
+	StateInfo* current_st = _st;
+
+	while (current_st != nullptr) {
+		sts.push_back(current_st);
+		current_st = current_st->_previous;
+	}
+
+	for (StateInfo* st : sts)
+		delete st;
 }
 
 bool
@@ -332,6 +341,10 @@ Position::updateMembersFromPieceList()
 std::vector<Ply>
 Position::generatePseudoLegalPlies()
 {
+	std::vector<Ply> plies;
+	if (_st->_gameResult != GameResult::NB_NONE)
+		return plies;
+
 	BitBoard ourPieces = _byColorBB[static_cast<int>(_sideToMove)];
 	Square pieceSq;
 	Square destSq;
@@ -340,8 +353,6 @@ Position::generatePseudoLegalPlies()
 
 	const BitBoard ourOccupancy = _byColorBB[static_cast<int>(_sideToMove)];
 	const BitBoard theirOccupancy = _byColorBB[static_cast<int>(otherColor(_sideToMove))];
-
-	std::vector<Ply> plies;
 
 	while (ourPieces != NoSquares) {
 		// Find piece square and remove from bitboard of our pieces
@@ -407,8 +418,8 @@ Position::isLegalPly(Ply p)
 	movePiece(destination, origin);
 	addPiece(destination, capturedPiece);
 	if (promote != PieceType::NB_NONE) {
-		removePiece(destination);
-		addPiece(destination, pieceFromPieceTypeColor(PieceType::Pawn, _sideToMove));
+		removePiece(origin);
+		addPiece(origin, pieceFromPieceTypeColor(PieceType::Pawn, _sideToMove));
 	}
 
 	return isLegal;

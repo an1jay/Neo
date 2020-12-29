@@ -6,4 +6,4 @@ UseTab: Always
 SortIncludes: true
 IncludeBlocks: Regroup
 ReflowComments: false
-
+# IndentCaseLabels: false

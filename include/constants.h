@@ -38,6 +38,8 @@ constexpr char PieceTypeChars[] = {
 	'P', 'N', 'R', 'Q', 'K', ' ',
 };
 
+const Ply INVALID_PLY = 0ULL;
+
 // ***** BitBoard *****
 
 // Equal to 0000000000000000000000000000111111111111111111111111111111111111

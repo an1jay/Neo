@@ -59,6 +59,10 @@ struct Position
 	int pieceCount(PieceType pt) const;
 	int pieceCount(PieceType pt, Color c) const;
 
+	Color sideToMove() { return _sideToMove; }
+	GameResult currentGameResult() { return _st->_gameResult; }
+	int currentPlyClock() { return _halfMoveClock; }
+
 	std::vector<Ply> generatePseudoLegalPlies();
 	std::vector<Ply> generateLegalPlies();
 
@@ -71,7 +75,7 @@ struct Position
 	void undoPly(Ply p);
 
 	// For debugging purposes
-	bool isValid() const;
+	bool isValid() const; // TODO
 
       private:
 	// ******* Data Members *******

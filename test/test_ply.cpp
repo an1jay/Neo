@@ -1,6 +1,6 @@
 #include "catch.h"
 // include catch first
-#include "movegen.h"
+#include "move_gen.h"
 #include "types.h"
 
 TEST_CASE("Plies", "[Ply]")
