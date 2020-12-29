@@ -22,6 +22,8 @@
 - [ ] AI
   - [ ] TBD.
 
+## Possible Extensions
+- [ ] Faster Zobrist 3 fold repetition detection - https://marcelk.net/2013-04-06/paper/upcoming-rep-v2.pdf
 
 ## Sources
 

@@ -5,13 +5,28 @@
 #include "terminal_colors.h"
 
 #include <cassert>
+#include <random>
+
+Zobrist::Zobrist()
+{
+	std::mt19937 rng = std::mt19937(92);
+	for (int sq = 0; sq < numSquaresInBoard; sq++)
+		for (int p = 0; p < static_cast<int>(Piece::NB_NONE); p++)
+			_pieceSqArray[sq][p] = genRand<Key>(rng);
+
+	// _sideToMoveArray[static_cast<int>(Color::White)] = genRand<Key>(rng);
+	// _sideToMoveArray[static_cast<int>(Color::Black)] = genRand<Key>(rng);
+}
+
+Key
+Zobrist::getPieceKey(Piece p, Square s)
+{
+	assert(p != Piece::NB_NONE);
+	return _pieceSqArray[static_cast<int>(s)][static_cast<int>(p)];
+}
 
 Position::Position()
 {
-	_st = new StateInfo{
-		0ULL, 0, Piece::NB_NONE, NoSquares, GameResult::NB_NONE, nullptr,
-	};
-
 	// **** Instantiate Piece List ****
 	for (int sq = 0; sq < numSquaresInBoard; sq++)
 		_board[sq] = Piece::NB_NONE;
@@ -65,6 +80,16 @@ Position::Position()
 	updateMembersFromPieceList();
 	_sideToMove = Color::White;
 	_halfMoveClock = 0;
+
+	// **** Setup Zobrist Hash ****
+	Key posHash = 0ULL;
+
+	for (int sq = 0; sq < numSquaresInBoard; sq++)
+		posHash ^= _zobristHasher.getPieceKey(_board[sq], static_cast<Square>(sq));
+
+	_st = new StateInfo{
+		posHash, 0, Piece::NB_NONE, NoSquares, GameResult::NB_NONE, nullptr,
+	};
 }
 
 Position::~Position()
@@ -182,25 +207,34 @@ Position::doPly(Ply p)
 	int rule50clock = old_st->_rule50 + 1;
 	_halfMoveClock++;
 
-	// reset Rule 50 Clock if capture or pawn move
+	Key posKey = old_st->_posKey;
 	Piece capturedPiece = Piece::NB_NONE;
 	if (isCapture(p)) {
 		capturedPiece = pieceOn(destination);
+		posKey ^= _zobristHasher.getPieceKey(capturedPiece, destination);
 		removePiece(destination);
-		rule50clock = 0;
+
+		rule50clock = 0; // reset Rule 50 if capture or pawn move
 	}
 	if (pieceOn(origin) == pieceFromPieceTypeColor(PieceType::Pawn, _sideToMove))
 		rule50clock = 0;
 
-	// move piece & if there is a promotion, perform the promotion
+	// move piece
+	Piece movedPiece = pieceOn(origin);
 	movePiece(origin, destination);
-	if (promote != PieceType::NB_NONE) {
-		removePiece(destination);
-		addPiece(destination, pieceFromPieceTypeColor(promote, _sideToMove));
-	}
+	posKey ^= _zobristHasher.getPieceKey(movedPiece, origin);
+	posKey ^= _zobristHasher.getPieceKey(movedPiece, destination);
 
-	Key posKey = 0ULL;
-	// TODO do hashing
+	// if there is a promotion, perform the promotion
+	if (promote != PieceType::NB_NONE) {
+		assert(pieceOn(destination) ==
+		       pieceFromPieceTypeColor(PieceType::Pawn, _sideToMove));
+		posKey ^= _zobristHasher.getPieceKey(pieceOn(destination), destination);
+		removePiece(destination);
+
+		addPiece(destination, pieceFromPieceTypeColor(promote, _sideToMove));
+		posKey ^= _zobristHasher.getPieceKey(pieceOn(destination), destination);
+	}
 
 	_sideToMove = otherColor(_sideToMove);
 	BitBoard checkers = calculateCheckers();
@@ -254,7 +288,6 @@ Position::undoPly(Ply p)
 	}
 }
 
-
 // Move search should not use this method - this is slow
 GameResult
 Position::calculateGameResult()
@@ -263,7 +296,6 @@ Position::calculateGameResult()
 	const int numberOfLegalMoves = legalMoves.size();
 	const bool inCheck = this->_st->_checkersBB != NoSquares;
 
-	
 	// Checkmate
 	if (numberOfLegalMoves == 0 && inCheck)
 		return (_sideToMove == Color::White) ? GameResult::BlackWin : GameResult::WhiteWin;
@@ -272,9 +304,11 @@ Position::calculateGameResult()
 	if (numberOfLegalMoves == 0 && !inCheck)
 		return GameResult::Draw;
 
-	// Draw by 3 fold repetition / 50 move rule
+	// Non stalemate draw -- 3 fold repetition / 50 move rule
+	if (isNonStalemateDraw())
+		return GameResult::Draw;
 
-	// FIXME
+	// If not ended - game is still in play
 	return GameResult::NB_NONE;
 }
 
@@ -378,4 +412,48 @@ Position::isLegalPly(Ply p)
 	}
 
 	return isLegal;
+}
+
+bool
+Position::isNonStalemateDraw()
+{
+	// 3 types of non stalemate draw
+	//  - 50 move rule
+	//  - insufficient material (only K & 1 N left)
+	//  - 3 fold repetition
+
+	// 50 move rule easy to detect
+	// note: 50 moves corresponds to 100 plies
+	if (_st->_rule50 >= 50 * 2) // in theory it shouldn't be greater
+		return true;
+
+	// insufficient material
+	bool insuff = ((_pieceCount[static_cast<int>(Piece::W_Pawn)] == 0 &&
+			_pieceCount[static_cast<int>(Piece::B_Pawn)] == 0) &&
+		       (_pieceCount[static_cast<int>(Piece::W_Rook)] == 0 &&
+			_pieceCount[static_cast<int>(Piece::B_Rook)] == 0) &&
+		       (_pieceCount[static_cast<int>(Piece::W_Queen)] == 0 &&
+			_pieceCount[static_cast<int>(Piece::B_Queen)] == 0) &&
+		       (_pieceCount[static_cast<int>(Piece::W_Knight)] <= 1 &&
+			_pieceCount[static_cast<int>(Piece::B_Knight)] <= 1));
+
+	if (insuff)
+		return true;
+
+	// 3 fold repetition
+	int end = std::min(_st->_rule50, _halfMoveClock);
+	if (end <= 4) // 3-fold rep requires at least 2.5 moves (i.e. 5 plies)
+		return false;
+	StateInfo* old_st = _st->_previous->_previous;
+	int count = 0;
+	for (int i = 4; i <= end; i += 2) {
+		if (old_st->_posKey == _st->_posKey)
+			count++;
+		old_st = old_st->_previous->_previous;
+	}
+
+	if (count >= 2) // in theory it shouldn't be greater
+		return true;
+
+	return false;
 }

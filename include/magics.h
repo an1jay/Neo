@@ -56,9 +56,6 @@ struct Magics
 };
 
 BitBoard
-genRand(std::mt19937&);
-
-BitBoard
 HQBishopAttack(Square b, BitBoard occupancy);
 
 BitBoard

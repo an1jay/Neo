@@ -21,6 +21,22 @@ struct StateInfo
 	// ~StateInfo();
 };
 
+struct Zobrist
+{
+      public:
+	Zobrist();
+	~Zobrist() = default;
+
+	Zobrist(const Zobrist&) = delete;
+	Zobrist& operator=(const Zobrist&) = delete;
+
+	Key getPieceKey(Piece p, Square s);
+
+      private:
+	Key _pieceSqArray[static_cast<int>(Square::NB_NONE)][static_cast<int>(Piece::NB_NONE)];
+	// Key _sideToMoveArray[static_cast<int>(Color::NB_NONE)];
+};
+
 struct Position
 {
       public:
@@ -70,6 +86,7 @@ struct Position
 	StateInfo* _st; // TODO TBD whether this needs to be heap allocated
 
 	Magics _magics;
+	Zobrist _zobristHasher;
 
 	void movePiece(Square origin, Square destination);
 	void removePiece(Square sq);

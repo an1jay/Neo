@@ -146,3 +146,14 @@ boardPrint(std::function<std::pair<char, Color>(Square s)> mapper)
 	oss << std::endl << boardSep << std::endl << "     A   B   C   D   E   F" << std::endl;
 	return oss.str();
 }
+
+template<typename T>
+T
+genRand(std::mt19937& rng)
+{
+	const uint64_t bottomTwoBytes = 0xFFFFULL;
+	return static_cast<T>((static_cast<uint64_t>(rng()) & bottomTwoBytes) |
+			      ((static_cast<uint64_t>(rng()) & bottomTwoBytes) << 16) |
+			      ((static_cast<uint64_t>(rng()) & bottomTwoBytes) << 32) |
+			      ((static_cast<uint64_t>(rng()) & bottomTwoBytes) << 48));
+}

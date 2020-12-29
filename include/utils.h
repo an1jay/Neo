@@ -64,7 +64,8 @@ pieceFromPieceTypeColor(const PieceType pt, const Color c)
 {
 	if (pt == PieceType::NB_NONE || c == Color::NB_NONE)
 		return Piece::NB_NONE;
-	return static_cast<Piece>(static_cast<int>(pt) + (static_cast<int>(c) * static_cast<int>(Piece::B_Pawn)));
+	return static_cast<Piece>(static_cast<int>(pt) +
+				  (static_cast<int>(c) * static_cast<int>(Piece::B_Pawn)));
 }
 
 constexpr PieceType
@@ -94,3 +95,7 @@ otherColor(Color c)
 		return Color::Black;
 	return Color::NB_NONE;
 }
+
+template<typename T>
+T
+genRand(std::mt19937&);

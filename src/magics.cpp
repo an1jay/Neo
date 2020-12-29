@@ -37,7 +37,7 @@ Magics::initBishops()
 	// 1. For each square find a candidate magic
 	// 2. For each possible occupancy, store attack vector in correct index, checking there is no collision
 	// 3. If no collisions, we have valid magic
-	std::mt19937 rng = std::mt19937();
+	std::mt19937 rng = std::mt19937(0);
 	BitBoard candidateMagic;
 	BitBoard relevantMoveMask;
 	BitBoard occupancy;
@@ -62,7 +62,7 @@ Magics::initBishops()
 			occupancy = NoSquares;
 			// find a random magic (see
 			// https://www.chessprogramming.org/Looking_for_Magics)
-			candidateMagic = genRand(rng) & genRand(rng) & genRand(rng);
+			candidateMagic = genRand<BitBoard>(rng) & genRand<BitBoard>(rng) & genRand<BitBoard>(rng);
 			// assume magic is valid till proven otherwise
 			validMagic = true;
 			++triedCount;
@@ -127,7 +127,7 @@ Magics::initRooks()
 			occupancy = NoSquares;
 			// find a random magic (see
 			// https://www.chessprogramming.org/Looking_for_Magics)
-			candidateMagic = genRand(rng) & genRand(rng) & genRand(rng);
+			candidateMagic = genRand<BitBoard>(rng) & genRand<BitBoard>(rng) & genRand<BitBoard>(rng);
 			// assume valid till proven otherwise
 			validMagic = true;
 			++triedCount;
@@ -227,16 +227,6 @@ BitBoard
 HQQueenAttack(Square q, BitBoard occupancy)
 {
 	return HQRookAttack(q, occupancy) | HQBishopAttack(q, occupancy);
-}
-
-BitBoard
-genRand(std::mt19937& rng)
-{
-	const BitBoard bottomTwoBytes = 0xFFFFULL;
-	return (static_cast<BitBoard>(rng()) & bottomTwoBytes) |
-	       ((static_cast<BitBoard>(rng()) & bottomTwoBytes) << 16) |
-	       ((static_cast<BitBoard>(rng()) & bottomTwoBytes) << 32) |
-	       ((static_cast<BitBoard>(rng()) & bottomTwoBytes) << 48);
 }
 
 void
