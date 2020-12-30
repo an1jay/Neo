@@ -162,11 +162,13 @@ Position::calculateCheckers()
 {
 	BitBoard ourKingBB = _byColorBB[static_cast<int>(_sideToMove)] &
 			     _byPieceTypeBB[static_cast<int>(PieceType::King)];
+	if (ourKingBB == NoSquares)
+		std::cout << "---> " << *this;
 	Square ourKingSq = sqFromBB(ourKingBB);
 
 	// Given location of King:
 	// 1) check if pieces exists
-	// 2) calculate attacks from this location for: pawn (only captures), knight, rook & queen (a king cannot another king)
+	// 2) calculate attacks from this location for: pawn (only captures), knight, rook, queen & king
 	// 3) for these attacks check if the piece is present at those identified locations points
 	// 4) if a piece is present, then this piece is a checker
 
@@ -175,7 +177,9 @@ Position::calculateCheckers()
 	BitBoard theirOccupancy = colorBB(otherColor(_sideToMove));
 
 	// Handle normal (i.e. symmetric attack) cases (i.e. not pawns)
-	PieceType normalCases[] = { PieceType::Queen, PieceType::Rook, PieceType::Knight };
+	PieceType normalCases[] = {
+		PieceType::Queen, PieceType::Rook, PieceType::Knight, PieceType::King
+	};
 	for (PieceType nc : normalCases) {
 		if (pieceCount(nc, otherColor(_sideToMove)) > 0) {
 			BitBoard attacks =
@@ -220,6 +224,8 @@ Position::doPly(Ply p)
 	Piece capturedPiece = Piece::NB_NONE;
 	if (isCapture(p)) {
 		capturedPiece = pieceOn(destination);
+		if (capturedPiece == Piece::W_King)
+			std::cout << *this;
 		posKey ^= _zobristHasher.getPieceKey(capturedPiece, destination);
 		removePiece(destination);
 
@@ -270,12 +276,6 @@ Position::undoPly(Ply p)
 	//    - check whether game is ended (i.e. checkmate, stalemate,
 	//      insufficient material, 50 move rule, threefold repetition)
 
-	const StateInfo* old_st = _st->_previous;
-
-	// TODO - What to do with new ST? For now, delete it
-	delete _st;
-	_st = const_cast<StateInfo*>(old_st);
-
 	// Reverse various positions specific game state
 	_sideToMove = otherColor(_sideToMove);
 	_halfMoveClock--;
@@ -288,13 +288,18 @@ Position::undoPly(Ply p)
 	// Move piece back
 	movePiece(destination, origin);
 	// Replace destination with captured piece (this is Piece::NB_NONE if no capture happened previously)
-	addPiece(destination, old_st->_capturedPiece);
+	addPiece(destination, _st->_capturedPiece);
 
 	// if promotion, demote the piece to a pawn
 	if (promote != PieceType::NB_NONE) {
-		removePiece(destination);
-		addPiece(destination, pieceFromPieceTypeColor(PieceType::Pawn, _sideToMove));
+		removePiece(origin);
+		addPiece(origin, pieceFromPieceTypeColor(PieceType::Pawn, _sideToMove));
 	}
+
+	const StateInfo* old_st = _st->_previous;
+	// TODO - What to do with new ST? For now, delete it
+	delete _st;
+	_st = const_cast<StateInfo*>(old_st);
 }
 
 // Move search should not use this method - this is slow

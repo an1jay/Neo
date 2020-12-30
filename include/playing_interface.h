@@ -8,7 +8,7 @@ struct Player
       public:
 	virtual ~Player() = default;
 	virtual void updatePosition(Ply p) = 0;
-	virtual Ply getNextMove()
+	virtual Ply getNextMove() final
 	{
 		Ply p = _getPly();
 		updatePosition(p);

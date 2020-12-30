@@ -1,5 +1,6 @@
 #include "bitboard.h"
 #include "constants.h"
+#include "eval_search.h"
 #include "magics.h"
 #include "playing_interface.h"
 #include "position.h"
@@ -13,13 +14,17 @@ main()
 	// printRookMagicOccupancyMask();
 	// std::cout << asBoardString(AllSquares) << std::endl;
 
-	// auto consolePlayerCreater = []() { return new ConsolePlayer(); };
+	auto consolePlayerCreater = []() { return new ConsolePlayer(); };
 
-	auto randomPlayerCreaterCreater = [](int s) {
-		return [s]() { return new RandomPlayer(s, false); };
-	};
+	auto minimaxPlayerCreaterCreater =
+	  [](int depth, std::function<Score(Position&)> evaluator, bool _verbose) {
+		  return [depth, evaluator, _verbose]() {
+			  return new ClassicalPlayer(depth, evaluator, _verbose);
+			  //   return new ClassicalPlayer(5, Eval::EvalFunc, true);
+		  };
+	  };
 
-	Game g(randomPlayerCreaterCreater(1), randomPlayerCreaterCreater(2));
+	Game g(minimaxPlayerCreaterCreater(5, Eval::EvalFunc, true), consolePlayerCreater);
 
 	g.play();
 
@@ -49,4 +54,16 @@ demoPlay()
 		std::cout << std::endl;
 		p.doPly(moveList[0]);
 	}
+}
+
+void
+demoRandomPlayer()
+{
+	auto randomPlayerCreaterCreater = [](int s) {
+		return [s]() { return new RandomPlayer(s, false); };
+	};
+
+	Game g(randomPlayerCreaterCreater(1), randomPlayerCreaterCreater(2));
+
+	g.play();
 }

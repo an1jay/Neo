@@ -58,6 +58,7 @@ struct Position
 	bool isSqEmpty(Square s) const;
 	int pieceCount(PieceType pt) const;
 	int pieceCount(PieceType pt, Color c) const;
+	int pieceCount(Piece p) const;
 
 	Color sideToMove() { return _sideToMove; }
 	GameResult currentGameResult() { return _st->_gameResult; }
@@ -135,6 +136,12 @@ inline int
 Position::pieceCount(PieceType pt, Color c) const
 {
 	return _pieceCount[static_cast<int>(pieceFromPieceTypeColor(pt, c))];
+}
+
+inline int
+Position::pieceCount(Piece p) const
+{
+	return _pieceCount[static_cast<int>(p)];
 }
 
 inline int

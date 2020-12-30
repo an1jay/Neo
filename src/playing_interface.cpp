@@ -76,6 +76,7 @@ ConsolePlayer::_getPly()
 {
 	std::vector<Ply> legalPlies = _pos.generateLegalPlies();
 	std::cout << _pos;
+	std::cout << "Legal Moves: " << std::endl;
 	printMoveList(legalPlies);
 
 	bool validPly = true;
@@ -89,9 +90,6 @@ ConsolePlayer::_getPly()
 		if (!validPly)
 			std::cout << std::endl << "Invalid ply. Try again! ";
 	} while (!validPly);
-
-	_pos.doPly(p);
-
 	return p;
 }
 
