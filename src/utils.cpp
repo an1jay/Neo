@@ -8,6 +8,7 @@
 #include "terminal_colors.h"
 #include "types.h"
 
+#include <iomanip>
 #include <sstream>
 #include <utility>
 
@@ -19,20 +20,38 @@ plyInList(Ply p, std::vector<Ply> plyList)
 			return true;
 	return false;
 }
+
 void
-printMoveList(std::vector<Ply> pList)
+printPlyList(std::vector<Ply> pList)
 {
+
+	if (pList.size() == 0)
+		return;
+
 	const int pliesPerLine = 12;
 	for (int i = 0; i < static_cast<int>(pList.size()); i++) {
 		std::cout << asPlyString(pList[i]);
 		if (i < (static_cast<int>(pList.size()) - 1)) {
 			if (i > 0 && i % pliesPerLine == 0)
-				std::cout << " |\n";
+				std::cout << " |" << std::endl;
 			else
 				std::cout << " | ";
 		}
 	}
 	std::cout << std::endl;
+}
+
+void
+printMoveHistory(std::vector<Ply> pList)
+{
+	for (int i = 0; i < static_cast<int>(pList.size()); i += 2) {
+		std::cout << std::left << std::setfill(' ') << std::setw(3) << (i / 2) + 1
+			  << asPaddedPlyString(pList[i], 10) << "|";
+		if (i + 1 < static_cast<int>(pList.size()))
+			std::cout << asPaddedPlyString(pList[i + 1], 10) << std::endl;
+		else
+			std::cout << std::endl;
+	}
 }
 
 std::ostream&
@@ -190,4 +209,52 @@ boardPrint(std::function<std::pair<char, Color>(Square s)> mapper)
 	}
 	oss << std::endl << boardSep << std::endl << "     A   B   C   D   E   F" << std::endl;
 	return oss.str();
+}
+
+Ply
+parsePly(std::string ply)
+{
+	if (!(ply.length() == 4 || ply.length() == 6))
+		return INVALID_PLY;
+
+	std::pair<Square, bool> origin = parseSq(ply.substr(0, 2));
+	std::pair<Square, bool> dest = parseSq(ply.substr(2, 2));
+	std::pair<PieceType, bool> promotion = { PieceType::NB_NONE, true };
+
+	if (ply.length() == 6) {
+		promotion = parsePieceType(ply[5]);
+	}
+
+	if (!origin.second || !dest.second || !promotion.second)
+		return INVALID_PLY;
+
+	return encodePly(dest.first, origin.first, promotion.first);
+}
+
+std::pair<Square, bool>
+parseSq(std::string s)
+{
+
+	bool valid =
+	  (s.length() == 2) && (s[0] >= 'A' && s[0] <= 'F') && (s[1] >= '1' && s[1] <= '6');
+	if (!valid)
+		return { Square::NB_NONE, true };
+
+	return { sqFromFileRank(static_cast<File>(s[0] - 'A'), static_cast<Rank>(s[1] - '1')),
+		 true };
+}
+
+std::pair<PieceType, bool>
+parsePieceType(char s)
+{
+	if (s == 'Q')
+		return { PieceType::Queen, true };
+
+	if (s == 'R')
+		return { PieceType::Rook, true };
+
+	if (s == 'N')
+		return { PieceType::Knight, true };
+
+	return { PieceType::NB_NONE, false };
 }

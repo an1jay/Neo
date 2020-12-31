@@ -4,7 +4,7 @@
 - [ ] Framework
   - [ ] Board representation
     - [ ] Position
-      - [ ] calculate Checkers -- Some Positions get misidentified as draw when not a draw - example game:
+      - [x] calculate Checkers -- ~~Some Positions get misidentified as draw when not a draw - example game:~~
 
         Move List: 
         1    F2F3  |  C5C4  
@@ -22,7 +22,6 @@
         13   D3B4  |  D5D6  
         14   B4C2  |  A1B1  
 
-
       - [x] do / undo move hashing
       - [x] generate Pseudo Legal Moves
       - [x] generate Legal Moves
@@ -38,7 +37,17 @@
   - [ ] Knight & King Moves AttackVectors
   - [ ] Diagonals & Anti Diagonals AttackVectors
 - [ ] AI
-  - [ ] TBD.
+  - [ ] Search
+    - [x] Minimax
+    - [ ] Alpha Beta
+    - [ ] Quiescence Search
+    - [ ] MTD-f / Negascout
+  - [ ] Evaluation
+    - [ ] Material
+    - [ ] Positional factors
+      - [ ] Pawn Structure Evaluation
+      - [ ] Piece Evaluation
+    - [ ] NNUE? / Leela Zero method
 
 ## Possible Extensions
 - [ ] Faster Zobrist 3 fold repetition detection - https://marcelk.net/2013-04-06/paper/upcoming-rep-v2.pdf

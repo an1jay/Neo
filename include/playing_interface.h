@@ -28,6 +28,7 @@ struct Game
 	Game(const Game&) = delete;
 	Game& operator=(const Game&) = delete;
 
+	bool playPlyList(std::vector<std::string> plies, bool verbose, bool printEndOnly);
 	GameResult play(bool verbose = true);
 
       private:
@@ -47,10 +48,6 @@ struct ConsolePlayer : Player
       private:
 	Ply _getPly() override;
 	Position _pos;
-	Ply parsePly(std::string ply);
-	// Below functions return false in second element if invalid inputs
-	std::pair<Square, bool> parseSq(std::string s);
-	std::pair<PieceType, bool> parsePieceType(char s);
 };
 
 struct RandomPlayer : Player

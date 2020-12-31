@@ -11,9 +11,6 @@
 int
 main()
 {
-	// printRookMagicOccupancyMask();
-	// std::cout << asBoardString(AllSquares) << std::endl;
-
 	auto consolePlayerCreater = []() { return new ConsolePlayer(); };
 
 	auto minimaxPlayerCreaterCreater =
@@ -24,7 +21,26 @@ main()
 		  };
 	  };
 
-	Game g(minimaxPlayerCreaterCreater(5, Eval::EvalFunc, true), consolePlayerCreater);
+	Game g(minimaxPlayerCreaterCreater(7, Eval::EvalFunc, true), consolePlayerCreater);
+
+	std::vector<std::string> plyStrs = {
+		"F2F3", "C5C4", // 1
+		"F3F4", "E5F4", // 2
+		"B2B3", "C6C5", // 3
+		"C1A3", "D5D4", // 4
+		"B3C4", "B6C4", // 5
+		"A3C5", "D6C5", // 6
+		"C2C3", "C5D5", // 7
+		"C3D4", "B5B4", // 8
+		"A2A3", "E6D4", // 9
+		"A3B4", "A5B4", // 10
+		"A1A6", "F6A6", // 11
+		"E1D3", "A6A1", // 12
+		"D3B4", "D5D6", // 13
+		"B4C2", "A1B1", // 14
+	};
+
+	// g.playPlyList(plyStrs, true, true);
 
 	g.play();
 

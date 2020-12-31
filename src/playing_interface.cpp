@@ -18,6 +18,41 @@ Game::~Game()
 	delete _blk;
 }
 
+bool
+Game::playPlyList(std::vector<std::string> plyStrs, bool verbose, bool printEndOnly)
+{
+
+	std::vector<Ply> plies;
+	Ply p;
+
+	for (std::string plyStr : plyStrs) {
+		p = parsePly(plyStr);
+		if (p == INVALID_PLY)
+			return false;
+		plies.push_back(p);
+	}
+
+	for (Ply validPly : plies) {
+
+		if (!printEndOnly && verbose)
+			std::cout << _pos.sideToMove() << " played " << asPlyString(validPly)
+				  << std::endl;
+
+		_wht->updatePosition(validPly);
+		_blk->updatePosition(validPly);
+		_pos.doPly(validPly);
+		if (!printEndOnly && verbose) {
+			std::cout << _pos;
+			std::cout << std::string(25, '*') << std::endl;
+		}
+	}
+
+	std::cout << "Position at the end: " << std::endl << _pos << "Played Moves: " << std::endl;
+	printMoveHistory(plies);
+	std::cout << std::endl;
+	return true;
+}
+
 GameResult
 Game::play(bool verbose)
 {
@@ -61,11 +96,7 @@ Game::play(bool verbose)
 			  << std::endl
 			  << "Move List: " << std::endl;
 
-		for (int i = 0; i < static_cast<int>(_pliesList.size()); i += 2) {
-			std::cout << std::left << std::setfill(' ') << std::setw(3) << (i / 2) + 1
-				  << asPaddedPlyString(_pliesList[i], 10) << "|"
-				  << asPaddedPlyString(_pliesList[i + 1], 10) << std::endl;
-		}
+		printMoveHistory(_pliesList);
 	}
 
 	return res;
@@ -77,7 +108,7 @@ ConsolePlayer::_getPly()
 	std::vector<Ply> legalPlies = _pos.generateLegalPlies();
 	std::cout << _pos;
 	std::cout << "Legal Moves: " << std::endl;
-	printMoveList(legalPlies);
+	printPlyList(legalPlies);
 
 	bool validPly = true;
 	std::string plyStr;
@@ -94,54 +125,6 @@ ConsolePlayer::_getPly()
 }
 
 Ply
-ConsolePlayer::parsePly(std::string ply)
-{
-	if (!(ply.length() == 4 || ply.length() == 6))
-		return INVALID_PLY;
-
-	std::pair<Square, bool> origin = parseSq(ply.substr(0, 2));
-	std::pair<Square, bool> dest = parseSq(ply.substr(2, 2));
-	std::pair<PieceType, bool> promotion = { PieceType::NB_NONE, true };
-
-	if (ply.length() == 6) {
-		promotion = parsePieceType(ply[5]);
-	}
-
-	if (!origin.second || !dest.second || !promotion.second)
-		return INVALID_PLY;
-
-	return encodePly(dest.first, origin.first, promotion.first);
-}
-
-std::pair<Square, bool>
-ConsolePlayer::parseSq(std::string s)
-{
-
-	bool valid =
-	  (s.length() == 2) && (s[0] >= 'A' && s[0] <= 'F') && (s[1] >= '1' && s[1] <= '6');
-	if (!valid)
-		return { Square::NB_NONE, true };
-
-	return { sqFromFileRank(static_cast<File>(s[0] - 'A'), static_cast<Rank>(s[1] - '1')),
-		 true };
-}
-
-std::pair<PieceType, bool>
-ConsolePlayer::parsePieceType(char s)
-{
-	if (s == 'Q')
-		return { PieceType::Queen, true };
-
-	if (s == 'R')
-		return { PieceType::Rook, true };
-
-	if (s == 'N')
-		return { PieceType::Knight, true };
-
-	return { PieceType::NB_NONE, false };
-}
-
-Ply
 RandomPlayer::_getPly()
 {
 
@@ -151,7 +134,7 @@ RandomPlayer::_getPly()
 	if (_verbose) {
 		std::cout << _pos;
 		std::cout << "Legal Moves: " << std::endl;
-		printMoveList(legalPlies);
+		printPlyList(legalPlies);
 		std::cout << "Chosen Move " << asPlyString(legalPlies[moveIndex]) << std::endl;
 	}
 	return legalPlies[moveIndex];

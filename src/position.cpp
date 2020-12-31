@@ -162,8 +162,6 @@ Position::calculateCheckers()
 {
 	BitBoard ourKingBB = _byColorBB[static_cast<int>(_sideToMove)] &
 			     _byPieceTypeBB[static_cast<int>(PieceType::King)];
-	if (ourKingBB == NoSquares)
-		std::cout << "---> " << *this;
 	Square ourKingSq = sqFromBB(ourKingBB);
 
 	// Given location of King:
@@ -181,6 +179,7 @@ Position::calculateCheckers()
 		PieceType::Queen, PieceType::Rook, PieceType::Knight, PieceType::King
 	};
 	for (PieceType nc : normalCases) {
+
 		if (pieceCount(nc, otherColor(_sideToMove)) > 0) {
 			BitBoard attacks =
 			  calculateAttackBB(nc, ourKingSq, ourOccupancy, theirOccupancy, _magics);
@@ -253,15 +252,15 @@ Position::doPly(Ply p)
 
 	_sideToMove = otherColor(_sideToMove);
 	BitBoard checkers = calculateCheckers();
-	GameResult _gameResult = calculateGameResult();
 
 	StateInfo* newSt = new StateInfo{
-		posKey,	  rule50clock, capturedPiece,
-		checkers, _gameResult, const_cast<StateInfo*>(old_st),
+		posKey,	  rule50clock,	       capturedPiece,
+		checkers, GameResult::NB_NONE, const_cast<StateInfo*>(old_st),
 
 	};
-
 	_st = newSt;
+	_st->_gameResult =
+	  calculateGameResult(); // GameResult calculatation requires ST to be created
 }
 
 void

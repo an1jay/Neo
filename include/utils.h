@@ -23,7 +23,10 @@ bool
 plyInList(Ply p, std::vector<Ply> plyList);
 
 void
-printMoveList(std::vector<Ply> pList);
+printPlyList(std::vector<Ply> pList);
+
+void
+printMoveHistory(std::vector<Ply> pList);
 
 std::string boardPrint(std::function<std::pair<char, Color>(Square)>);
 
@@ -50,6 +53,18 @@ asPlyString(const Ply p);
 
 std::string
 asPaddedPlyString(const Ply p, const int width);
+
+// Returns `INVALID_PLY` if invalid input
+Ply
+parsePly(std::string ply);
+
+// Returns false in second element if invalid input
+std::pair<Square, bool>
+parseSq(std::string s);
+
+// Returns false in second element if invalid input
+std::pair<PieceType, bool>
+parsePieceType(char s);
 
 constexpr Square
 sqFromFileRank(const File f, const Rank r)
