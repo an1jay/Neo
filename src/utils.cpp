@@ -1,12 +1,10 @@
 #include "utils.h"
 
 #include "bitboard.h"
-#include "constants.h"
 #include "magics.h"
 #include "move_gen.h"
 #include "position.h"
 #include "terminal_colors.h"
-#include "types.h"
 
 #include <iomanip>
 #include <sstream>

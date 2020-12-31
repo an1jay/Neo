@@ -1,6 +1,7 @@
 #include "position.h"
 
 #include <random>
+
 #pragma once
 
 struct Player
@@ -65,4 +66,21 @@ struct RandomPlayer : Player
 	Position _pos;
 	int _seed;
 	bool _verbose;
+};
+
+struct ClassicalPlayer : Player
+{
+      public:
+	ClassicalPlayer(int depth, std::function<Score(Position&)> evaluator, bool _verbose);
+	~ClassicalPlayer() = default;
+	void updatePosition(Ply p) override { _pos.doPly(p); }
+
+      private:
+	Position _pos;
+	std::function<Score(Position&)> _eval;
+	int _depth;
+	bool _verbose;
+
+	Ply _getPly() override;
+	Score _search(int depth, Color sideToPlay, int& nodeCount);
 };

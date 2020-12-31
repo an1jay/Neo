@@ -1,7 +1,5 @@
 #include "magics.h"
 
-#include "bitboard.h"
-#include "constants.h"
 #include "utils.h"
 
 #include <iostream>

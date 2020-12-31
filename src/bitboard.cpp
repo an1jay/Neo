@@ -1,7 +1,5 @@
 #include "bitboard.h"
 
-#include "constants.h"
-#include "types.h"
 #include "utils.h"
 
 #include <sstream>

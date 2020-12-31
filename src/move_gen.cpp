@@ -1,7 +1,6 @@
 #include "move_gen.h"
 
 #include "constants.h"
-#include "magics.h"
 #include "utils.h"
 
 #include <cassert>

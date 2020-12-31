@@ -1,6 +1,6 @@
 #include "bitboard.h"
 #include "constants.h"
-#include "eval_search.h"
+#include "evaluation.h"
 #include "magics.h"
 #include "playing_interface.h"
 #include "position.h"
@@ -21,7 +21,7 @@ main()
 		  };
 	  };
 
-	Game g(minimaxPlayerCreaterCreater(7, Eval::EvalFunc, true), consolePlayerCreater);
+	Game g(minimaxPlayerCreaterCreater(6, Eval::EvalFunc, true), consolePlayerCreater);
 
 	std::vector<std::string> plyStrs = {
 		"F2F3", "C5C4", // 1
