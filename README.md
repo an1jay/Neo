@@ -39,15 +39,15 @@
 - [ ] AI
   - [ ] Search
     - [x] Minimax
-    - [ ] Alpha Beta
+    - [x] Alpha Beta
     - [ ] Quiescence Search
     - [ ] MTD-f / Negascout
   - [ ] Evaluation
-    - [ ] Material
+    - [x] Material
     - [ ] Positional factors
       - [ ] Pawn Structure Evaluation
       - [ ] Piece Evaluation
-    - [ ] NNUE? / Leela Zero method
+    - [ ] NNUE? / Leela Zero approach
 
 ## Possible Extensions
 - [ ] Faster Zobrist 3 fold repetition detection - https://marcelk.net/2013-04-06/paper/upcoming-rep-v2.pdf
