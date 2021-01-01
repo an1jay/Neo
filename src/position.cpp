@@ -118,6 +118,9 @@ void
 Position::movePiece(Square origin, Square destination)
 {
 	Piece p = pieceOn(origin);
+	if (p == Piece::NB_NONE)
+		std::cout << *this << "Source " << origin << "Dest " << destination << std::endl;
+
 	assert(p != Piece::NB_NONE);
 
 	removePiece(origin);
@@ -210,6 +213,8 @@ Position::doPly(Ply p)
 	//    - check whether game is ended (i.e. checkmate, stalemate,
 	//      insufficient material, 50 move rule, threefold repetition)
 
+	assert(p != INVALID_PLY);
+
 	const StateInfo* old_st = _st;
 
 	const Square origin = getOriginSquare(p);
@@ -259,8 +264,7 @@ Position::doPly(Ply p)
 
 	};
 	_st = newSt;
-	_st->_gameResult =
-	  calculateGameResult(); // GameResult calculatation requires ST to be created
+	_st->_gameResult = calculateGameResult(); // GameResult calculation requires ST
 }
 
 void
@@ -274,6 +278,8 @@ Position::undoPly(Ply p)
 	//    - whether side to move is in check (use checkers from state info object)
 	//    - check whether game is ended (i.e. checkmate, stalemate,
 	//      insufficient material, 50 move rule, threefold repetition)
+
+	assert(p != INVALID_PLY);
 
 	// Reverse various positions specific game state
 	_sideToMove = otherColor(_sideToMove);
@@ -394,12 +400,18 @@ Position::generateLegalPlies()
 		if (isLegalPly(p))
 			legalPlies.push_back(p);
 	}
+
+	// TODO reorder moves - promotions, captures, checks, all else
+	// can work most if not all from within isLegalPly - make an overloaded method? or something
+
 	return legalPlies;
 }
 
 bool
 Position::isLegalPly(Ply p)
 {
+	assert(p != INVALID_PLY);
+
 	// Decode ply information
 	const Square origin = getOriginSquare(p);
 	const Square destination = getDestSquare(p);
@@ -461,7 +473,7 @@ Position::isNonStalemateDraw()
 		return false;
 	StateInfo* old_st = _st->_previous->_previous;
 	int count = 0;
-	for (int i = 4; i <= end; i += 2) {
+	for (int i = 3; i <= end; i += 2) {
 		if (old_st->_posKey == _st->_posKey)
 			count++;
 		old_st = old_st->_previous->_previous;

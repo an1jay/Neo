@@ -16,8 +16,11 @@ evalCoeff(Color c)
 
 constexpr int materialWeights[] = { 1, 2, 4, 7, 0, -1, -2, -4, -7, 0 };
 
-constexpr Score WhiteWinScore = 10000;
-constexpr Score BlackWinScore = -10000;
+constexpr Score WhiteWinScore = 1e4;
+constexpr Score BlackWinScore = -1e4;
+
+constexpr Score MAX_SCORE = WhiteWinScore + 1;
+constexpr Score MIN_SCORE = BlackWinScore - 1;
 
 Score
 EvalFunc(Position& pos);

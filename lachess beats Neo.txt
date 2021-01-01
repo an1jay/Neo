@@ -1,0 +1,2294 @@
+Classical player thinks...
+Move: F2F3 |  Score: 1 | Cum. Nodes: 43,308
+Move: E2E3 |  Score: 0 | Cum. Nodes: 83,065
+Move: D2D3 |  Score: 1 | Cum. Nodes: 139,008
+Move: C2C3 |  Score: 1 | Cum. Nodes: 178,252
+Move: B2B3 |  Score: 1 | Cum. Nodes: 220,765
+Move: A2A3 |  Score: 0 | Cum. Nodes: 260,188
+Move: E1F3 |  Score: 0 | Cum. Nodes: 300,648
+Move: E1D3 |  Score: 0 | Cum. Nodes: 344,392
+Move: B1C3 |  Score: 0 | Cum. Nodes: 394,467
+Move: B1A3 |  Score: 0 | Cum. Nodes: 453,040
+
+  -|---|---|---|---|---|---|
+ 6 | r | n | q | k | n | r |
+  -|---|---|---|---|---|---|
+ 5 | p | p | p | p | p | p |
+  -|---|---|---|---|---|---|
+ 4 |   |   |   |   |   |   |
+  -|---|---|---|---|---|---|
+ 3 |   |   |   |   |   |   |
+  -|---|---|---|---|---|---|
+ 2 | P | P | P | P | P | P |
+  -|---|---|---|---|---|---|
+ 1 | R | N | Q | K | N | R |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        White
+  In check:       false
+  No of plies:    0
+  Game result:    Not Ended
+  Captured piece: PieceNone
+  Rule 50 plies:  0
+ ---------------------------
+
+Chosen Move F2F3 | Score 1 | Time taken 0.581831[s] | Nodes 453,040 | Nodes/s 778,646
+
+
+  -|---|---|---|---|---|---|
+ 6 | r | n | q | k | n | r |
+  -|---|---|---|---|---|---|
+ 5 | p | p | p | p | p | p |
+  -|---|---|---|---|---|---|
+ 4 |   |   |   |   |   |   |
+  -|---|---|---|---|---|---|
+ 3 |   |   |   |   |   | P |
+  -|---|---|---|---|---|---|
+ 2 | P | P | P | P | P |   |
+  -|---|---|---|---|---|---|
+ 1 | R | N | Q | K | N | R |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        Black
+  In check:       false
+  No of plies:    1
+  Game result:    Not Ended
+  Captured piece: PieceNone
+  Rule 50 plies:  0
+ ---------------------------
+
+Legal Moves: 
+E6F4 | E6D4 | B6C4 | B6A4 | F5F4 | E5E4 | D5D4 | C5C4 | B5B4 | A5A4
+Enter ply: C5C4
+Classical player thinks...
+Move: F3F4 |  Score: 0 | Cum. Nodes: 21,935
+Move: E2E3 |  Score: 0 | Cum. Nodes: 39,926
+Move: D2D3 |  Score: 0 | Cum. Nodes: 125,613
+Move: C2C3 |  Score: 1 | Cum. Nodes: 170,154
+Move: B2B3 |  Score: 1 | Cum. Nodes: 224,252
+Move: A2A3 |  Score: 0 | Cum. Nodes: 244,788
+Move: F1F2 |  Score: 0 | Cum. Nodes: 275,976
+Move: E1D3 |  Score: -1 | Cum. Nodes: 336,785
+Move: B1C3 |  Score: 0 | Cum. Nodes: 374,571
+Move: B1A3 |  Score: 0 | Cum. Nodes: 445,014
+
+  -|---|---|---|---|---|---|
+ 6 | r | n | q | k | n | r |
+  -|---|---|---|---|---|---|
+ 5 | p | p |   | p | p | p |
+  -|---|---|---|---|---|---|
+ 4 |   |   | p |   |   |   |
+  -|---|---|---|---|---|---|
+ 3 |   |   |   |   |   | P |
+  -|---|---|---|---|---|---|
+ 2 | P | P | P | P | P |   |
+  -|---|---|---|---|---|---|
+ 1 | R | N | Q | K | N | R |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        White
+  In check:       false
+  No of plies:    2
+  Game result:    Not Ended
+  Captured piece: PieceNone
+  Rule 50 plies:  0
+ ---------------------------
+
+Chosen Move C2C3 | Score 1 | Time taken 0.616585[s] | Nodes 445,014 | Nodes/s 721,740
+
+
+  -|---|---|---|---|---|---|
+ 6 | r | n | q | k | n | r |
+  -|---|---|---|---|---|---|
+ 5 | p | p |   | p | p | p |
+  -|---|---|---|---|---|---|
+ 4 |   |   | p |   |   |   |
+  -|---|---|---|---|---|---|
+ 3 |   |   | P |   |   | P |
+  -|---|---|---|---|---|---|
+ 2 | P | P |   | P | P |   |
+  -|---|---|---|---|---|---|
+ 1 | R | N | Q | K | N | R |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        Black
+  In check:       false
+  No of plies:    3
+  Game result:    Not Ended
+  Captured piece: PieceNone
+  Rule 50 plies:  0
+ ---------------------------
+
+Legal Moves: 
+E6C5 | E6F4 | E6D4 | D6C5 | C6C5 | B6A4 | F5F4 | E5E4 | D5D4 | B5B4 | A5A4
+Enter ply: B5B4
+Classical player thinks...
+Move: F3F4 |  Score: 0 | Cum. Nodes: 19,091
+Move: C3B4 |  Score: 1 | Cum. Nodes: 59,667
+Move: E2E3 |  Score: 1 | Cum. Nodes: 113,330
+Move: D2D3 |  Score: 0 | Cum. Nodes: 154,937
+Move: B2B3 |  Score: 1 | Cum. Nodes: 209,523
+Move: A2A3 |  Score: 0 | Cum. Nodes: 267,928
+Move: F1F2 |  Score: 0 | Cum. Nodes: 294,771
+Move: E1D3 |  Score: -1 | Cum. Nodes: 350,701
+Move: E1C2 |  Score: 1 | Cum. Nodes: 407,054
+Move: D1C2 |  Score: -1 | Cum. Nodes: 420,148
+Move: C1C2 |  Score: 0 | Cum. Nodes: 479,742
+Move: B1A3 |  Score: -1 | Cum. Nodes: 524,965
+
+  -|---|---|---|---|---|---|
+ 6 | r | n | q | k | n | r |
+  -|---|---|---|---|---|---|
+ 5 | p |   |   | p | p | p |
+  -|---|---|---|---|---|---|
+ 4 |   | p | p |   |   |   |
+  -|---|---|---|---|---|---|
+ 3 |   |   | P |   |   | P |
+  -|---|---|---|---|---|---|
+ 2 | P | P |   | P | P |   |
+  -|---|---|---|---|---|---|
+ 1 | R | N | Q | K | N | R |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        White
+  In check:       false
+  No of plies:    4
+  Game result:    Not Ended
+  Captured piece: PieceNone
+  Rule 50 plies:  0
+ ---------------------------
+
+Chosen Move C3B4 | Score 1 | Time taken 0.766545[s] | Nodes 524,965 | Nodes/s 684,845
+
+
+  -|---|---|---|---|---|---|
+ 6 | r | n | q | k | n | r |
+  -|---|---|---|---|---|---|
+ 5 | p |   |   | p | p | p |
+  -|---|---|---|---|---|---|
+ 4 |   | P | p |   |   |   |
+  -|---|---|---|---|---|---|
+ 3 |   |   |   |   |   | P |
+  -|---|---|---|---|---|---|
+ 2 | P | P |   | P | P |   |
+  -|---|---|---|---|---|---|
+ 1 | R | N | Q | K | N | R |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        Black
+  In check:       false
+  No of plies:    5
+  Game result:    Not Ended
+  Captured piece: p
+  Rule 50 plies:  0
+ ---------------------------
+
+Legal Moves: 
+E6C5 | E6F4 | E6D4 | C6C5 | C6B5 | C6A4 | B6A4 | F5F4 | E5E4 | D5D4 | A5B4 | A5A4 | C4C3
+Enter ply: A5B4
+Classical player thinks...
+Move: F3F4 |  Score: 0 | Cum. Nodes: 50,599
+Move: E2E3 |  Score: 0 | Cum. Nodes: 197,365
+Move: D2D3 |  Score: 1 | Cum. Nodes: 543,292
+Move: B2B3 |  Score: -1 | Cum. Nodes: 914,628
+Move: A2A3 |  Score: 0 | Cum. Nodes: 1,026,634
+Move: F1F2 |  Score: 1 | Cum. Nodes: 1,389,348
+Move: E1D3 |  Score: -1 | Cum. Nodes: 1,464,510
+Move: E1C2 |  Score: 1 | Cum. Nodes: 1,715,876
+Move: D1C2 |  Score: -1 | Cum. Nodes: 1,769,995
+Move: C1C4 |  Score: -6 | Cum. Nodes: 1,882,901
+Move: C1C3 |  Score: -6 | Cum. Nodes: 2,078,185
+Move: C1C2 |  Score: -1 | Cum. Nodes: 2,279,320
+Move: B1C3 |  Score: 0 | Cum. Nodes: 2,382,612
+Move: B1A3 |  Score: -1 | Cum. Nodes: 2,481,332
+
+  -|---|---|---|---|---|---|
+ 6 | r | n | q | k | n | r |
+  -|---|---|---|---|---|---|
+ 5 |   |   |   | p | p | p |
+  -|---|---|---|---|---|---|
+ 4 |   | p | p |   |   |   |
+  -|---|---|---|---|---|---|
+ 3 |   |   |   |   |   | P |
+  -|---|---|---|---|---|---|
+ 2 | P | P |   | P | P |   |
+  -|---|---|---|---|---|---|
+ 1 | R | N | Q | K | N | R |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        White
+  In check:       false
+  No of plies:    6
+  Game result:    Not Ended
+  Captured piece: P
+  Rule 50 plies:  0
+ ---------------------------
+
+Chosen Move D2D3 | Score 1 | Time taken 3.69408[s] | Nodes 2,481,332 | Nodes/s 671,705
+
+
+  -|---|---|---|---|---|---|
+ 6 | r | n | q | k | n | r |
+  -|---|---|---|---|---|---|
+ 5 |   |   |   | p | p | p |
+  -|---|---|---|---|---|---|
+ 4 |   | p | p |   |   |   |
+  -|---|---|---|---|---|---|
+ 3 |   |   |   | P |   | P |
+  -|---|---|---|---|---|---|
+ 2 | P | P |   |   | P |   |
+  -|---|---|---|---|---|---|
+ 1 | R | N | Q | K | N | R |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        Black
+  In check:       false
+  No of plies:    7
+  Game result:    Not Ended
+  Captured piece: PieceNone
+  Rule 50 plies:  0
+ ---------------------------
+
+Legal Moves: 
+E6C5 | E6F4 | E6D4 | D6C5 | C6C5 | C6B5 | C6A4 | B6A4 | A6A5 | A6A4 | A6A3 | A6A2 | F5F4 |
+E5E4 | D5D4 | C4D3 | C4C3 | B4B3
+Enter ply: E6D4
+Classical player thinks...
+Move: F3F4 |  Score: 0 | Cum. Nodes: 30,702
+Move: D3C4 |  Score: 1 | Cum. Nodes: 275,836
+Move: E2E3 |  Score: -1 | Cum. Nodes: 527,251
+Move: B2B3 |  Score: -2 | Cum. Nodes: 784,769
+Move: A2A3 |  Score: -2 | Cum. Nodes: 931,104
+Move: F1F2 |  Score: -1 | Cum. Nodes: 1,148,353
+Move: E1C2 |  Score: 0 | Cum. Nodes: 1,587,986
+Move: D1D2 |  Score: -2 | Cum. Nodes: 1,857,669
+Move: C1F4 |  Score: -7 | Cum. Nodes: 2,036,370
+Move: C1C4 |  Score: -6 | Cum. Nodes: 2,153,318
+Move: C1E3 |  Score: 0 | Cum. Nodes: 2,411,303
+Move: C1C3 |  Score: -6 | Cum. Nodes: 2,776,602
+Move: C1D2 |  Score: 0 | Cum. Nodes: 2,927,180
+Move: C1C2 |  Score: -5 | Cum. Nodes: 3,357,275
+Move: B1C3 |  Score: -1 | Cum. Nodes: 3,579,041
+Move: B1A3 |  Score: -1 | Cum. Nodes: 3,750,297
+Move: B1D2 |  Score: 0 | Cum. Nodes: 4,047,115
+
+  -|---|---|---|---|---|---|
+ 6 | r | n | q | k |   | r |
+  -|---|---|---|---|---|---|
+ 5 |   |   |   | p | p | p |
+  -|---|---|---|---|---|---|
+ 4 |   | p | p | n |   |   |
+  -|---|---|---|---|---|---|
+ 3 |   |   |   | P |   | P |
+  -|---|---|---|---|---|---|
+ 2 | P | P |   |   | P |   |
+  -|---|---|---|---|---|---|
+ 1 | R | N | Q | K | N | R |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        White
+  In check:       false
+  No of plies:    8
+  Game result:    Not Ended
+  Captured piece: PieceNone
+  Rule 50 plies:  1
+ ---------------------------
+
+Chosen Move D3C4 | Score 1 | Time taken 6.54469[s] | Nodes 4,047,115 | Nodes/s 618,382
+
+
+  -|---|---|---|---|---|---|
+ 6 | r | n | q | k |   | r |
+  -|---|---|---|---|---|---|
+ 5 |   |   |   | p | p | p |
+  -|---|---|---|---|---|---|
+ 4 |   | p | P | n |   |   |
+  -|---|---|---|---|---|---|
+ 3 |   |   |   |   |   | P |
+  -|---|---|---|---|---|---|
+ 2 | P | P |   |   | P |   |
+  -|---|---|---|---|---|---|
+ 1 | R | N | Q | K | N | R |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        Black
+  In check:       false
+  No of plies:    9
+  Game result:    Not Ended
+  Captured piece: p
+  Rule 50 plies:  0
+ ---------------------------
+
+Legal Moves: 
+F6E6 | D6E6 | D6C5 | C6C5 | C6B5 | C6C4 | C6A4 | B6C4 | B6A4 | A6A5 | A6A4 | A6A3 | A6A2 |
+F5F4 | E5E4 | D5C4 | D4E6 | D4B5 | D4F3 | D4B3 | D4E2 | D4C2 | B4B3
+Enter ply: C6A4
+Classical player thinks...
+Move: B2B3 |  Score: 1 | Cum. Nodes: 169,144
+Move: E1C2 |  Score: 0 | Cum. Nodes: 331,601
+Move: D1D2 |  Score: 0 | Cum. Nodes: 420,875
+Move: C1C2 |  Score: -4 | Cum. Nodes: 559,364
+
+  -|---|---|---|---|---|---|
+ 6 | r | n |   | k |   | r |
+  -|---|---|---|---|---|---|
+ 5 |   |   |   | p | p | p |
+  -|---|---|---|---|---|---|
+ 4 | q | p | P | n |   |   |
+  -|---|---|---|---|---|---|
+ 3 |   |   |   |   |   | P |
+  -|---|---|---|---|---|---|
+ 2 | P | P |   |   | P |   |
+  -|---|---|---|---|---|---|
+ 1 | R | N | Q | K | N | R |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        White
+  In check:       true
+  No of plies:    10
+  Game result:    Not Ended
+  Captured piece: PieceNone
+  Rule 50 plies:  1
+ ---------------------------
+
+Chosen Move B2B3 | Score 1 | Time taken 0.923303[s] | Nodes 559,364 | Nodes/s 605,829
+
+
+  -|---|---|---|---|---|---|
+ 6 | r | n |   | k |   | r |
+  -|---|---|---|---|---|---|
+ 5 |   |   |   | p | p | p |
+  -|---|---|---|---|---|---|
+ 4 | q | p | P | n |   |   |
+  -|---|---|---|---|---|---|
+ 3 |   | P |   |   |   | P |
+  -|---|---|---|---|---|---|
+ 2 | P |   |   |   | P |   |
+  -|---|---|---|---|---|---|
+ 1 | R | N | Q | K | N | R |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        Black
+  In check:       false
+  No of plies:    11
+  Game result:    Not Ended
+  Captured piece: PieceNone
+  Rule 50 plies:  0
+ ---------------------------
+
+Legal Moves: 
+F6E6 | D6E6 | D6C6 | D6C5 | B6C4 | A6A5 | F5F4 | E5E4 | D5C4 | D4E6 | D4C6 | D4B5 | D4F3 |
+D4B3 | D4E2 | D4C2 | A4C6 | A4B5 | A4A5 | A4B3 | A4A3 | A4A2
+Enter ply: A4A5
+Classical player thinks...
+Move: C4D5 |  Score: 1 | Cum. Nodes: 272,412
+Move: C4C5 |  Score: 1 | Cum. Nodes: 399,753
+Move: F3F4 |  Score: 2 | Cum. Nodes: 477,684
+Move: E2E3 |  Score: 2 | Cum. Nodes: 631,289
+Move: A2A3 |  Score: 0 | Cum. Nodes: 869,965
+Move: F1F2 |  Score: 1 | Cum. Nodes: 980,209
+Move: E1D3 |  Score: 1 | Cum. Nodes: 1,238,419
+Move: E1C2 |  Score: 1 | Cum. Nodes: 1,477,610
+Move: D1D2 |  Score: 0 | Cum. Nodes: 1,628,375
+Move: C1F4 |  Score: -6 | Cum. Nodes: 1,780,391
+Move: C1E3 |  Score: 2 | Cum. Nodes: 1,931,403
+Move: C1C3 |  Score: -6 | Cum. Nodes: 2,226,668
+Move: C1A3 |  Score: -6 | Cum. Nodes: 2,405,360
+Move: C1D2 |  Score: 1 | Cum. Nodes: 2,563,017
+Move: C1C2 |  Score: -4 | Cum. Nodes: 2,811,046
+Move: C1B2 |  Score: 1 | Cum. Nodes: 2,914,805
+Move: B1C3 |  Score: 0 | Cum. Nodes: 3,156,865
+Move: B1A3 |  Score: 0 | Cum. Nodes: 3,292,429
+Move: B1D2 |  Score: 2 | Cum. Nodes: 3,411,443
+
+  -|---|---|---|---|---|---|
+ 6 | r | n |   | k |   | r |
+  -|---|---|---|---|---|---|
+ 5 | q |   |   | p | p | p |
+  -|---|---|---|---|---|---|
+ 4 |   | p | P | n |   |   |
+  -|---|---|---|---|---|---|
+ 3 |   | P |   |   |   | P |
+  -|---|---|---|---|---|---|
+ 2 | P |   |   |   | P |   |
+  -|---|---|---|---|---|---|
+ 1 | R | N | Q | K | N | R |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        White
+  In check:       false
+  No of plies:    12
+  Game result:    Not Ended
+  Captured piece: PieceNone
+  Rule 50 plies:  1
+ ---------------------------
+
+Chosen Move F3F4 | Score 2 | Time taken 5.49605[s] | Nodes 3,411,443 | Nodes/s 620,708
+
+
+  -|---|---|---|---|---|---|
+ 6 | r | n |   | k |   | r |
+  -|---|---|---|---|---|---|
+ 5 | q |   |   | p | p | p |
+  -|---|---|---|---|---|---|
+ 4 |   | p | P | n |   | P |
+  -|---|---|---|---|---|---|
+ 3 |   | P |   |   |   |   |
+  -|---|---|---|---|---|---|
+ 2 | P |   |   |   | P |   |
+  -|---|---|---|---|---|---|
+ 1 | R | N | Q | K | N | R |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        Black
+  In check:       false
+  No of plies:    13
+  Game result:    Not Ended
+  Captured piece: PieceNone
+  Rule 50 plies:  0
+ ---------------------------
+
+Legal Moves: 
+F6E6 | D6E6 | D6C6 | D6C5 | B6C4 | B6A4 | E5F4 | E5E4 | D5C4 | A5C5 | A5B5 | A5A4 | A5A3 |
+A5A2 | D4E6 | D4C6 | D4B5 | D4F3 | D4B3 | D4E2 | D4C2
+Enter ply: D5C4
+Classical player thinks...
+Move: F4E5 |  Score: 1 | Cum. Nodes: 181,934
+Move: B3C4 |  Score: 1 | Cum. Nodes: 258,789
+Move: E2E3 |  Score: -2 | Cum. Nodes: 405,501
+Move: A2A3 |  Score: -1 | Cum. Nodes: 573,499
+Move: F1F3 |  Score: -2 | Cum. Nodes: 765,234
+Move: F1F2 |  Score: -1 | Cum. Nodes: 880,102
+Move: E1F3 |  Score: 0 | Cum. Nodes: 956,947
+Move: E1D3 |  Score: 0 | Cum. Nodes: 1,161,970
+Move: E1C2 |  Score: 0 | Cum. Nodes: 1,299,731
+Move: D1D2 |  Score: -2 | Cum. Nodes: 1,404,586
+Move: C1C4 |  Score: -4 | Cum. Nodes: 1,450,300
+Move: C1E3 |  Score: 1 | Cum. Nodes: 1,580,683
+Move: C1C3 |  Score: -6 | Cum. Nodes: 1,685,454
+Move: C1A3 |  Score: -6 | Cum. Nodes: 1,782,968
+Move: C1D2 |  Score: 1 | Cum. Nodes: 1,839,306
+Move: C1C2 |  Score: -5 | Cum. Nodes: 1,977,876
+Move: C1B2 |  Score: 1 | Cum. Nodes: 2,047,482
+Move: B1C3 |  Score: -1 | Cum. Nodes: 2,196,859
+Move: B1A3 |  Score: 0 | Cum. Nodes: 2,357,274
+Move: B1D2 |  Score: 2 | Cum. Nodes: 2,486,461
+
+  -|---|---|---|---|---|---|
+ 6 | r | n |   | k |   | r |
+  -|---|---|---|---|---|---|
+ 5 | q |   |   |   | p | p |
+  -|---|---|---|---|---|---|
+ 4 |   | p | p | n |   | P |
+  -|---|---|---|---|---|---|
+ 3 |   | P |   |   |   |   |
+  -|---|---|---|---|---|---|
+ 2 | P |   |   |   | P |   |
+  -|---|---|---|---|---|---|
+ 1 | R | N | Q | K | N | R |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        White
+  In check:       false
+  No of plies:    14
+  Game result:    Not Ended
+  Captured piece: P
+  Rule 50 plies:  0
+ ---------------------------
+
+Chosen Move B1D2 | Score 2 | Time taken 4.01574[s] | Nodes 2,486,461 | Nodes/s 619,178
+
+
+  -|---|---|---|---|---|---|
+ 6 | r | n |   | k |   | r |
+  -|---|---|---|---|---|---|
+ 5 | q |   |   |   | p | p |
+  -|---|---|---|---|---|---|
+ 4 |   | p | p | n |   | P |
+  -|---|---|---|---|---|---|
+ 3 |   | P |   |   |   |   |
+  -|---|---|---|---|---|---|
+ 2 | P |   |   | N | P |   |
+  -|---|---|---|---|---|---|
+ 1 | R |   | Q | K | N | R |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        Black
+  In check:       false
+  No of plies:    15
+  Game result:    Not Ended
+  Captured piece: PieceNone
+  Rule 50 plies:  1
+ ---------------------------
+
+Legal Moves: 
+F6E6 | D6E6 | D6C6 | D6D5 | D6C5 | B6D5 | B6A4 | E5F4 | E5E4 | A5D5 | A5C5 | A5B5 | A5A4 |
+A5A3 | A5A2 | D4E6 | D4C6 | D4B5 | D4F3 | D4B3 | D4E2 | D4C2 | C4C3 | C4B3
+Enter ply: D4B3
+Classical player thinks...
+Move: F4E5 |  Score: 0 | Cum. Nodes: 248,802
+Move: E2E3 |  Score: -6 | Cum. Nodes: 460,303
+Move: D2E4 |  Score: -1 | Cum. Nodes: 564,184
+Move: D2C4 |  Score: 0 | Cum. Nodes: 674,265
+Move: D2F3 |  Score: -2 | Cum. Nodes: 842,875
+Move: D2B3 |  Score: 1 | Cum. Nodes: 943,414
+Move: D2B1 |  Score: -5 | Cum. Nodes: 1,092,929
+Move: A2B3 |  Score: -1 | Cum. Nodes: 1,497,389
+Move: A2A3 |  Score: -6 | Cum. Nodes: 1,697,681
+Move: F1F3 |  Score: -6 | Cum. Nodes: 2,199,935
+Move: F1F2 |  Score: -6 | Cum. Nodes: 2,557,188
+Move: E1F3 |  Score: -2 | Cum. Nodes: 2,826,576
+Move: E1D3 |  Score: -1 | Cum. Nodes: 3,359,361
+Move: E1C2 |  Score: -5 | Cum. Nodes: 3,758,326
+Move: D1C2 |  Score: -6 | Cum. Nodes: 4,024,820
+Move: C1C4 |  Score: -1 | Cum. Nodes: 4,113,784
+Move: C1C3 |  Score: -7 | Cum. Nodes: 4,285,027
+Move: C1A3 |  Score: -6 | Cum. Nodes: 4,469,777
+Move: C1C2 |  Score: -3 | Cum. Nodes: 4,651,896
+Move: C1B2 |  Score: 0 | Cum. Nodes: 4,796,779
+Move: C1B1 |  Score: -2 | Cum. Nodes: 5,001,764
+Move: A1B1 |  Score: -6 | Cum. Nodes: 5,210,736
+
+  -|---|---|---|---|---|---|
+ 6 | r | n |   | k |   | r |
+  -|---|---|---|---|---|---|
+ 5 | q |   |   |   | p | p |
+  -|---|---|---|---|---|---|
+ 4 |   | p | p |   |   | P |
+  -|---|---|---|---|---|---|
+ 3 |   | n |   |   |   |   |
+  -|---|---|---|---|---|---|
+ 2 | P |   |   | N | P |   |
+  -|---|---|---|---|---|---|
+ 1 | R |   | Q | K | N | R |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        White
+  In check:       false
+  No of plies:    16
+  Game result:    Not Ended
+  Captured piece: P
+  Rule 50 plies:  0
+ ---------------------------
+
+Chosen Move D2B3 | Score 1 | Time taken 7.7643[s] | Nodes 5,210,736 | Nodes/s 671,114
+
+
+  -|---|---|---|---|---|---|
+ 6 | r | n |   | k |   | r |
+  -|---|---|---|---|---|---|
+ 5 | q |   |   |   | p | p |
+  -|---|---|---|---|---|---|
+ 4 |   | p | p |   |   | P |
+  -|---|---|---|---|---|---|
+ 3 |   | N |   |   |   |   |
+  -|---|---|---|---|---|---|
+ 2 | P |   |   |   | P |   |
+  -|---|---|---|---|---|---|
+ 1 | R |   | Q | K | N | R |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        Black
+  In check:       false
+  No of plies:    17
+  Game result:    Not Ended
+  Captured piece: n
+  Rule 50 plies:  0
+ ---------------------------
+
+Legal Moves: 
+F6E6 | D6E6 | D6C6 | D6D5 | B6D5 | B6A4 | E5F4 | E5E4 | A5D5 | A5C5 | A5B5 | A5A4 | A5A3 |
+A5A2 | C4C3 | C4B3
+Enter ply: C4B3
+Classical player thinks...
+Move: F4E5 |  Score: 0 | Cum. Nodes: 138,182
+Move: E2E3 |  Score: -1 | Cum. Nodes: 314,158
+Move: A2B3 |  Score: -3 | Cum. Nodes: 852,860
+Move: A2A3 |  Score: 0 | Cum. Nodes: 986,279
+Move: F1F3 |  Score: 0 | Cum. Nodes: 1,117,610
+Move: F1F2 |  Score: 0 | Cum. Nodes: 1,287,483
+Move: E1F3 |  Score: 0 | Cum. Nodes: 1,473,199
+Move: E1D3 |  Score: 1 | Cum. Nodes: 1,752,694
+Move: E1C2 |  Score: -2 | Cum. Nodes: 1,944,763
+Move: D1D2 |  Score: -4 | Cum. Nodes: 2,083,419
+Move: C1C6 |  Score: -7 | Cum. Nodes: 2,091,804
+Move: C1C5 |  Score: -8 | Cum. Nodes: 2,146,233
+Move: C1C4 |  Score: -8 | Cum. Nodes: 2,212,251
+Move: C1E3 |  Score: -1 | Cum. Nodes: 2,332,077
+Move: C1C3 |  Score: -8 | Cum. Nodes: 2,434,179
+Move: C1A3 |  Score: -7 | Cum. Nodes: 2,538,959
+Move: C1D2 |  Score: 0 | Cum. Nodes: 2,610,322
+Move: C1C2 |  Score: -7 | Cum. Nodes: 2,755,340
+Move: C1B2 |  Score: 0 | Cum. Nodes: 2,834,078
+Move: C1B1 |  Score: -1 | Cum. Nodes: 2,960,119
+Move: A1B1 |  Score: -1 | Cum. Nodes: 3,089,930
+
+  -|---|---|---|---|---|---|
+ 6 | r | n |   | k |   | r |
+  -|---|---|---|---|---|---|
+ 5 | q |   |   |   | p | p |
+  -|---|---|---|---|---|---|
+ 4 |   | p |   |   |   | P |
+  -|---|---|---|---|---|---|
+ 3 |   | p |   |   |   |   |
+  -|---|---|---|---|---|---|
+ 2 | P |   |   |   | P |   |
+  -|---|---|---|---|---|---|
+ 1 | R |   | Q | K | N | R |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        White
+  In check:       false
+  No of plies:    18
+  Game result:    Not Ended
+  Captured piece: N
+  Rule 50 plies:  0
+ ---------------------------
+
+Chosen Move E1D3 | Score 1 | Time taken 4.41676[s] | Nodes 3,089,930 | Nodes/s 699,593
+
+
+  -|---|---|---|---|---|---|
+ 6 | r | n |   | k |   | r |
+  -|---|---|---|---|---|---|
+ 5 | q |   |   |   | p | p |
+  -|---|---|---|---|---|---|
+ 4 |   | p |   |   |   | P |
+  -|---|---|---|---|---|---|
+ 3 |   | p |   | N |   |   |
+  -|---|---|---|---|---|---|
+ 2 | P |   |   |   | P |   |
+  -|---|---|---|---|---|---|
+ 1 | R |   | Q | K |   | R |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        Black
+  In check:       false
+  No of plies:    19
+  Game result:    Not Ended
+  Captured piece: PieceNone
+  Rule 50 plies:  1
+ ---------------------------
+
+Legal Moves: 
+F6E6 | D6E6 | D6D5 | B6D5 | B6C4 | B6A4 | E5F4 | E5E4 | A5D5 | A5C5 | A5B5 | A5A4 | A5A3 |
+A5A2 | B3B2 | B3A2
+Enter ply: F6E6
+Classical player thinks...
+Move: F4E5 |  Score: 2 | Cum. Nodes: 138,347
+Move: D3E5 |  Score: 0 | Cum. Nodes: 364,099
+Move: D3C5 |  Score: -1 | Cum. Nodes: 492,437
+Move: D3B4 |  Score: -1 | Cum. Nodes: 656,486
+Move: D3F2 |  Score: -1 | Cum. Nodes: 777,468
+Move: D3B2 |  Score: 0 | Cum. Nodes: 853,074
+Move: D3E1 |  Score: -1 | Cum. Nodes: 1,019,448
+Move: E2E3 |  Score: 0 | Cum. Nodes: 1,226,627
+Move: A2B3 |  Score: -1 | Cum. Nodes: 2,074,964
+Move: A2A3 |  Score: 0 | Cum. Nodes: 2,243,708
+Move: F1F3 |  Score: 0 | Cum. Nodes: 2,518,989
+Move: F1F2 |  Score: 0 | Cum. Nodes: 2,752,312
+Move: F1E1 |  Score: 0 | Cum. Nodes: 2,926,933
+Move: D1D2 |  Score: 0 | Cum. Nodes: 3,137,586
+Move: D1E1 |  Score: 0 | Cum. Nodes: 3,395,936
+Move: C1C6 |  Score: -5 | Cum. Nodes: 3,432,563
+Move: C1C5 |  Score: -2 | Cum. Nodes: 3,448,216
+Move: C1C4 |  Score: -6 | Cum. Nodes: 3,562,711
+Move: C1E3 |  Score: 1 | Cum. Nodes: 3,681,769
+Move: C1C3 |  Score: -6 | Cum. Nodes: 4,025,227
+Move: C1A3 |  Score: -6 | Cum. Nodes: 4,370,230
+Move: C1D2 |  Score: 1 | Cum. Nodes: 4,514,511
+Move: C1C2 |  Score: -7 | Cum. Nodes: 4,805,780
+Move: C1B2 |  Score: 1 | Cum. Nodes: 4,966,763
+Move: C1B1 |  Score: 0 | Cum. Nodes: 5,167,674
+Move: A1B1 |  Score: 0 | Cum. Nodes: 5,444,479
+
+  -|---|---|---|---|---|---|
+ 6 | r | n |   | k | r |   |
+  -|---|---|---|---|---|---|
+ 5 | q |   |   |   | p | p |
+  -|---|---|---|---|---|---|
+ 4 |   | p |   |   |   | P |
+  -|---|---|---|---|---|---|
+ 3 |   | p |   | N |   |   |
+  -|---|---|---|---|---|---|
+ 2 | P |   |   |   | P |   |
+  -|---|---|---|---|---|---|
+ 1 | R |   | Q | K |   | R |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        White
+  In check:       false
+  No of plies:    20
+  Game result:    Not Ended
+  Captured piece: PieceNone
+  Rule 50 plies:  2
+ ---------------------------
+
+Chosen Move F4E5 | Score 2 | Time taken 7.90451[s] | Nodes 5,444,479 | Nodes/s 688,782
+
+
+  -|---|---|---|---|---|---|
+ 6 | r | n |   | k | r |   |
+  -|---|---|---|---|---|---|
+ 5 | q |   |   |   | P | p |
+  -|---|---|---|---|---|---|
+ 4 |   | p |   |   |   |   |
+  -|---|---|---|---|---|---|
+ 3 |   | p |   | N |   |   |
+  -|---|---|---|---|---|---|
+ 2 | P |   |   |   | P |   |
+  -|---|---|---|---|---|---|
+ 1 | R |   | Q | K |   | R |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        Black
+  In check:       true
+  No of plies:    21
+  Game result:    Not Ended
+  Captured piece: p
+  Rule 50 plies:  0
+ ---------------------------
+
+Legal Moves: 
+E6E5 | D6D5 | A5E5
+Enter ply: E6E5
+Classical player thinks...
+Move: D3E5 |  Score: 1 | Cum. Nodes: 217,677
+Move: D3C5 |  Score: -2 | Cum. Nodes: 575,561
+Move: D3F4 |  Score: 0 | Cum. Nodes: 1,379,861
+Move: D3B4 |  Score: -2 | Cum. Nodes: 1,859,065
+Move: D3F2 |  Score: -1 | Cum. Nodes: 2,171,987
+Move: D3B2 |  Score: -1 | Cum. Nodes: 2,460,891
+Move: D3E1 |  Score: -1 | Cum. Nodes: 3,025,331
+Move: E2E3 |  Score: -1 | Cum. Nodes: 3,494,541
+Move: A2B3 |  Score: -1 | Cum. Nodes: 6,568,037
+Move: A2A3 |  Score: 1 | Cum. Nodes: 7,108,715
+Move: F1F5 |  Score: -3 | Cum. Nodes: 7,389,550
+Move: F1F4 |  Score: 1 | Cum. Nodes: 7,923,160
+Move: F1F3 |  Score: 1 | Cum. Nodes: 9,074,425
+Move: F1F2 |  Score: 0 | Cum. Nodes: 9,815,946
+Move: F1E1 |  Score: 0 | Cum. Nodes: 10,229,436
+Move: D1D2 |  Score: 0 | Cum. Nodes: 10,740,376
+Move: D1E1 |  Score: 1 | Cum. Nodes: 11,462,056
+Move: C1C6 |  Score: -5 | Cum. Nodes: 11,500,692
+Move: C1C5 |  Score: -6 | Cum. Nodes: 11,607,400
+Move: C1F4 |  Score: 3 | Cum. Nodes: 11,781,873
+Move: C1C4 |  Score: -6 | Cum. Nodes: 12,080,915
+Move: C1E3 |  Score: -7 | Cum. Nodes: 12,372,375
+Move: C1C3 |  Score: -6 | Cum. Nodes: 13,190,228
+Move: C1A3 |  Score: -6 | Cum. Nodes: 13,696,492
+Move: C1D2 |  Score: 0 | Cum. Nodes: 14,093,742
+Move: C1C2 |  Score: -7 | Cum. Nodes: 15,004,825
+Move: C1B2 |  Score: 0 | Cum. Nodes: 15,529,087
+Move: C1B1 |  Score: 0 | Cum. Nodes: 16,093,080
+Move: A1B1 |  Score: -1 | Cum. Nodes: 16,761,404
+
+  -|---|---|---|---|---|---|
+ 6 | r | n |   | k |   |   |
+  -|---|---|---|---|---|---|
+ 5 | q |   |   |   | r | p |
+  -|---|---|---|---|---|---|
+ 4 |   | p |   |   |   |   |
+  -|---|---|---|---|---|---|
+ 3 |   | p |   | N |   |   |
+  -|---|---|---|---|---|---|
+ 2 | P |   |   |   | P |   |
+  -|---|---|---|---|---|---|
+ 1 | R |   | Q | K |   | R |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        White
+  In check:       false
+  No of plies:    22
+  Game result:    Not Ended
+  Captured piece: P
+  Rule 50 plies:  0
+ ---------------------------
+
+Chosen Move C1F4 | Score 3 | Time taken 26.3464[s] | Nodes 16,761,404 | Nodes/s 636,193
+
+
+  -|---|---|---|---|---|---|
+ 6 | r | n |   | k |   |   |
+  -|---|---|---|---|---|---|
+ 5 | q |   |   |   | r | p |
+  -|---|---|---|---|---|---|
+ 4 |   | p |   |   |   | Q |
+  -|---|---|---|---|---|---|
+ 3 |   | p |   | N |   |   |
+  -|---|---|---|---|---|---|
+ 2 | P |   |   |   | P |   |
+  -|---|---|---|---|---|---|
+ 1 | R |   |   | K |   | R |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        Black
+  In check:       false
+  No of plies:    23
+  Game result:    Not Ended
+  Captured piece: PieceNone
+  Rule 50 plies:  1
+ ---------------------------
+
+Legal Moves: 
+D6E6 | D6C6 | D6D5 | B6D5 | B6C4 | B6A4 | A5D5 | A5C5 | A5B5 | A5A4 | A5A3 | A5A2 | B3B2 |
+B3A2
+Enter ply: A5D5
+Classical player thinks...
+Move: F4F5 |  Score: -6 | Cum. Nodes: 104,122
+Move: F4E5 |  Score: 1 | Cum. Nodes: 187,830
+Move: F4E4 |  Score: -8 | Cum. Nodes: 357,286
+Move: F4D4 |  Score: -8 | Cum. Nodes: 686,984
+Move: F4C4 |  Score: -8 | Cum. Nodes: 776,923
+Move: F4B4 |  Score: 3 | Cum. Nodes: 888,651
+Move: F4F3 |  Score: -1 | Cum. Nodes: 1,234,081
+Move: F4E3 |  Score: -8 | Cum. Nodes: 1,428,590
+Move: F4F2 |  Score: -1 | Cum. Nodes: 1,731,530
+Move: F4D2 |  Score: 1 | Cum. Nodes: 2,098,745
+Move: F4C1 |  Score: -1 | Cum. Nodes: 2,781,209
+Move: E2E3 |  Score: -4 | Cum. Nodes: 2,979,856
+Move: A2B3 |  Score: -5 | Cum. Nodes: 3,124,307
+Move: A2A3 |  Score: 1 | Cum. Nodes: 3,351,292
+Move: F1F3 |  Score: 2 | Cum. Nodes: 3,582,297
+Move: F1F2 |  Score: 1 | Cum. Nodes: 3,766,361
+Move: F1E1 |  Score: 0 | Cum. Nodes: 3,915,706
+Move: D1D2 |  Score: 1 | Cum. Nodes: 4,034,039
+Move: D1E1 |  Score: 2 | Cum. Nodes: 4,427,512
+Move: D1C1 |  Score: -3 | Cum. Nodes: 4,650,113
+Move: A1C1 |  Score: 1 | Cum. Nodes: 4,893,032
+Move: A1B1 |  Score: 0 | Cum. Nodes: 5,131,890
+
+  -|---|---|---|---|---|---|
+ 6 | r | n |   | k |   |   |
+  -|---|---|---|---|---|---|
+ 5 |   |   |   | q | r | p |
+  -|---|---|---|---|---|---|
+ 4 |   | p |   |   |   | Q |
+  -|---|---|---|---|---|---|
+ 3 |   | p |   | N |   |   |
+  -|---|---|---|---|---|---|
+ 2 | P |   |   |   | P |   |
+  -|---|---|---|---|---|---|
+ 1 | R |   |   | K |   | R |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        White
+  In check:       false
+  No of plies:    24
+  Game result:    Not Ended
+  Captured piece: PieceNone
+  Rule 50 plies:  2
+ ---------------------------
+
+Chosen Move F4B4 | Score 3 | Time taken 8.78804[s] | Nodes 5,131,890 | Nodes/s 583,963
+
+
+  -|---|---|---|---|---|---|
+ 6 | r | n |   | k |   |   |
+  -|---|---|---|---|---|---|
+ 5 |   |   |   | q | r | p |
+  -|---|---|---|---|---|---|
+ 4 |   | Q |   |   |   |   |
+  -|---|---|---|---|---|---|
+ 3 |   | p |   | N |   |   |
+  -|---|---|---|---|---|---|
+ 2 | P |   |   |   | P |   |
+  -|---|---|---|---|---|---|
+ 1 | R |   |   | K |   | R |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        Black
+  In check:       true
+  No of plies:    25
+  Game result:    Not Ended
+  Captured piece: p
+  Rule 50 plies:  0
+ ---------------------------
+
+Legal Moves: 
+D6E6 | D6C6 | D5C5
+Enter ply: D6E6
+Classical player thinks...
+Move: B4D6 |  Score: -7 | Cum. Nodes: 53,849
+Move: B4B6 |  Score: -4 | Cum. Nodes: 79,776
+Move: B4C5 |  Score: -2 | Cum. Nodes: 310,249
+Move: B4B5 |  Score: -5 | Cum. Nodes: 469,059
+Move: B4A5 |  Score: -7 | Cum. Nodes: 580,344
+Move: B4F4 |  Score: 1 | Cum. Nodes: 1,048,283
+Move: B4E4 |  Score: -8 | Cum. Nodes: 1,234,533
+Move: B4D4 |  Score: -6 | Cum. Nodes: 1,542,258
+Move: B4C4 |  Score: -6 | Cum. Nodes: 1,703,893
+Move: B4A4 |  Score: -7 | Cum. Nodes: 1,806,122
+Move: B4C3 |  Score: 2 | Cum. Nodes: 2,416,546
+Move: B4B3 |  Score: -3 | Cum. Nodes: 2,775,998
+Move: B4A3 |  Score: -7 | Cum. Nodes: 2,962,824
+Move: B4D2 |  Score: 2 | Cum. Nodes: 3,266,179
+Move: B4E1 |  Score: 0 | Cum. Nodes: 4,120,231
+Move: E2E3 |  Score: -6 | Cum. Nodes: 4,475,632
+Move: A2B3 |  Score: -3 | Cum. Nodes: 4,937,721
+Move: A2A3 |  Score: 1 | Cum. Nodes: 5,367,922
+Move: F1F5 |  Score: 0 | Cum. Nodes: 5,483,627
+Move: F1F4 |  Score: 1 | Cum. Nodes: 6,012,408
+Move: F1F3 |  Score: 1 | Cum. Nodes: 6,718,186
+Move: F1F2 |  Score: 1 | Cum. Nodes: 7,184,274
+Move: F1E1 |  Score: 1 | Cum. Nodes: 7,497,061
+Move: D1D2 |  Score: 1 | Cum. Nodes: 7,846,459
+Move: D1E1 |  Score: -1 | Cum. Nodes: 8,294,553
+Move: D1C1 |  Score: -2 | Cum. Nodes: 8,623,723
+Move: A1C1 |  Score: 0 | Cum. Nodes: 9,298,710
+Move: A1B1 |  Score: 1 | Cum. Nodes: 9,683,089
+
+  -|---|---|---|---|---|---|
+ 6 | r | n |   |   | k |   |
+  -|---|---|---|---|---|---|
+ 5 |   |   |   | q | r | p |
+  -|---|---|---|---|---|---|
+ 4 |   | Q |   |   |   |   |
+  -|---|---|---|---|---|---|
+ 3 |   | p |   | N |   |   |
+  -|---|---|---|---|---|---|
+ 2 | P |   |   |   | P |   |
+  -|---|---|---|---|---|---|
+ 1 | R |   |   | K |   | R |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        White
+  In check:       false
+  No of plies:    26
+  Game result:    Not Ended
+  Captured piece: PieceNone
+  Rule 50 plies:  1
+ ---------------------------
+
+Chosen Move B4C3 | Score 2 | Time taken 16.5418[s] | Nodes 9,683,089 | Nodes/s 585,371
+
+
+  -|---|---|---|---|---|---|
+ 6 | r | n |   |   | k |   |
+  -|---|---|---|---|---|---|
+ 5 |   |   |   | q | r | p |
+  -|---|---|---|---|---|---|
+ 4 |   |   |   |   |   |   |
+  -|---|---|---|---|---|---|
+ 3 |   | p | Q | N |   |   |
+  -|---|---|---|---|---|---|
+ 2 | P |   |   |   | P |   |
+  -|---|---|---|---|---|---|
+ 1 | R |   |   | K |   | R |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        Black
+  In check:       false
+  No of plies:    27
+  Game result:    Not Ended
+  Captured piece: PieceNone
+  Rule 50 plies:  2
+ ---------------------------
+
+Legal Moves: 
+E6F6 | E6D6 | B6C4 | B6A4 | A6A5 | A6A4 | A6A3 | A6A2 | F5F4 | E5E4 | E5E3 | E5E2 | D5D6 |
+D5C6 | D5C5 | D5B5 | D5A5 | D5E4 | D5D4 | D5C4 | D5F3 | D5D3 | B3B2 | B3A2
+Enter ply: A6A2
+Classical player thinks...
+Move: C3C6 |  Score: -7 | Cum. Nodes: 90,815
+Move: C3E5 |  Score: -3 | Cum. Nodes: 210,469
+Move: C3C5 |  Score: -5 | Cum. Nodes: 447,326
+Move: C3A5 |  Score: -8 | Cum. Nodes: 829,854
+Move: C3D4 |  Score: -7 | Cum. Nodes: 1,203,100
+Move: C3C4 |  Score: -11 | Cum. Nodes: 1,388,018
+Move: C3B4 |  Score: -5 | Cum. Nodes: 1,820,248
+Move: C3B3 |  Score: -10,000 | Cum. Nodes: 2,062,111
+Move: C3D2 |  Score: -5 | Cum. Nodes: 2,674,211
+Move: C3C2 |  Score: -11 | Cum. Nodes: 3,057,925
+Move: C3B2 |  Score: -7 | Cum. Nodes: 3,533,331
+Move: C3E1 |  Score: -8 | Cum. Nodes: 4,216,470
+Move: C3C1 |  Score: -3 | Cum. Nodes: 5,097,855
+Move: E2E3 |  Score: -4 | Cum. Nodes: 5,653,899
+Move: F1F5 |  Score: -4 | Cum. Nodes: 5,862,914
+Move: F1F4 |  Score: -1 | Cum. Nodes: 6,662,142
+Move: F1F3 |  Score: -1 | Cum. Nodes: 7,430,842
+Move: F1F2 |  Score: 0 | Cum. Nodes: 8,115,115
+Move: F1E1 |  Score: -1 | Cum. Nodes: 8,538,058
+Move: D1E1 |  Score: -4 | Cum. Nodes: 8,872,470
+Move: D1C1 |  Score: -3 | Cum. Nodes: 9,589,901
+Move: A1A2 |  Score: 1 | Cum. Nodes: 10,287,326
+Move: A1C1 |  Score: -1 | Cum. Nodes: 10,512,143
+Move: A1B1 |  Score: 0 | Cum. Nodes: 10,893,663
+
+  -|---|---|---|---|---|---|
+ 6 |   | n |   |   | k |   |
+  -|---|---|---|---|---|---|
+ 5 |   |   |   | q | r | p |
+  -|---|---|---|---|---|---|
+ 4 |   |   |   |   |   |   |
+  -|---|---|---|---|---|---|
+ 3 |   | p | Q | N |   |   |
+  -|---|---|---|---|---|---|
+ 2 | r |   |   |   | P |   |
+  -|---|---|---|---|---|---|
+ 1 | R |   |   | K |   | R |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        White
+  In check:       false
+  No of plies:    28
+  Game result:    Not Ended
+  Captured piece: P
+  Rule 50 plies:  0
+ ---------------------------
+
+Chosen Move A1A2 | Score 1 | Time taken 19.2056[s] | Nodes 10,893,663 | Nodes/s 567,212
+
+
+  -|---|---|---|---|---|---|
+ 6 |   | n |   |   | k |   |
+  -|---|---|---|---|---|---|
+ 5 |   |   |   | q | r | p |
+  -|---|---|---|---|---|---|
+ 4 |   |   |   |   |   |   |
+  -|---|---|---|---|---|---|
+ 3 |   | p | Q | N |   |   |
+  -|---|---|---|---|---|---|
+ 2 | R |   |   |   | P |   |
+  -|---|---|---|---|---|---|
+ 1 |   |   |   | K |   | R |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        Black
+  In check:       false
+  No of plies:    29
+  Game result:    Not Ended
+  Captured piece: r
+  Rule 50 plies:  0
+ ---------------------------
+
+Legal Moves: 
+E6F6 | E6D6 | B6C4 | B6A4 | F5F4 | E5E4 | E5E3 | E5E2 | D5D6 | D5C6 | D5C5 | D5B5 | D5A5 |
+D5E4 | D5D4 | D5C4 | D5F3 | D5D3 | B3B2 | B3A2
+Enter ply: B3A2
+Classical player thinks...
+Move: C3C6 |  Score: -11 | Cum. Nodes: 613,627
+Move: C3E5 |  Score: -8 | Cum. Nodes: 1,157,693
+Move: C3C5 |  Score: -14 | Cum. Nodes: 2,500,819
+Move: C3A5 |  Score: -14 | Cum. Nodes: 4,186,798
+Move: C3D4 |  Score: -15 | Cum. Nodes: 7,382,443
+Move: C3C4 |  Score: -14 | Cum. Nodes: 8,539,198
+Move: C3B4 |  Score: -12 | Cum. Nodes: 11,821,760
+Move: C3B3 |  Score: -10,000 | Cum. Nodes: 13,434,189
+Move: C3A3 |  Score: -4 | Cum. Nodes: 16,922,285
+Move: C3D2 |  Score: -10 | Cum. Nodes: 21,552,615
+Move: C3C2 |  Score: -14 | Cum. Nodes: 26,758,149
+Move: C3B2 |  Score: -5 | Cum. Nodes: 30,869,936
+Move: C3E1 |  Score: -10,000 | Cum. Nodes: 37,324,114
+Move: C3C1 |  Score: -7 | Cum. Nodes: 46,242,453
+Move: C3A1 |  Score: -3 | Cum. Nodes: 48,576,286
+Move: E2E3 |  Score: -10 | Cum. Nodes: 53,472,543
+Move: F1F5 |  Score: -6 | Cum. Nodes: 54,739,387
+Move: F1F4 |  Score: -3 | Cum. Nodes: 58,263,265
+Move: F1F3 |  Score: -3 | Cum. Nodes: 63,950,313
+Move: F1F2 |  Score: -3 | Cum. Nodes: 69,554,413
+Move: F1E1 |  Score: -3 | Cum. Nodes: 73,267,694
+Move: D1D2 |  Score: -3 | Cum. Nodes: 74,527,949
+Move: D1C2 |  Score: -10 | Cum. Nodes: 76,248,650
+Move: D1E1 |  Score: -4 | Cum. Nodes: 79,505,113
+Move: D1C1 |  Score: -3 | Cum. Nodes: 82,347,542
+
+  -|---|---|---|---|---|---|
+ 6 |   | n |   |   | k |   |
+  -|---|---|---|---|---|---|
+ 5 |   |   |   | q | r | p |
+  -|---|---|---|---|---|---|
+ 4 |   |   |   |   |   |   |
+  -|---|---|---|---|---|---|
+ 3 |   |   | Q | N |   |   |
+  -|---|---|---|---|---|---|
+ 2 | p |   |   |   | P |   |
+  -|---|---|---|---|---|---|
+ 1 |   |   |   | K |   | R |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        White
+  In check:       false
+  No of plies:    30
+  Game result:    Not Ended
+  Captured piece: R
+  Rule 50 plies:  0
+ ---------------------------
+
+Chosen Move C3A1 | Score -3 | Time taken 112.877[s] | Nodes 82,347,542 | Nodes/s 729,531
+
+
+  -|---|---|---|---|---|---|
+ 6 |   | n |   |   | k |   |
+  -|---|---|---|---|---|---|
+ 5 |   |   |   | q | r | p |
+  -|---|---|---|---|---|---|
+ 4 |   |   |   |   |   |   |
+  -|---|---|---|---|---|---|
+ 3 |   |   |   | N |   |   |
+  -|---|---|---|---|---|---|
+ 2 | p |   |   |   | P |   |
+  -|---|---|---|---|---|---|
+ 1 | Q |   |   | K |   | R |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        Black
+  In check:       false
+  No of plies:    31
+  Game result:    Not Ended
+  Captured piece: PieceNone
+  Rule 50 plies:  1
+ ---------------------------
+
+Legal Moves: 
+E6F6 | E6D6 | B6C4 | B6A4 | F5F4 | E5E4 | E5E3 | E5E2 | D5D6 | D5C6 | D5C5 | D5B5 | D5A5 |
+D5E4 | D5D4 | D5C4 | D5F3 | D5D3 | D5B3
+Enter ply: D5B3
+Classical player thinks...
+Move: D1D2 |  Score: -5 | Cum. Nodes: 1,026,226
+Move: D1E1 |  Score: -3 | Cum. Nodes: 5,278,965
+Move: D1C1 |  Score: -3 | Cum. Nodes: 7,659,080
+
+  -|---|---|---|---|---|---|
+ 6 |   | n |   |   | k |   |
+  -|---|---|---|---|---|---|
+ 5 |   |   |   |   | r | p |
+  -|---|---|---|---|---|---|
+ 4 |   |   |   |   |   |   |
+  -|---|---|---|---|---|---|
+ 3 |   | q |   | N |   |   |
+  -|---|---|---|---|---|---|
+ 2 | p |   |   |   | P |   |
+  -|---|---|---|---|---|---|
+ 1 | Q |   |   | K |   | R |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        White
+  In check:       true
+  No of plies:    32
+  Game result:    Not Ended
+  Captured piece: PieceNone
+  Rule 50 plies:  2
+ ---------------------------
+
+Chosen Move D1E1 | Score -3 | Time taken 10.0619[s] | Nodes 7,659,080 | Nodes/s 761,195
+
+
+  -|---|---|---|---|---|---|
+ 6 |   | n |   |   | k |   |
+  -|---|---|---|---|---|---|
+ 5 |   |   |   |   | r | p |
+  -|---|---|---|---|---|---|
+ 4 |   |   |   |   |   |   |
+  -|---|---|---|---|---|---|
+ 3 |   | q |   | N |   |   |
+  -|---|---|---|---|---|---|
+ 2 | p |   |   |   | P |   |
+  -|---|---|---|---|---|---|
+ 1 | Q |   |   |   | K | R |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        Black
+  In check:       false
+  No of plies:    33
+  Game result:    Not Ended
+  Captured piece: PieceNone
+  Rule 50 plies:  3
+ ---------------------------
+
+Legal Moves: 
+E6F6 | E6D6 | E6D5 | B6D5 | B6C4 | B6A4 | F5F4 | E5D5 | E5C5 | E5B5 | E5A5 | E5E4 | E5E3 |
+E5E2 | B3D5 | B3B5 | B3C4 | B3B4 | B3A4 | B3D3 | B3C3 | B3A3 | B3C2 | B3B2 | B3D1 |
+B3B1
+Enter ply: B3D3
+Classical player thinks...
+Move: E2E3 |  Score: -10,000 | Cum. Nodes: 1,827,876
+Move: F1F5 |  Score: -10,000 | Cum. Nodes: 2,381,809
+Move: F1F4 |  Score: -10,000 | Cum. Nodes: 5,761,888
+Move: F1F3 |  Score: -10,000 | Cum. Nodes: 8,075,319
+Move: F1F2 |  Score: -13 | Cum. Nodes: 19,059,001
+Move: E1F2 |  Score: -10,000 | Cum. Nodes: 21,353,269
+Move: A1E5 |  Score: -6 | Cum. Nodes: 21,455,394
+Move: A1D4 |  Score: -10,000 | Cum. Nodes: 23,014,759
+Move: A1C3 |  Score: -10,000 | Cum. Nodes: 25,126,756
+Move: A1B2 |  Score: -10,000 | Cum. Nodes: 30,335,524
+Move: A1A2 |  Score: -3 | Cum. Nodes: 31,754,354
+Move: A1D1 |  Score: -10,000 | Cum. Nodes: 42,993,137
+Move: A1C1 |  Score: -10,000 | Cum. Nodes: 46,084,434
+Move: A1B1 |  Score: -10,000 | Cum. Nodes: 63,183,392
+
+  -|---|---|---|---|---|---|
+ 6 |   | n |   |   | k |   |
+  -|---|---|---|---|---|---|
+ 5 |   |   |   |   | r | p |
+  -|---|---|---|---|---|---|
+ 4 |   |   |   |   |   |   |
+  -|---|---|---|---|---|---|
+ 3 |   |   |   | q |   |   |
+  -|---|---|---|---|---|---|
+ 2 | p |   |   |   | P |   |
+  -|---|---|---|---|---|---|
+ 1 | Q |   |   |   | K | R |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        White
+  In check:       false
+  No of plies:    34
+  Game result:    Not Ended
+  Captured piece: N
+  Rule 50 plies:  0
+ ---------------------------
+
+Chosen Move A1A2 | Score -3 | Time taken 77.3741[s] | Nodes 63,183,392 | Nodes/s 816,597
+
+
+  -|---|---|---|---|---|---|
+ 6 |   | n |   |   | k |   |
+  -|---|---|---|---|---|---|
+ 5 |   |   |   |   | r | p |
+  -|---|---|---|---|---|---|
+ 4 |   |   |   |   |   |   |
+  -|---|---|---|---|---|---|
+ 3 |   |   |   | q |   |   |
+  -|---|---|---|---|---|---|
+ 2 | Q |   |   |   | P |   |
+  -|---|---|---|---|---|---|
+ 1 |   |   |   |   | K | R |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        Black
+  In check:       true
+  No of plies:    35
+  Game result:    Not Ended
+  Captured piece: p
+  Rule 50 plies:  0
+ ---------------------------
+
+Legal Moves: 
+E6F6 | E6D6 | B6D5 | B6C4 | E5D5 | D3D5 | D3C4 | D3B3
+Enter ply: B6D5
+Classical player thinks...
+Move: E2E3 |  Score: -10,000 | Cum. Nodes: 913,291
+Move: A2A6 |  Score: -14 | Cum. Nodes: 1,227,088
+Move: A2D5 |  Score: -10,000 | Cum. Nodes: 1,363,390
+Move: A2A5 |  Score: -10,000 | Cum. Nodes: 3,134,086
+Move: A2C4 |  Score: -10,000 | Cum. Nodes: 3,740,527
+Move: A2A4 |  Score: -10,000 | Cum. Nodes: 4,550,135
+Move: A2B3 |  Score: -10,000 | Cum. Nodes: 5,268,968
+Move: A2A3 |  Score: -10,000 | Cum. Nodes: 5,876,547
+Move: A2D2 |  Score: -3 | Cum. Nodes: 10,729,175
+Move: A2C2 |  Score: -10,000 | Cum. Nodes: 12,675,716
+Move: A2B2 |  Score: -3 | Cum. Nodes: 16,413,386
+Move: A2B1 |  Score: -10,000 | Cum. Nodes: 18,911,369
+Move: A2A1 |  Score: -10,000 | Cum. Nodes: 20,667,528
+Move: F1F5 |  Score: -6 | Cum. Nodes: 21,349,721
+Move: F1F4 |  Score: -4 | Cum. Nodes: 23,472,014
+Move: F1F3 |  Score: -4 | Cum. Nodes: 25,662,426
+Move: F1F2 |  Score: -3 | Cum. Nodes: 28,885,642
+Move: E1F2 |  Score: -6 | Cum. Nodes: 30,752,615
+
+  -|---|---|---|---|---|---|
+ 6 |   |   |   |   | k |   |
+  -|---|---|---|---|---|---|
+ 5 |   |   |   | n | r | p |
+  -|---|---|---|---|---|---|
+ 4 |   |   |   |   |   |   |
+  -|---|---|---|---|---|---|
+ 3 |   |   |   | q |   |   |
+  -|---|---|---|---|---|---|
+ 2 | Q |   |   |   | P |   |
+  -|---|---|---|---|---|---|
+ 1 |   |   |   |   | K | R |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        White
+  In check:       false
+  No of plies:    36
+  Game result:    Not Ended
+  Captured piece: PieceNone
+  Rule 50 plies:  1
+ ---------------------------
+
+Chosen Move A2D2 | Score -3 | Time taken 38.5796[s] | Nodes 30,752,615 | Nodes/s 797,120
+
+
+  -|---|---|---|---|---|---|
+ 6 |   |   |   |   | k |   |
+  -|---|---|---|---|---|---|
+ 5 |   |   |   | n | r | p |
+  -|---|---|---|---|---|---|
+ 4 |   |   |   |   |   |   |
+  -|---|---|---|---|---|---|
+ 3 |   |   |   | q |   |   |
+  -|---|---|---|---|---|---|
+ 2 |   |   |   | Q | P |   |
+  -|---|---|---|---|---|---|
+ 1 |   |   |   |   | K | R |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        Black
+  In check:       false
+  No of plies:    37
+  Game result:    Not Ended
+  Captured piece: PieceNone
+  Rule 50 plies:  2
+ ---------------------------
+
+Legal Moves: 
+E6F6 | E6D6 | F5F4 | E5E4 | E5E3 | E5E2 | D5F6 | D5B6 | D5F4 | D5B4 | D5E3 | D5C3 | D3A6 |
+D3B5 | D3E4 | D3D4 | D3C4 | D3F3 | D3E3 | D3C3 | D3B3 | D3A3 | D3E2 | D3D2 | D3C2 |
+D3B1
+Enter ply: D3A3
+Classical player thinks...
+Move: E2E3 |  Score: -7 | Cum. Nodes: 2,512,722
+Move: D2D5 |  Score: -12 | Cum. Nodes: 3,031,806
+Move: D2A5 |  Score: -10,000 | Cum. Nodes: 4,218,269
+Move: D2F4 |  Score: -10,000 | Cum. Nodes: 5,249,141
+Move: D2D4 |  Score: -6 | Cum. Nodes: 7,734,054
+Move: D2B4 |  Score: -10,000 | Cum. Nodes: 9,526,195
+Move: D2E3 |  Score: -10,000 | Cum. Nodes: 10,905,996
+Move: D2D3 |  Score: -10,000 | Cum. Nodes: 13,352,495
+Move: D2C3 |  Score: -10,000 | Cum. Nodes: 15,117,952
+Move: D2C2 |  Score: -6 | Cum. Nodes: 18,439,512
+Move: D2B2 |  Score: -10,000 | Cum. Nodes: 21,928,722
+Move: D2A2 |  Score: -10,000 | Cum. Nodes: 23,711,507
+Move: D2D1 |  Score: -6 | Cum. Nodes: 28,048,999
+Move: D2C1 |  Score: -10,000 | Cum. Nodes: 41,446,448
+Move: F1F5 |  Score: -12 | Cum. Nodes: 42,378,443
+Move: F1F4 |  Score: -5 | Cum. Nodes: 46,058,611
+Move: F1F3 |  Score: -7 | Cum. Nodes: 49,465,419
+Move: F1F2 |  Score: -10 | Cum. Nodes: 51,484,850
+Move: E1F2 |  Score: -8 | Cum. Nodes: 54,373,690
+Move: E1D1 |  Score: -11 | Cum. Nodes: 56,033,074
+
+  -|---|---|---|---|---|---|
+ 6 |   |   |   |   | k |   |
+  -|---|---|---|---|---|---|
+ 5 |   |   |   | n | r | p |
+  -|---|---|---|---|---|---|
+ 4 |   |   |   |   |   |   |
+  -|---|---|---|---|---|---|
+ 3 | q |   |   |   |   |   |
+  -|---|---|---|---|---|---|
+ 2 |   |   |   | Q | P |   |
+  -|---|---|---|---|---|---|
+ 1 |   |   |   |   | K | R |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        White
+  In check:       false
+  No of plies:    38
+  Game result:    Not Ended
+  Captured piece: PieceNone
+  Rule 50 plies:  3
+ ---------------------------
+
+Chosen Move F1F4 | Score -5 | Time taken 69.6782[s] | Nodes 56,033,074 | Nodes/s 804,169
+
+
+  -|---|---|---|---|---|---|
+ 6 |   |   |   |   | k |   |
+  -|---|---|---|---|---|---|
+ 5 |   |   |   | n | r | p |
+  -|---|---|---|---|---|---|
+ 4 |   |   |   |   |   | R |
+  -|---|---|---|---|---|---|
+ 3 | q |   |   |   |   |   |
+  -|---|---|---|---|---|---|
+ 2 |   |   |   | Q | P |   |
+  -|---|---|---|---|---|---|
+ 1 |   |   |   |   | K |   |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        Black
+  In check:       false
+  No of plies:    39
+  Game result:    Not Ended
+  Captured piece: PieceNone
+  Rule 50 plies:  4
+ ---------------------------
+
+Legal Moves: 
+E6F6 | E6D6 | E5E4 | E5E3 | E5E2 | D5F6 | D5B6 | D5F4 | D5B4 | D5E3 | D5C3 | A3D6 | A3A6 |
+A3C5 | A3A5 | A3B4 | A3A4 | A3F3 | A3E3 | A3D3 | A3C3 | A3B3 | A3B2 | A3A2 | A3C1 |
+A3A1
+Enter ply: D5F4
+Classical player thinks...
+Move: E2E3 |  Score: -10 | Cum. Nodes: 933,784
+Move: D2D6 |  Score: -10,000 | Cum. Nodes: 990,906
+Move: D2D5 |  Score: -10,000 | Cum. Nodes: 1,232,112
+Move: D2A5 |  Score: -10,000 | Cum. Nodes: 1,762,803
+Move: D2F4 |  Score: -5 | Cum. Nodes: 2,642,110
+Move: D2D4 |  Score: -10,000 | Cum. Nodes: 3,162,719
+Move: D2B4 |  Score: -10,000 | Cum. Nodes: 4,075,618
+Move: D2E3 |  Score: -10,000 | Cum. Nodes: 4,471,465
+Move: D2D3 |  Score: -10,000 | Cum. Nodes: 5,412,926
+Move: D2C3 |  Score: -10,000 | Cum. Nodes: 6,508,800
+Move: D2C2 |  Score: -9 | Cum. Nodes: 8,223,137
+Move: D2B2 |  Score: -10,000 | Cum. Nodes: 9,396,162
+Move: D2A2 |  Score: -10,000 | Cum. Nodes: 9,785,817
+Move: D2D1 |  Score: -13 | Cum. Nodes: 11,849,538
+Move: D2C1 |  Score: -10,000 | Cum. Nodes: 16,090,260
+Move: E1F2 |  Score: -8 | Cum. Nodes: 19,593,964
+Move: E1F1 |  Score: -7 | Cum. Nodes: 22,099,174
+Move: E1D1 |  Score: -13 | Cum. Nodes: 23,153,015
+
+  -|---|---|---|---|---|---|
+ 6 |   |   |   |   | k |   |
+  -|---|---|---|---|---|---|
+ 5 |   |   |   |   | r | p |
+  -|---|---|---|---|---|---|
+ 4 |   |   |   |   |   | n |
+  -|---|---|---|---|---|---|
+ 3 | q |   |   |   |   |   |
+  -|---|---|---|---|---|---|
+ 2 |   |   |   | Q | P |   |
+  -|---|---|---|---|---|---|
+ 1 |   |   |   |   | K |   |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        White
+  In check:       false
+  No of plies:    40
+  Game result:    Not Ended
+  Captured piece: R
+  Rule 50 plies:  0
+ ---------------------------
+
+Chosen Move D2F4 | Score -5 | Time taken 24.9411[s] | Nodes 23,153,015 | Nodes/s 928,306
+
+
+  -|---|---|---|---|---|---|
+ 6 |   |   |   |   | k |   |
+  -|---|---|---|---|---|---|
+ 5 |   |   |   |   | r | p |
+  -|---|---|---|---|---|---|
+ 4 |   |   |   |   |   | Q |
+  -|---|---|---|---|---|---|
+ 3 | q |   |   |   |   |   |
+  -|---|---|---|---|---|---|
+ 2 |   |   |   |   | P |   |
+  -|---|---|---|---|---|---|
+ 1 |   |   |   |   | K |   |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        Black
+  In check:       false
+  No of plies:    41
+  Game result:    Not Ended
+  Captured piece: n
+  Rule 50 plies:  0
+ ---------------------------
+
+Legal Moves: 
+E6F6 | E6D6 | E6D5 | E5D5 | E5C5 | E5B5 | E5A5 | E5E4 | E5E3 | E5E2 | A3D6 | A3A6 | A3C5 |
+A3A5 | A3B4 | A3A4 | A3F3 | A3E3 | A3D3 | A3C3 | A3B3 | A3B2 | A3A2 | A3C1 | A3A1
+Enter ply: A3A1
+Classical player thinks...
+Move: F4C1 |  Score: -10,000 | Cum. Nodes: 8,429,941
+Move: E1F2 |  Score: -5 | Cum. Nodes: 8,961,150
+Move: E1D2 |  Score: -7 | Cum. Nodes: 9,430,131
+
+  -|---|---|---|---|---|---|
+ 6 |   |   |   |   | k |   |
+  -|---|---|---|---|---|---|
+ 5 |   |   |   |   | r | p |
+  -|---|---|---|---|---|---|
+ 4 |   |   |   |   |   | Q |
+  -|---|---|---|---|---|---|
+ 3 |   |   |   |   |   |   |
+  -|---|---|---|---|---|---|
+ 2 |   |   |   |   | P |   |
+  -|---|---|---|---|---|---|
+ 1 | q |   |   |   | K |   |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        White
+  In check:       true
+  No of plies:    42
+  Game result:    Not Ended
+  Captured piece: PieceNone
+  Rule 50 plies:  1
+ ---------------------------
+
+Chosen Move E1F2 | Score -5 | Time taken 9.26326[s] | Nodes 9,430,131 | Nodes/s 1.01801e+06
+
+
+  -|---|---|---|---|---|---|
+ 6 |   |   |   |   | k |   |
+  -|---|---|---|---|---|---|
+ 5 |   |   |   |   | r | p |
+  -|---|---|---|---|---|---|
+ 4 |   |   |   |   |   | Q |
+  -|---|---|---|---|---|---|
+ 3 |   |   |   |   |   |   |
+  -|---|---|---|---|---|---|
+ 2 |   |   |   |   | P | K |
+  -|---|---|---|---|---|---|
+ 1 | q |   |   |   |   |   |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        Black
+  In check:       false
+  No of plies:    43
+  Game result:    Not Ended
+  Captured piece: PieceNone
+  Rule 50 plies:  2
+ ---------------------------
+
+Legal Moves: 
+E6F6 | E6D6 | E6D5 | E5D5 | E5C5 | E5B5 | E5A5 | E5E4 | E5E3 | E5E2 | A1A6 | A1A5 | A1D4 |
+A1A4 | A1C3 | A1A3 | A1B2 | A1A2 | A1F1 | A1E1 | A1D1 | A1C1 | A1B1
+Enter ply: A1C3
+Classical player thinks...
+Move: F4F5 |  Score: -10,000 | Cum. Nodes: 83,206
+Move: F4E5 |  Score: -8 | Cum. Nodes: 102,949
+Move: F4E4 |  Score: -10,000 | Cum. Nodes: 409,073
+Move: F4D4 |  Score: -10,000 | Cum. Nodes: 870,952
+Move: F4C4 |  Score: -10,000 | Cum. Nodes: 1,173,940
+Move: F4B4 |  Score: -10,000 | Cum. Nodes: 1,516,726
+Move: F4A4 |  Score: -10,000 | Cum. Nodes: 1,826,598
+Move: F4F3 |  Score: -5 | Cum. Nodes: 2,399,817
+Move: F4E3 |  Score: -10,000 | Cum. Nodes: 2,653,677
+Move: F4D2 |  Score: -10,000 | Cum. Nodes: 5,113,683
+Move: F4C1 |  Score: -10,000 | Cum. Nodes: 9,621,682
+Move: F2F1 |  Score: -8 | Cum. Nodes: 10,686,267
+Move: E2E3 |  Score: -8 | Cum. Nodes: 11,167,308
+
+  -|---|---|---|---|---|---|
+ 6 |   |   |   |   | k |   |
+  -|---|---|---|---|---|---|
+ 5 |   |   |   |   | r | p |
+  -|---|---|---|---|---|---|
+ 4 |   |   |   |   |   | Q |
+  -|---|---|---|---|---|---|
+ 3 |   |   | q |   |   |   |
+  -|---|---|---|---|---|---|
+ 2 |   |   |   |   | P | K |
+  -|---|---|---|---|---|---|
+ 1 |   |   |   |   |   |   |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        White
+  In check:       false
+  No of plies:    44
+  Game result:    Not Ended
+  Captured piece: PieceNone
+  Rule 50 plies:  3
+ ---------------------------
+
+Chosen Move F4F3 | Score -5 | Time taken 11.0598[s] | Nodes 11,167,308 | Nodes/s 1.00972e+06
+
+
+  -|---|---|---|---|---|---|
+ 6 |   |   |   |   | k |   |
+  -|---|---|---|---|---|---|
+ 5 |   |   |   |   | r | p |
+  -|---|---|---|---|---|---|
+ 4 |   |   |   |   |   |   |
+  -|---|---|---|---|---|---|
+ 3 |   |   | q |   |   | Q |
+  -|---|---|---|---|---|---|
+ 2 |   |   |   |   | P | K |
+  -|---|---|---|---|---|---|
+ 1 |   |   |   |   |   |   |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        Black
+  In check:       false
+  No of plies:    45
+  Game result:    Not Ended
+  Captured piece: PieceNone
+  Rule 50 plies:  4
+ ---------------------------
+
+Legal Moves: 
+E6F6 | E6D6 | F5F4 | E5D5 | E5C5 | E5B5 | E5A5 | E5E4 | E5E3 | E5E2 | C3C6 | C3C5 | C3A5 |
+C3D4 | C3C4 | C3B4 | C3F3 | C3E3 | C3D3 | C3B3 | C3A3 | C3D2 | C3C2 | C3B2 | C3E1 |
+C3C1 | C3A1
+Enter ply: E5C5
+Classical player thinks...
+Move: F3C6 |  Score: -10,000 | Cum. Nodes: 147,243
+Move: F3F5 |  Score: -10,000 | Cum. Nodes: 248,139
+Move: F3D5 |  Score: -10,000 | Cum. Nodes: 310,726
+Move: F3F4 |  Score: -5 | Cum. Nodes: 992,926
+Move: F3E4 |  Score: -10,000 | Cum. Nodes: 1,170,746
+Move: F3E3 |  Score: -5 | Cum. Nodes: 1,346,760
+Move: F3D3 |  Score: -5 | Cum. Nodes: 2,230,581
+Move: F3C3 |  Score: -5 | Cum. Nodes: 2,304,332
+Move: F2F1 |  Score: -7 | Cum. Nodes: 3,092,149
+Move: E2E3 |  Score: -7 | Cum. Nodes: 3,799,732
+
+  -|---|---|---|---|---|---|
+ 6 |   |   |   |   | k |   |
+  -|---|---|---|---|---|---|
+ 5 |   |   | r |   |   | p |
+  -|---|---|---|---|---|---|
+ 4 |   |   |   |   |   |   |
+  -|---|---|---|---|---|---|
+ 3 |   |   | q |   |   | Q |
+  -|---|---|---|---|---|---|
+ 2 |   |   |   |   | P | K |
+  -|---|---|---|---|---|---|
+ 1 |   |   |   |   |   |   |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        White
+  In check:       false
+  No of plies:    46
+  Game result:    Not Ended
+  Captured piece: PieceNone
+  Rule 50 plies:  5
+ ---------------------------
+
+Chosen Move F3F4 | Score -5 | Time taken 3.56944[s] | Nodes 3,799,732 | Nodes/s 1.06452e+06
+
+
+  -|---|---|---|---|---|---|
+ 6 |   |   |   |   | k |   |
+  -|---|---|---|---|---|---|
+ 5 |   |   | r |   |   | p |
+  -|---|---|---|---|---|---|
+ 4 |   |   |   |   |   | Q |
+  -|---|---|---|---|---|---|
+ 3 |   |   | q |   |   |   |
+  -|---|---|---|---|---|---|
+ 2 |   |   |   |   | P | K |
+  -|---|---|---|---|---|---|
+ 1 |   |   |   |   |   |   |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        Black
+  In check:       false
+  No of plies:    47
+  Game result:    Not Ended
+  Captured piece: PieceNone
+  Rule 50 plies:  6
+ ---------------------------
+
+Legal Moves: 
+E6F6 | E6D5 | C5C6 | C5E5 | C5D5 | C5B5 | C5A5 | C5C4 | C3F6 | C3E5 | C3A5 | C3D4 | C3C4 |
+C3B4 | C3F3 | C3E3 | C3D3 | C3B3 | C3A3 | C3D2 | C3C2 | C3B2 | C3E1 | C3C1 | C3A1
+Enter ply: C5C6
+Classical player thinks...
+Move: F4D6 |  Score: -10,000 | Cum. Nodes: 64,677
+Move: F4F5 |  Score: -10,000 | Cum. Nodes: 108,920
+Move: F4E5 |  Score: -10,000 | Cum. Nodes: 174,356
+Move: F4E4 |  Score: -10,000 | Cum. Nodes: 381,529
+Move: F4D4 |  Score: -10,000 | Cum. Nodes: 936,918
+Move: F4C4 |  Score: -10,000 | Cum. Nodes: 1,171,536
+Move: F4B4 |  Score: -10,000 | Cum. Nodes: 1,689,212
+Move: F4A4 |  Score: -5 | Cum. Nodes: 2,240,892
+Move: F4F3 |  Score: -5 | Cum. Nodes: 2,575,097
+Move: F4E3 |  Score: -5 | Cum. Nodes: 2,842,821
+Move: F4D2 |  Score: -10,000 | Cum. Nodes: 4,976,173
+Move: F4C1 |  Score: -10,000 | Cum. Nodes: 10,510,264
+Move: F2F1 |  Score: -7 | Cum. Nodes: 11,533,581
+Move: E2E3 |  Score: -10,000 | Cum. Nodes: 12,113,176
+
+  -|---|---|---|---|---|---|
+ 6 |   |   | r |   | k |   |
+  -|---|---|---|---|---|---|
+ 5 |   |   |   |   |   | p |
+  -|---|---|---|---|---|---|
+ 4 |   |   |   |   |   | Q |
+  -|---|---|---|---|---|---|
+ 3 |   |   | q |   |   |   |
+  -|---|---|---|---|---|---|
+ 2 |   |   |   |   | P | K |
+  -|---|---|---|---|---|---|
+ 1 |   |   |   |   |   |   |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        White
+  In check:       false
+  No of plies:    48
+  Game result:    Not Ended
+  Captured piece: PieceNone
+  Rule 50 plies:  7
+ ---------------------------
+
+Chosen Move F4A4 | Score -5 | Time taken 11.6619[s] | Nodes 12,113,176 | Nodes/s 1.0387e+06
+
+
+  -|---|---|---|---|---|---|
+ 6 |   |   | r |   | k |   |
+  -|---|---|---|---|---|---|
+ 5 |   |   |   |   |   | p |
+  -|---|---|---|---|---|---|
+ 4 | Q |   |   |   |   |   |
+  -|---|---|---|---|---|---|
+ 3 |   |   | q |   |   |   |
+  -|---|---|---|---|---|---|
+ 2 |   |   |   |   | P | K |
+  -|---|---|---|---|---|---|
+ 1 |   |   |   |   |   |   |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        Black
+  In check:       false
+  No of plies:    49
+  Game result:    Not Ended
+  Captured piece: PieceNone
+  Rule 50 plies:  8
+ ---------------------------
+
+Legal Moves: 
+E6F6 | E6D6 | E6E5 | E6D5 | C6D6 | C6B6 | C6A6 | C6C5 | C6C4 | F5F4 | C3F6 | C3E5 | C3C5 |
+C3A5 | C3D4 | C3C4 | C3B4 | C3F3 | C3E3 | C3D3 | C3B3 | C3A3 | C3D2 | C3C2 | C3B2 |
+C3E1 | C3C1 | C3A1
+Enter ply: C6B6
+Classical player thinks...
+Move: A4C6 |  Score: -10,000 | Cum. Nodes: 91,814
+Move: A4A6 |  Score: -10,000 | Cum. Nodes: 412,189
+Move: A4B5 |  Score: -10,000 | Cum. Nodes: 785,281
+Move: A4A5 |  Score: -12 | Cum. Nodes: 1,299,422
+Move: A4F4 |  Score: -5 | Cum. Nodes: 2,189,781
+Move: A4E4 |  Score: -10,000 | Cum. Nodes: 2,436,762
+Move: A4D4 |  Score: -10,000 | Cum. Nodes: 3,090,748
+Move: A4C4 |  Score: -10,000 | Cum. Nodes: 3,461,750
+Move: A4B4 |  Score: -10,000 | Cum. Nodes: 3,983,036
+Move: A4B3 |  Score: -10,000 | Cum. Nodes: 4,094,400
+Move: A4A3 |  Score: -10,000 | Cum. Nodes: 5,268,114
+Move: A4C2 |  Score: -10,000 | Cum. Nodes: 9,283,640
+Move: A4A2 |  Score: -5 | Cum. Nodes: 9,995,192
+Move: A4D1 |  Score: -5 | Cum. Nodes: 13,964,756
+Move: A4A1 |  Score: -10,000 | Cum. Nodes: 19,250,378
+Move: F2F1 |  Score: -7 | Cum. Nodes: 20,522,602
+Move: E2E3 |  Score: -7 | Cum. Nodes: 21,972,574
+
+  -|---|---|---|---|---|---|
+ 6 |   | r |   |   | k |   |
+  -|---|---|---|---|---|---|
+ 5 |   |   |   |   |   | p |
+  -|---|---|---|---|---|---|
+ 4 | Q |   |   |   |   |   |
+  -|---|---|---|---|---|---|
+ 3 |   |   | q |   |   |   |
+  -|---|---|---|---|---|---|
+ 2 |   |   |   |   | P | K |
+  -|---|---|---|---|---|---|
+ 1 |   |   |   |   |   |   |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        White
+  In check:       false
+  No of plies:    50
+  Game result:    Not Ended
+  Captured piece: PieceNone
+  Rule 50 plies:  9
+ ---------------------------
+
+Chosen Move A4F4 | Score -5 | Time taken 21.6293[s] | Nodes 21,972,574 | Nodes/s 1.01587e+06
+
+
+  -|---|---|---|---|---|---|
+ 6 |   | r |   |   | k |   |
+  -|---|---|---|---|---|---|
+ 5 |   |   |   |   |   | p |
+  -|---|---|---|---|---|---|
+ 4 |   |   |   |   |   | Q |
+  -|---|---|---|---|---|---|
+ 3 |   |   | q |   |   |   |
+  -|---|---|---|---|---|---|
+ 2 |   |   |   |   | P | K |
+  -|---|---|---|---|---|---|
+ 1 |   |   |   |   |   |   |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        Black
+  In check:       false
+  No of plies:    51
+  Game result:    Not Ended
+  Captured piece: PieceNone
+  Rule 50 plies:  10
+ ---------------------------
+
+Legal Moves: 
+E6F6 | E6D5 | B6D6 | B6C6 | B6A6 | B6B5 | B6B4 | B6B3 | B6B2 | B6B1 | C3F6 | C3C6 | C3E5 |
+C3C5 | C3A5 | C3D4 | C3C4 | C3B4 | C3F3 | C3E3 | C3D3 | C3B3 | C3A3 | C3D2 | C3C2 |
+C3B2 | C3E1 | C3C1 | C3A1
+Enter ply: B6B3
+Classical player thinks...
+Move: F4D6 |  Score: -10,000 | Cum. Nodes: 32,940
+Move: F4F5 |  Score: -10,000 | Cum. Nodes: 74,565
+Move: F4E5 |  Score: -10,000 | Cum. Nodes: 120,763
+Move: F4E4 |  Score: -10,000 | Cum. Nodes: 232,994
+Move: F4D4 |  Score: -10,000 | Cum. Nodes: 519,167
+Move: F4C4 |  Score: -10,000 | Cum. Nodes: 713,008
+Move: F4B4 |  Score: -10,000 | Cum. Nodes: 1,107,531
+Move: F4A4 |  Score: -11 | Cum. Nodes: 1,538,754
+Move: F4F3 |  Score: -8 | Cum. Nodes: 2,056,834
+Move: F4E3 |  Score: -10,000 | Cum. Nodes: 2,232,003
+Move: F4D2 |  Score: -10,000 | Cum. Nodes: 3,599,236
+Move: F4C1 |  Score: -10,000 | Cum. Nodes: 5,969,346
+Move: F2F1 |  Score: -11 | Cum. Nodes: 7,002,076
+Move: E2E3 |  Score: -10,000 | Cum. Nodes: 7,385,656
+
+  -|---|---|---|---|---|---|
+ 6 |   |   |   |   | k |   |
+  -|---|---|---|---|---|---|
+ 5 |   |   |   |   |   | p |
+  -|---|---|---|---|---|---|
+ 4 |   |   |   |   |   | Q |
+  -|---|---|---|---|---|---|
+ 3 |   | r | q |   |   |   |
+  -|---|---|---|---|---|---|
+ 2 |   |   |   |   | P | K |
+  -|---|---|---|---|---|---|
+ 1 |   |   |   |   |   |   |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        White
+  In check:       false
+  No of plies:    52
+  Game result:    Not Ended
+  Captured piece: PieceNone
+  Rule 50 plies:  11
+ ---------------------------
+
+Chosen Move F4F3 | Score -8 | Time taken 6.97379[s] | Nodes 7,385,656 | Nodes/s 1.05906e+06
+
+
+  -|---|---|---|---|---|---|
+ 6 |   |   |   |   | k |   |
+  -|---|---|---|---|---|---|
+ 5 |   |   |   |   |   | p |
+  -|---|---|---|---|---|---|
+ 4 |   |   |   |   |   |   |
+  -|---|---|---|---|---|---|
+ 3 |   | r | q |   |   | Q |
+  -|---|---|---|---|---|---|
+ 2 |   |   |   |   | P | K |
+  -|---|---|---|---|---|---|
+ 1 |   |   |   |   |   |   |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        Black
+  In check:       false
+  No of plies:    53
+  Game result:    Not Ended
+  Captured piece: PieceNone
+  Rule 50 plies:  12
+ ---------------------------
+
+Legal Moves: 
+E6F6 | E6D6 | E6E5 | F5F4 | C3F6 | C3C6 | C3E5 | C3C5 | C3A5 | C3D4 | C3C4 | C3B4 | C3F3 |
+C3E3 | C3D3 | C3D2 | C3C2 | C3B2 | C3E1 | C3C1 | C3A1 | B3B6 | B3B5 | B3B4 | B3A3 |
+B3B2 | B3B1
+Enter ply: C3C4
+Classical player thinks...
+Move: F3C6 |  Score: -10,000 | Cum. Nodes: 110,358
+Move: F3F5 |  Score: -10,000 | Cum. Nodes: 161,279
+Move: F3D5 |  Score: -10,000 | Cum. Nodes: 245,694
+Move: F3F4 |  Score: -10,000 | Cum. Nodes: 630,509
+Move: F3E4 |  Score: -10,000 | Cum. Nodes: 728,553
+Move: F3E3 |  Score: -8 | Cum. Nodes: 1,050,065
+Move: F3D3 |  Score: -11 | Cum. Nodes: 1,439,592
+Move: F3C3 |  Score: -10,000 | Cum. Nodes: 2,057,314
+Move: F3B3 |  Score: -8 | Cum. Nodes: 2,164,733
+Move: F2F1 |  Score: -10,000 | Cum. Nodes: 2,724,859
+Move: F2E1 |  Score: -8 | Cum. Nodes: 3,434,428
+Move: E2E3 |  Score: -10,000 | Cum. Nodes: 4,357,880
+
+  -|---|---|---|---|---|---|
+ 6 |   |   |   |   | k |   |
+  -|---|---|---|---|---|---|
+ 5 |   |   |   |   |   | p |
+  -|---|---|---|---|---|---|
+ 4 |   |   | q |   |   |   |
+  -|---|---|---|---|---|---|
+ 3 |   | r |   |   |   | Q |
+  -|---|---|---|---|---|---|
+ 2 |   |   |   |   | P | K |
+  -|---|---|---|---|---|---|
+ 1 |   |   |   |   |   |   |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        White
+  In check:       false
+  No of plies:    54
+  Game result:    Not Ended
+  Captured piece: PieceNone
+  Rule 50 plies:  13
+ ---------------------------
+
+Chosen Move F3E3 | Score -8 | Time taken 4.09273[s] | Nodes 4,357,880 | Nodes/s 1.06479e+06
+
+
+  -|---|---|---|---|---|---|
+ 6 |   |   |   |   | k |   |
+  -|---|---|---|---|---|---|
+ 5 |   |   |   |   |   | p |
+  -|---|---|---|---|---|---|
+ 4 |   |   | q |   |   |   |
+  -|---|---|---|---|---|---|
+ 3 |   | r |   |   | Q |   |
+  -|---|---|---|---|---|---|
+ 2 |   |   |   |   | P | K |
+  -|---|---|---|---|---|---|
+ 1 |   |   |   |   |   |   |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        Black
+  In check:       true
+  No of plies:    55
+  Game result:    Not Ended
+  Captured piece: PieceNone
+  Rule 50 plies:  14
+ ---------------------------
+
+Legal Moves: 
+E6F6 | E6D6 | E6D5 | C4E4 | B3E3
+Enter ply: B3E3
+Classical player thinks...
+Move: F2E3 |  Score: -8 | Cum. Nodes: 6,322,910
+Move: F2F1 |  Score: -10,000 | Cum. Nodes: 16,478,312
+Move: F2E1 |  Score: -10,000 | Cum. Nodes: 25,880,875
+
+  -|---|---|---|---|---|---|
+ 6 |   |   |   |   | k |   |
+  -|---|---|---|---|---|---|
+ 5 |   |   |   |   |   | p |
+  -|---|---|---|---|---|---|
+ 4 |   |   | q |   |   |   |
+  -|---|---|---|---|---|---|
+ 3 |   |   |   |   | r |   |
+  -|---|---|---|---|---|---|
+ 2 |   |   |   |   | P | K |
+  -|---|---|---|---|---|---|
+ 1 |   |   |   |   |   |   |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        White
+  In check:       false
+  No of plies:    56
+  Game result:    Not Ended
+  Captured piece: Q
+  Rule 50 plies:  0
+ ---------------------------
+
+Chosen Move F2E3 | Score -8 | Time taken 11.9896[s] | Nodes 25,880,875 | Nodes/s 2.15861e+06
+
+
+  -|---|---|---|---|---|---|
+ 6 |   |   |   |   | k |   |
+  -|---|---|---|---|---|---|
+ 5 |   |   |   |   |   | p |
+  -|---|---|---|---|---|---|
+ 4 |   |   | q |   |   |   |
+  -|---|---|---|---|---|---|
+ 3 |   |   |   |   | K |   |
+  -|---|---|---|---|---|---|
+ 2 |   |   |   |   | P |   |
+  -|---|---|---|---|---|---|
+ 1 |   |   |   |   |   |   |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        Black
+  In check:       false
+  No of plies:    57
+  Game result:    Not Ended
+  Captured piece: r
+  Rule 50 plies:  0
+ ---------------------------
+
+Legal Moves: 
+E6F6 | E6D6 | E6E5 | E6D5 | F5F4 | C4C6 | C4A6 | C4D5 | C4C5 | C4B5 | C4F4 | C4E4 | C4D4 |
+C4B4 | C4A4 | C4D3 | C4C3 | C4B3 | C4E2 | C4C2 | C4A2 | C4C1
+Enter ply: C4C3 
+Classical player thinks...
+Move: E3F4 |  Score: -10,000 | Cum. Nodes: 2,398,282
+Move: E3F2 |  Score: -10,000 | Cum. Nodes: 5,330,959
+
+  -|---|---|---|---|---|---|
+ 6 |   |   |   |   | k |   |
+  -|---|---|---|---|---|---|
+ 5 |   |   |   |   |   | p |
+  -|---|---|---|---|---|---|
+ 4 |   |   |   |   |   |   |
+  -|---|---|---|---|---|---|
+ 3 |   |   | q |   | K |   |
+  -|---|---|---|---|---|---|
+ 2 |   |   |   |   | P |   |
+  -|---|---|---|---|---|---|
+ 1 |   |   |   |   |   |   |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        White
+  In check:       true
+  No of plies:    58
+  Game result:    Not Ended
+  Captured piece: PieceNone
+  Rule 50 plies:  1
+ ---------------------------
+
+Chosen Move E3F4 | Score -10,000 | Time taken 2.46532[s] | Nodes 5,330,959 | Nodes/s 2.16238e+06
+
+
+  -|---|---|---|---|---|---|
+ 6 |   |   |   |   | k |   |
+  -|---|---|---|---|---|---|
+ 5 |   |   |   |   |   | p |
+  -|---|---|---|---|---|---|
+ 4 |   |   |   |   |   | K |
+  -|---|---|---|---|---|---|
+ 3 |   |   | q |   |   |   |
+  -|---|---|---|---|---|---|
+ 2 |   |   |   |   | P |   |
+  -|---|---|---|---|---|---|
+ 1 |   |   |   |   |   |   |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        Black
+  In check:       false
+  No of plies:    59
+  Game result:    Not Ended
+  Captured piece: PieceNone
+  Rule 50 plies:  2
+ ---------------------------
+
+Legal Moves: 
+E6F6 | E6D6 | E6D5 | C3F6 | C3C6 | C3E5 | C3C5 | C3A5 | C3D4 | C3C4 | C3B4 | C3F3 | C3E3 |
+C3D3 | C3B3 | C3A3 | C3D2 | C3C2 | C3B2 | C3E1 | C3C1 | C3A1
+Enter ply: E6D6
+Classical player thinks...
+Move: F4F5 |  Score: -10,000 | Cum. Nodes: 2,525,184
+Move: E2E3 |  Score: -10,000 | Cum. Nodes: 5,137,044
+
+  -|---|---|---|---|---|---|
+ 6 |   |   |   | k |   |   |
+  -|---|---|---|---|---|---|
+ 5 |   |   |   |   |   | p |
+  -|---|---|---|---|---|---|
+ 4 |   |   |   |   |   | K |
+  -|---|---|---|---|---|---|
+ 3 |   |   | q |   |   |   |
+  -|---|---|---|---|---|---|
+ 2 |   |   |   |   | P |   |
+  -|---|---|---|---|---|---|
+ 1 |   |   |   |   |   |   |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        White
+  In check:       false
+  No of plies:    60
+  Game result:    Not Ended
+  Captured piece: PieceNone
+  Rule 50 plies:  3
+ ---------------------------
+
+Chosen Move F4F5 | Score -10,000 | Time taken 2.23562[s] | Nodes 5,137,044 | Nodes/s 2.29782e+06
+
+
+  -|---|---|---|---|---|---|
+ 6 |   |   |   | k |   |   |
+  -|---|---|---|---|---|---|
+ 5 |   |   |   |   |   | K |
+  -|---|---|---|---|---|---|
+ 4 |   |   |   |   |   |   |
+  -|---|---|---|---|---|---|
+ 3 |   |   | q |   |   |   |
+  -|---|---|---|---|---|---|
+ 2 |   |   |   |   | P |   |
+  -|---|---|---|---|---|---|
+ 1 |   |   |   |   |   |   |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        Black
+  In check:       false
+  No of plies:    61
+  Game result:    Not Ended
+  Captured piece: p
+  Rule 50 plies:  0
+ ---------------------------
+
+Legal Moves: 
+D6C6 | D6D5 | D6C5 | C3F6 | C3C6 | C3E5 | C3C5 | C3A5 | C3D4 | C3C4 | C3B4 | C3F3 | C3E3 |
+C3D3 | C3B3 | C3A3 | C3D2 | C3C2 | C3B2 | C3E1 | C3C1 | C3A1
+Enter ply: C3E5
+Game finished in 62 plies.
+Result: BlackWin
+Position at end: 
+  -|---|---|---|---|---|---|
+ 6 |   |   |   | k |   |   |
+  -|---|---|---|---|---|---|
+ 5 |   |   |   |   | q | K |
+  -|---|---|---|---|---|---|
+ 4 |   |   |   |   |   |   |
+  -|---|---|---|---|---|---|
+ 3 |   |   |   |   |   |   |
+  -|---|---|---|---|---|---|
+ 2 |   |   |   |   | P |   |
+  -|---|---|---|---|---|---|
+ 1 |   |   |   |   |   |   |
+  -|---|---|---|---|---|---|
+     A   B   C   D   E   F
+
+ ---------------------------
+  To move:        White
+  In check:       true
+  No of plies:    62
+  Game result:    BlackWin
+  Captured piece: PieceNone
+  Rule 50 plies:  1
+ ---------------------------
+
+
+Move List: 
+1    F2F3  |  C5C4  
+2    C2C3  |  B5B4  
+3    C3B4  |  A5B4  
+4    D2D3  |  E6D4  
+5    D3C4  |  C6A4  
+6    B2B3  |  A4A5  
+7    F3F4  |  D5C4  
+8    B1D2  |  D4B3  
+9    D2B3  |  C4B3  
+10   E1D3  |  F6E6  
+11   F4E5  |  E6E5  
+12   C1F4  |  A5D5  
+13   F4B4  |  D6E6  
+14   B4C3  |  A6A2  
+15   A1A2  |  B3A2  
+16   C3A1  |  D5B3  
+17   D1E1  |  B3D3  
+18   A1A2  |  B6D5  
+19   A2D2  |  D3A3  
+20   F1F4  |  D5F4  
+21   D2F4  |  A3A1  
+22   E1F2  |  A1C3  
+23   F4F3  |  E5C5  
+24   F3F4  |  C5C6  
+25   F4A4  |  C6B6  
+26   A4F4  |  B6B3  
+27   F4F3  |  C3C4  
+28   F3E3  |  B3E3  
+29   F2E3  |  C4C3  
+30   E3F4  |  E6D6  
+31   F4F5  |  C3E5  
+

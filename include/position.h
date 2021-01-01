@@ -3,6 +3,7 @@
 #include "types.h"
 #include "utils.h"
 
+#include <stack>
 #include <string>
 
 #pragma once
@@ -59,6 +60,7 @@ struct Position
 	int pieceCount(PieceType pt) const;
 	int pieceCount(PieceType pt, Color c) const;
 	int pieceCount(Piece p) const;
+	int pieceCount() const;
 
 	Color sideToMove() { return _sideToMove; }
 	GameResult currentGameResult() { return _st->_gameResult; }
@@ -148,4 +150,14 @@ inline int
 Position::pieceCount(PieceType pt) const
 {
 	return pieceCount(pt, Color::White) + pieceCount(pt, Color::Black);
+}
+
+inline int
+Position::pieceCount() const
+{
+	int count = 0;
+	for (int i = 0; i < static_cast<int>(Piece::NB_NONE); i++) {
+		count += _pieceCount[i];
+	}
+	return count;
 }

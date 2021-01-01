@@ -9,7 +9,7 @@
 #include <vector>
 
 Score
-ClassicalPlayer::_search(const int depth, Color sideToPlay, int& nodeCount)
+ClassicalPlayer::_search(const int depth, Color sideToPlay, int& nodeCount, Score alpha, Score beta)
 {
 	if (depth == 0 || _pos.currentGameResult() != GameResult::NB_NONE) {
 		return _eval(_pos);
@@ -22,10 +22,23 @@ ClassicalPlayer::_search(const int depth, Color sideToPlay, int& nodeCount)
 	for (Ply p : legalPlies) {
 		_pos.doPly(p);
 		nodeCount++;
-		if (sideToPlay == Color::White)
-			value = std::max(value, _search(depth - 1, Color::Black, nodeCount));
-		else
-			value = std::min(value, _search(depth - 1, Color::White, nodeCount));
+		if (sideToPlay == Color::White) {
+			value =
+			  std::max(value, _search(depth - 1, Color::Black, nodeCount, alpha, beta));
+			alpha = std::max(alpha, value);
+			if (alpha >= beta) {
+				_pos.undoPly(p);
+				break;
+			}
+		} else {
+			value =
+			  std::min(value, _search(depth - 1, Color::White, nodeCount, alpha, beta));
+			beta = std::min(beta, value);
+			if (beta <= alpha) {
+				_pos.undoPly(p);
+				break;
+			}
+		}
 		_pos.undoPly(p);
 	}
 	return value;

@@ -95,7 +95,7 @@ Game::play(bool verbose)
 	if (verbose) {
 		std::cout << "Game finished in " << _pos.currentPlyClock() << " plies." << std::endl
 			  << "Result: " << res << std::endl
-			  << std::endl
+			  << "Position at end: " << _pos << std::endl
 			  << "Move List: " << std::endl;
 
 		printMoveHistory(_pliesList);
@@ -152,50 +152,68 @@ ClassicalPlayer::ClassicalPlayer(int depth, std::function<Score(Position&)> eval
 Ply
 ClassicalPlayer::_getPly()
 {
-	std::cout << "Classical player thinks..." << std::endl;
 
 	std::vector<Ply> legalPlies = _pos.generateLegalPlies();
 	std::vector<Score> plyScores;
 	plyScores.reserve(legalPlies.size());
 	Color sideToMove = _pos.sideToMove();
 	Score currentScore = 0;
-	Score bestScore = Eval::evalCoeff(sideToMove) * Eval::BlackWinScore;
+	Score bestScore = Eval::evalCoeff(sideToMove) * Eval::MIN_SCORE;
 	Ply bestPly = INVALID_PLY;
 	int nodeCount = 0;
 
+	const int pieceCount = _pos.pieceCount();
+	const int searchDepth =
+	  (pieceCount < 7) ? _depth + 3 : ((pieceCount < 13) ? _depth + 1 : _depth);
+
+	if (_verbose)
+		std::cout << "Classical player thinks (at depth " << searchDepth << ")..."
+			  << std::endl;
+
 	std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
+	std::cout.imbue(std::locale(""));
+	if (legalPlies.size() == 1) {
+		bestPly = legalPlies[0];
+		bestScore = 0;
+		if (_verbose)
+			std::cout << "Move: " << asPlyString(bestPly)
+				  << " | Score: [only move] | Cum. Nodes: [n/a]" << std::endl;
+	} else
+		for (Ply p : legalPlies) {
+			_pos.doPly(p);
+			nodeCount++;
+			currentScore = _search(searchDepth,
+					       otherColor(sideToMove),
+					       nodeCount,
+					       Eval::MIN_SCORE,
+					       Eval::MAX_SCORE);
+			_pos.undoPly(p);
+			plyScores.push_back(currentScore);
 
-	for (Ply p : legalPlies) {
-		_pos.doPly(p);
-		nodeCount++;
-		// std::cout << "_getPly iterations - nodecount - " << nodeCount << std::endl;
-		// std::cout << _pos << asPlyString(p) << std::endl << "+++++++++++++++" << std::endl;
-		currentScore = _search(_depth, otherColor(sideToMove), nodeCount);
-		_pos.undoPly(p);
-		plyScores.push_back(currentScore);
+			if (_verbose)
+				std::cout << "Move: " << asPlyString(p)
+					  << " |  Score: " << currentScore
+					  << " | Cum. Nodes: " << nodeCount << std::endl;
 
-		if (sideToMove == Color::White) {
-			if (currentScore > bestScore) {
+			if (sideToMove == Color::White) {
+				if (currentScore > bestScore) {
 
-				bestScore = currentScore;
-				bestPly = p;
-			}
-		} else {
-			if (currentScore < bestScore) {
+					bestScore = currentScore;
+					bestPly = p;
+				}
+			} else {
+				if (currentScore < bestScore) {
 
-				bestScore = currentScore;
-				bestPly = p;
+					bestScore = currentScore;
+					bestPly = p;
+				}
 			}
 		}
-	}
+	assert(bestPly != INVALID_PLY);
 	std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
 
 	if (_verbose) {
-		std::cout << _pos << std::endl << "Move Evaluations " << std::endl;
-		for (int i = 0; i < static_cast<int>(legalPlies.size()); i++) {
-			std::cout << asPaddedPlyString(legalPlies[i], 10) << plyScores[i]
-				  << std::endl;
-		}
+		std::cout << _pos;
 
 		double timeDelta =
 		  (static_cast<double>(
@@ -203,11 +221,11 @@ ClassicalPlayer::_getPly()
 		   1000000000.0);
 
 		std::cout.imbue(std::locale(""));
-		std::cout << std::endl
-			  << "Chosen Move " << asPlyString(bestPly) << " | Score " << bestScore
+		std::cout << "Chosen Move " << asPlyString(bestPly) << " | Score " << bestScore
 			  << " | Time taken " << timeDelta << "[s] | Nodes " << nodeCount
 			  << " | Nodes/s "
 			  << static_cast<double>(nodeCount) / static_cast<double>(timeDelta)
+			  << std::endl
 			  << std::endl;
 	}
 	return bestPly;
