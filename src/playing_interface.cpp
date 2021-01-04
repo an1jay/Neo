@@ -171,7 +171,7 @@ ClassicalPlayer::_getPly()
 			  << std::endl;
 
 	std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
-	std::cout.imbue(std::locale(""));
+	std::cout.imbue(std::locale("en_US.UTF8"));
 	if (legalPlies.size() == 1) {
 		bestPly = legalPlies[0];
 		bestScore = 0;
@@ -220,7 +220,7 @@ ClassicalPlayer::_getPly()
 		     std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin).count()) /
 		   1000000000.0);
 
-		std::cout.imbue(std::locale(""));
+		std::cout.imbue(std::locale("en_US.UTF8"));
 		std::cout << "Chosen Move " << asPlyString(bestPly) << " | Score " << bestScore
 			  << " | Time taken " << timeDelta << "[s] | Nodes " << nodeCount
 			  << " | Nodes/s "

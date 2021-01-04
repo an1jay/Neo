@@ -118,11 +118,7 @@ void
 Position::movePiece(Square origin, Square destination)
 {
 	Piece p = pieceOn(origin);
-	if (p == Piece::NB_NONE)
-		std::cout << *this << "Source " << origin << "Dest " << destination << std::endl;
-
 	assert(p != Piece::NB_NONE);
-
 	removePiece(origin);
 	addPiece(destination, p);
 }
