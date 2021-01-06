@@ -12,7 +12,7 @@
 int
 main()
 {
-	auto consolePlayerCreater = []() { return []() { return new ConsolePlayer(); }; };
+	// auto consolePlayerCreater = []() { return []() { return new ConsolePlayer(); }; };
 
 	auto minimaxPlayerCreaterCreater =
 	  [](int depth, std::function<Score(Position&)> evaluator, bool _verbose) {
@@ -21,55 +21,45 @@ main()
 		  };
 	  };
 
-	Game g(minimaxPlayerCreaterCreater(6, Eval::EvalFunc, true), consolePlayerCreater());
+	// Game g(minimaxPlayerCreaterCreater(9, Eval::EvalFunc, true), consolePlayerCreater());
 
-	// Game g(minimaxPlayerCreaterCreater(3, Eval::EvalFunc, false),
-	//        minimaxPlayerCreaterCreater(3, Eval::EvalFunc, false));
+	Game g(minimaxPlayerCreaterCreater(9, Eval::EvalFunc, true),
+	       minimaxPlayerCreaterCreater(9, Eval::EvalFunc, true));
 
-	// std::vector<std::string> plyStrs = {
-	// 	"F2F3",	  "C5C4", // 1
-	// 	"E2E3",	  "C6C5", // 1
-	// 	"F3F4",	  "D5D4", // 1
-	// 	"F4E5",	  "D6E5", // 1
-	// 	"E3D4",	  "E6D4", // 1
-	// 	"D2D3",	  "B6A4", // 1
-	// 	"C2C3",	  "E5D5", // 1
-	// 	"C3D4",	  "C5D4", // 1
-	// 	"B1C3",	  "A4C3", // 1
-	// 	"B2C3",	  "D4E5", // 1
-	// 	"D3D4",	  "E5E6", // 1
-	// 	"F1F3",	  "F5F4", // 1
-	// 	"F3F4",	  "B5B4", // 1
-	// 	"C3B4",	  "F6F4", // 1
-	// 	"C1F4",	  "E6F6", // 1
-	// 	"F4F6",	  "A6F6", // 1
-	// 	"B4A5",	  "F6A6", // 1
-	// 	"A2A3",	  "D5D4", // 1
-	// 	"E1C2",	  "D4C3", // 1
-	// 	"A3A4",	  "A6A5", // 1
-	// 	"D1C1",	  "C3D3", // 1
-	// 	"C2B4",	  "D3E3", // 1
-	// 	"C1C2",	  "E3E4", // 1
-	// 	"C2C3",	  "E4F3", // 1
-	// 	"B4C6",	  "A5A6", // 1
-	// 	"A4A5",	  "A6C6", // 1
-	// 	"A5A6=Q", "C6A6", // 1
-	// 	"A1A6",	  "F3E4", // 1
-	// 	"A6F6",	  "E4E5", // 1
-	// 	"F6C6",	  "E5E4", // 1
-	// 	"C6F6",	  "E4E5", // 1
-	// 	"F6C6",	  "E5E4", // 1
-	// 	"C6E6",	  "E4D5", // 1
-	// 	"E6B6",	  "D5E4", // 1
-	// 	"B6E6",	  "E4D5", // 1
-	// 	"E6B6",	  "D5E4", // 1
-	// 	"B6D6",	  "E4E5", // 1
-	// 	"D6A6",	  "E5E4", // 1
-	// 	"A6D6",	  "E4E5", // 1
-	// 	"D6A6",	  "E5E4", // 1
-	// };
+	std::vector<std::string> plyStrs = {
+		"F2F3",	  "C5C4", // 1
+		"E2E3",	  "C6C5", // 1
+		"F3F4",	  "D5D4", // 1
+		"F4E5",	  "D6E5", // 1
+		"B2B3",	  "D4E3", // 1
+		"C1B2",	  "C4C3", // 1
+		"B1C3",	  "E5D6", // 1
+		"E1D3",	  "E3D2", // 1
+		"D3C5",	  "D6C5", // 1
+		"C3E4",	  "F5E4", // 1
+		"F1F6",	  "B6D5", // 1
+		"B2E5",	  "E4E3", // 1
+		"F6F5",	  "A6D6", // 1
+		"E5E3",	  "C5C6", // 1
+		"E3E5",	  "E6F4", // 1
+		"F5F4",	  "D5F4", // 1
+		"E5F4",	  "D6D5", // 1
+		"F4F6",	  "C6C5", // 1
+		"C2C3",	  "D5D6", // 1
+		"F6F5",	  "D6D5", // 1
+		"F5F2",	  "C5C6", // 1
+		"C3C4",	  "B5C4", // 1
+		"B3C4",	  "D5D3", // 1
+		"F2F5",	  "D3D4", // 1
+		"F5B5",	  "C6D6", // 1
+		"C4C5",	  "D6E5", // 1
+		"C5C6=Q", "E5F4", // 1
+				  // "B5A5",	  "D4D6", // 1
+				  // "C6D6",	  "F4E4", // 1
+				  // "D6D2",	  "E4F3", // 1
+	};
 
-	// g.playPlyList(plyStrs, true, false);
+	g.playPlyList(plyStrs, true, false);
 
 	g.play();
 

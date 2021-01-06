@@ -459,7 +459,7 @@ Position::isLegalPly(Ply p, bool& givesCheck, bool& isCapture)
 	givesCheck = (movedPieceAttacks & otherSideKingBB) != NoSquares;
 
 	// Calculate whether move is a capture (used for move ordering)
-	// TODO order captures by least valuable piece capturing most valuable
+	// TODO think about ordering captures by least valuable piece capturing most valuable
 	isCapture = capturedPiece != Piece::NB_NONE;
 
 	// If we are in check after move, move is illegal

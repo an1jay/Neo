@@ -43,6 +43,7 @@ Game::playPlyList(std::vector<std::string> plyStrs, bool verbose, bool printEndO
 		_wht->updatePosition(validPly);
 		_blk->updatePosition(validPly);
 		_pos.doPly(validPly);
+		_pliesList.push_back(validPly);
 		if (!printEndOnly && verbose) {
 			std::cout << _pos;
 			std::cout << std::string(25, '*') << std::endl;
@@ -186,7 +187,8 @@ ClassicalPlayer::_getPly()
 					       otherColor(sideToMove),
 					       nodeCount,
 					       Eval::MIN_SCORE,
-					       Eval::MAX_SCORE);
+					       Eval::MAX_SCORE,
+					       1);
 			_pos.undoPly(p);
 			plyScores.push_back(currentScore);
 

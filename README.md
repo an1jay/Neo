@@ -2,8 +2,8 @@
 
 ## To do
 - [ ] Framework
-  - [ ] Board representation
-    - [ ] Position
+  - [x] Board representation
+    - [x] Position
       - [x] calculate Checkers -- ~~Some Positions get misidentified as draw when not a draw - example game:~~
 
         Move List: 
@@ -31,7 +31,7 @@
       - [x] Incorporate magic bitboards
       - [x] Pawns
       - [x] Knights / King
-    - [ ] Game playing
+    - [x] Game playing
 - [ ] Testing
   - [ ] Pawn Pushes & Capture AttackVectors
   - [ ] Knight & King Moves AttackVectors
@@ -40,6 +40,8 @@
   - [ ] Search
     - [x] Minimax
     - [x] Alpha Beta
+      - [x] Better move ordering (i.e. promotions / captures / checks upfront) for more cutoffs
+        - [ ] Think about ordering captures - by lowest value capturer capturing highest value target
     - [ ] Quiescence Search
     - [ ] MTD-f / Negascout
   - [ ] Evaluation

@@ -82,5 +82,10 @@ struct ClassicalPlayer : Player
 	bool _verbose;
 
 	Ply _getPly() override;
-	Score _search(const int depth, Color sideToPlay, int& nodeCount, Score alpha, Score beta);
+	Score _search(const int depth,
+		      Color sideToPlay,
+		      int& nodeCount,
+		      Score alpha,
+		      Score beta,
+		      int pliesFromRoot);
 };

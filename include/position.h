@@ -35,7 +35,6 @@ struct Zobrist
 
       private:
 	Key _pieceSqArray[static_cast<int>(Square::NB_NONE)][static_cast<int>(Piece::NB_NONE)];
-	// Key _sideToMoveArray[static_cast<int>(Color::NB_NONE)];
 };
 
 struct Position

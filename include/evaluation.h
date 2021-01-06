@@ -7,7 +7,7 @@
 
 namespace Eval {
 
-inline Score
+inline constexpr Score
 evalCoeff(Color c)
 {
 	assert(c != Color::NB_NONE);
