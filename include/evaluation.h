@@ -19,6 +19,8 @@ constexpr int materialWeights[] = { 1, 2, 4, 7, 0, -1, -2, -4, -7, 0 };
 constexpr Score WhiteWinScore = 1e4;
 constexpr Score BlackWinScore = -1e4;
 
+constexpr Score WIN_PLY_THRESHOLD = 20;
+
 constexpr Score MAX_SCORE = WhiteWinScore + 1;
 constexpr Score MIN_SCORE = BlackWinScore - 1;
 
