@@ -70,7 +70,7 @@ struct Position
 	std::vector<Ply> generateLegalPlies();
 
 	// Move properties
-	bool isLegalPly(Ply p); // TODO
+	bool isLegalPly(Ply p, bool& givesCheck, bool& isCapture);
 	bool isCapture(Ply p);
 
 	// Do and undo plies

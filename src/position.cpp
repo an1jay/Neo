@@ -390,21 +390,45 @@ std::vector<Ply>
 Position::generateLegalPlies()
 {
 	std::vector<Ply> pseudoLegalPlies = generatePseudoLegalPlies();
-	std::vector<Ply> legalPlies;
+
+	// Vectors for various types of legal moves
+	std::vector<Ply> promotionPlies;
+	std::vector<Ply> capturePlies;
+	std::vector<Ply> checkPlies;
+	std::vector<Ply> otherPlies;
+
+	bool isLegal;
+	bool isCapture;
+	bool givesCheck;
 
 	for (Ply p : pseudoLegalPlies) {
-		if (isLegalPly(p))
-			legalPlies.push_back(p);
+		isLegal = isLegalPly(p, givesCheck, isCapture);
+
+		if (isLegal) {
+			if (getPromoPieceType(p) != PieceType::NB_NONE)
+				promotionPlies.push_back(p);
+			else if (isCapture)
+				capturePlies.push_back(p);
+			else if (givesCheck)
+				checkPlies.push_back(p);
+			else
+				otherPlies.push_back(p);
+		}
 	}
 
-	// TODO reorder moves - promotions, captures, checks, all else
-	// can work most if not all from within isLegalPly - make an overloaded method? or something
+	// Reserve memory in promotion plies & copy in other types of moves
+	promotionPlies.reserve(promotionPlies.size() + capturePlies.size() + checkPlies.size() +
+			       otherPlies.size());
 
-	return legalPlies;
+	promotionPlies.insert(promotionPlies.end(), capturePlies.begin(), capturePlies.end());
+	promotionPlies.insert(promotionPlies.end(), checkPlies.begin(), checkPlies.end());
+	promotionPlies.insert(promotionPlies.end(), otherPlies.begin(), otherPlies.end());
+
+	return promotionPlies;
 }
 
 bool
-Position::isLegalPly(Ply p)
+Position::isLegalPly(Ply p, bool& givesCheck, bool& isCapture)
 {
 	assert(p != INVALID_PLY);
 
@@ -424,6 +448,21 @@ Position::isLegalPly(Ply p)
 	}
 	BitBoard checkers = calculateCheckers();
 
+	// Calculate whether otherSide is in check (used for move ordering)
+	const BitBoard movedPieceAttacks =
+	  calculateAttackBB(pieceOn(destination),
+			    destination,
+			    _byColorBB[static_cast<int>(_sideToMove)],
+			    _byColorBB[static_cast<int>(otherColor(_sideToMove))],
+			    _magics);
+	const BitBoard otherSideKingBB = pieceBB(otherColor(_sideToMove), PieceType::King);
+	givesCheck = (movedPieceAttacks & otherSideKingBB) != NoSquares;
+
+	// Calculate whether move is a capture (used for move ordering)
+	// TODO order captures by least valuable piece capturing most valuable
+	isCapture = capturedPiece != Piece::NB_NONE;
+
+	// If we are in check after move, move is illegal
 	const bool isLegal = checkers == NoSquares;
 
 	// **** Un-Make Move ****

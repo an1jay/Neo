@@ -12,7 +12,7 @@
 int
 main()
 {
-	// auto consolePlayerCreater = []() { return []() { return new ConsolePlayer(); }; };
+	auto consolePlayerCreater = []() { return []() { return new ConsolePlayer(); }; };
 
 	auto minimaxPlayerCreaterCreater =
 	  [](int depth, std::function<Score(Position&)> evaluator, bool _verbose) {
@@ -21,10 +21,10 @@ main()
 		  };
 	  };
 
-	// Game g(minimaxPlayerCreaterCreater(6, Eval::EvalFunc, true), consolePlayerCreater());
+	Game g(minimaxPlayerCreaterCreater(6, Eval::EvalFunc, true), consolePlayerCreater());
 
-	Game g(minimaxPlayerCreaterCreater(3, Eval::EvalFunc, false),
-	       minimaxPlayerCreaterCreater(3, Eval::EvalFunc, false));
+	// Game g(minimaxPlayerCreaterCreater(3, Eval::EvalFunc, false),
+	//        minimaxPlayerCreaterCreater(3, Eval::EvalFunc, false));
 
 	// std::vector<std::string> plyStrs = {
 	// 	"F2F3",	  "C5C4", // 1
