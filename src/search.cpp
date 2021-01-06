@@ -63,18 +63,18 @@ ClassicalPlayer::_getPly()
 				  << " | Cum. Nodes: " << nodeCount << " | [depth " << searchDepth
 				  << "]" << std::endl;
 
-			// If found a mate already, reduce depth for later searches
-			if (currentScore > Eval::WhiteWinScore - Eval::WIN_PLY_THRESHOLD)
-				searchDepth = Eval::WhiteWinScore - currentScore;
-			else if (currentScore < Eval::BlackWinScore - Eval::WIN_PLY_THRESHOLD)
-				searchDepth = currentScore - Eval::BlackWinScore;
-
 			if (sideToMove == Color::White) {
+				// If found a mate already, reduce depth for later searches
+				if (currentScore > Eval::WhiteWinScore - Eval::WIN_PLY_THRESHOLD)
+					searchDepth = Eval::WhiteWinScore - currentScore;
 				if (currentScore > bestScore) {
 					bestScore = currentScore;
 					bestPly = p;
 				}
 			} else {
+				// If found a mate already, reduce depth for later searches
+				if (currentScore < Eval::BlackWinScore - Eval::WIN_PLY_THRESHOLD)
+					searchDepth = currentScore - Eval::BlackWinScore;
 				if (currentScore < bestScore) {
 					bestScore = currentScore;
 					bestPly = p;
