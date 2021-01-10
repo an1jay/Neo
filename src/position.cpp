@@ -255,7 +255,7 @@ Position::doPly(Ply p)
 	BitBoard checkers = calculateCheckers();
 
 	StateInfo* newSt = new StateInfo{
-		posKey,	  rule50clock,	       capturedPiece,
+		posKey,   rule50clock,	 capturedPiece,
 		checkers, GameResult::NB_NONE, const_cast<StateInfo*>(old_st),
 
 	};

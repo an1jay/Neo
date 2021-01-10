@@ -37,7 +37,6 @@ ClassicalPlayer::_getPly()
 			  << std::endl;
 
 	std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
-	std::cout.imbue(std::locale("en_US.UTF8"));
 	if (legalPlies.size() == 1) {
 		bestPly = legalPlies[0];
 		bestScore = 0;
@@ -58,10 +57,10 @@ ClassicalPlayer::_getPly()
 			plyScores.push_back(currentScore);
 
 			if (_verbose)
-				std::cout
-				  << "Move: " << asPlyString(p) << " | Score: " << currentScore
-				  << " | Cum. Nodes: " << nodeCount << " | [depth " << searchDepth
-				  << "]" << std::endl;
+				std::cout << "Move: " << asPlyString(p)
+					  << " | Score: " << formatNumber(currentScore, 2, 16)
+					  << " | Cum. Nodes: " << formatNumber(nodeCount, 2, 16)
+					  << " | [depth " << searchDepth << "]" << std::endl;
 
 			if (sideToMove == Color::White) {
 				// If found a mate already, reduce depth for later searches
@@ -92,10 +91,10 @@ ClassicalPlayer::_getPly()
 		     std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin).count()) /
 		   1000000000.0);
 
-		std::cout.imbue(std::locale("en_US.UTF8"));
-		std::cout << "Chosen Move " << asPlyString(bestPly) << " | Score " << bestScore
-			  << " | Time taken " << timeDelta << "[s] | Nodes " << nodeCount
-			  << " | Nodes/s "
+		std::cout << "Chosen Move " << asPlyString(bestPly) << " | Score "
+			  << formatNumber(bestScore, 2, 16) << " | Time taken "
+			  << formatNumber(timeDelta, 3, 16) << "[s] | Nodes "
+			  << formatNumber(nodeCount, 2, 16) << " | Nodes/s "
 			  << static_cast<double>(nodeCount) / static_cast<double>(timeDelta)
 			  << std::endl
 			  << std::endl;

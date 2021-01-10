@@ -5,6 +5,7 @@
 #include <functional>
 #include <iostream>
 #include <random>
+#include <sstream>
 
 #pragma once
 
@@ -19,6 +20,51 @@ genRand(std::mt19937& rng)
 			      ((static_cast<uint64_t>(rng()) & bottomTwoBytes) << 48));
 }
 
+template<typename T>
+std::string
+formatNumber(T num, int precision = 2, int padding = 0, bool commaThousands = true)
+{
+	std::ostringstream numStr;
+	if (num < 0) {
+		numStr << '-';
+		num = -num;
+	}
+
+	long int intBody = static_cast<long int>(num);
+	long int decimal;
+
+	const std::string number = std::to_string(intBody);
+	int paddingConstant;
+	if (commaThousands) {
+		for (int i = 0; i < static_cast<int>(number.size()); i++) {
+			paddingConstant = static_cast<int>(number.size()) - (i);
+			if (paddingConstant % 3 == 0 && paddingConstant != 0 && i != 0)
+				numStr << ',';
+			numStr << number[i];
+		}
+	} else {
+		numStr << num;
+	}
+
+	std::is_floating_point<T> isFloating;
+
+	if (isFloating) {
+		decimal = static_cast<long int>(fmod(num, 1) * pow(10, precision));
+		numStr << '.' << decimal;
+	}
+
+	if (padding != 0) {
+		std::string unpadded = numStr.str();
+		if (padding > static_cast<int>(unpadded.size())) {
+			numStr.str("");
+			numStr << std::string(padding - static_cast<int>(unpadded.size()), ' ')
+			       << unpadded;
+		}
+	}
+
+	return numStr.str();
+}
+
 bool
 plyInList(Ply p, std::vector<Ply> plyList);
 
@@ -28,7 +74,8 @@ printPlyList(std::vector<Ply> pList);
 void
 printMoveHistory(std::vector<Ply> pList);
 
-std::string boardPrint(std::function<std::pair<char, Color>(Square)>);
+std::string
+boardPrint(std::function<std::pair<char, Color>(Square)>);
 
 std::ostream&
 operator<<(std::ostream& os, Square s);
