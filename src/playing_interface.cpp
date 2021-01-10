@@ -107,7 +107,7 @@ Game::play(bool verbose)
 Ply
 ConsolePlayer::_getPly()
 {
-	std::vector<Ply> legalPlies = _pos.generateLegalPlies();
+	std::vector<Ply> legalPlies = _pos.generateLegalPlies().first;
 	std::cout << _pos;
 	std::cout << "Legal Moves: " << std::endl;
 	printPlyList(legalPlies);
@@ -130,7 +130,7 @@ Ply
 RandomPlayer::_getPly()
 {
 
-	std::vector<Ply> legalPlies = _pos.generateLegalPlies();
+	std::vector<Ply> legalPlies = _pos.generateLegalPlies().first;
 	srand(_seed);
 	int moveIndex = rand() % legalPlies.size();
 	if (_verbose) {

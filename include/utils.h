@@ -48,9 +48,12 @@ formatNumber(T num, int precision = 2, int padding = 0, bool commaThousands = tr
 
 	std::is_floating_point<T> isFloating;
 
-	if (isFloating) {
+	if (isFloating && precision != 0) {
 		decimal = static_cast<long int>(fmod(num, 1) * pow(10, precision));
-		numStr << '.' << decimal;
+		if (decimal == 0) {
+			numStr << '.' << std::string(precision, '0');
+		} else
+			numStr << '.' << decimal;
 	}
 
 	if (padding != 0) {
@@ -74,8 +77,7 @@ printPlyList(std::vector<Ply> pList);
 void
 printMoveHistory(std::vector<Ply> pList);
 
-std::string
-boardPrint(std::function<std::pair<char, Color>(Square)>);
+std::string boardPrint(std::function<std::pair<char, Color>(Square)>);
 
 std::ostream&
 operator<<(std::ostream& os, Square s);

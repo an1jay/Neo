@@ -255,7 +255,7 @@ Position::doPly(Ply p)
 	BitBoard checkers = calculateCheckers();
 
 	StateInfo* newSt = new StateInfo{
-		posKey,   rule50clock,	 capturedPiece,
+		posKey,	  rule50clock,	       capturedPiece,
 		checkers, GameResult::NB_NONE, const_cast<StateInfo*>(old_st),
 
 	};
@@ -307,7 +307,7 @@ Position::undoPly(Ply p)
 GameResult
 Position::calculateGameResult()
 {
-	std::vector<Ply> legalMoves = generateLegalPlies();
+	std::vector<Ply> legalMoves = generateLegalPlies().first;
 	const int numberOfLegalMoves = legalMoves.size();
 	const bool inCheck = this->_st->_checkersBB != NoSquares;
 
@@ -386,7 +386,8 @@ Position::generatePseudoLegalPlies()
 	return plies;
 }
 
-std::vector<Ply>
+// Returns a pair where first element is list of legal moves & second element is the index of first quiet move
+std::pair<std::vector<Ply>, int>
 Position::generateLegalPlies()
 {
 	std::vector<Ply> pseudoLegalPlies = generatePseudoLegalPlies();
@@ -424,7 +425,9 @@ Position::generateLegalPlies()
 	promotionPlies.insert(promotionPlies.end(), checkPlies.begin(), checkPlies.end());
 	promotionPlies.insert(promotionPlies.end(), otherPlies.begin(), otherPlies.end());
 
-	return promotionPlies;
+	return { promotionPlies,
+		 static_cast<int>(promotionPlies.size() + capturePlies.size() +
+				  checkPlies.size()) };
 }
 
 bool

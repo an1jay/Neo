@@ -66,7 +66,7 @@ struct Position
 	int currentPlyClock() { return _halfMoveClock; }
 
 	std::vector<Ply> generatePseudoLegalPlies();
-	std::vector<Ply> generateLegalPlies();
+	std::pair<std::vector<Ply>, int> generateLegalPlies();
 
 	// Move properties
 	bool isLegalPly(Ply p, bool& givesCheck, bool& isCapture);
