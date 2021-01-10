@@ -10,9 +10,9 @@
 #include <iostream>
 
 auto minimaxPlayerCreaterCreater =
-  [](int depth, std::function<Score(Position&)> evaluator, bool _verbose) {
-	  return [depth, evaluator, _verbose]() {
-		  return new ClassicalPlayer(depth, evaluator, _verbose);
+  [](int depth, int maxDepth, std::function<Score(Position&)> evaluator, bool _verbose) {
+	  return [depth, maxDepth, evaluator, _verbose]() {
+		  return new ClassicalPlayer(depth, maxDepth, evaluator, _verbose);
 	  };
   };
 
@@ -22,7 +22,8 @@ int
 main()
 {
 	auto consolePlayerCreater = []() { return []() { return new ConsolePlayer(); }; };
-	Game g(minimaxPlayerCreaterCreater(9, Eval::EvalFunc, true), consolePlayerCreater());
+	// Game g(minimaxPlayerCreaterCreater(1, 2, Eval::EvalFunc, true), consolePlayerCreater());
+	Game g(minimaxPlayerCreaterCreater(9, 11, Eval::EvalFunc, true), consolePlayerCreater());
 	g.play();
 
 	// std::cout << formatNumber(1233487) << std::endl;
@@ -47,8 +48,8 @@ testFormatNumber()
 void
 demoPlayMinimax()
 {
-	Game g(minimaxPlayerCreaterCreater(8, Eval::EvalFunc, true),
-	       minimaxPlayerCreaterCreater(8, Eval::EvalFunc, true));
+	Game g(minimaxPlayerCreaterCreater(6, 9, Eval::EvalFunc, true),
+	       minimaxPlayerCreaterCreater(6, 9, Eval::EvalFunc, true));
 	// std::vector<std::string> plyStrs = {
 	// };
 	// g.playPlyList(plyStrs, true, false);

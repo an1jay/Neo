@@ -421,13 +421,13 @@ Position::generateLegalPlies()
 	promotionPlies.reserve(promotionPlies.size() + capturePlies.size() + checkPlies.size() +
 			       otherPlies.size());
 
+	const int qMoveIndex = promotionPlies.size() + capturePlies.size() + checkPlies.size();
+
 	promotionPlies.insert(promotionPlies.end(), capturePlies.begin(), capturePlies.end());
 	promotionPlies.insert(promotionPlies.end(), checkPlies.begin(), checkPlies.end());
 	promotionPlies.insert(promotionPlies.end(), otherPlies.begin(), otherPlies.end());
 
-	return { promotionPlies,
-		 static_cast<int>(promotionPlies.size() + capturePlies.size() +
-				  checkPlies.size()) };
+	return { promotionPlies, qMoveIndex };
 }
 
 bool
@@ -460,6 +460,7 @@ Position::isLegalPly(Ply p, bool& givesCheck, bool& isCapture)
 			    _magics);
 	const BitBoard otherSideKingBB = pieceBB(otherColor(_sideToMove), PieceType::King);
 	givesCheck = (movedPieceAttacks & otherSideKingBB) != NoSquares;
+	// FIXME also need to check if moved piece unleashes queen / rook attack onto King
 
 	// Calculate whether move is a capture (used for move ordering)
 	// TODO think about ordering captures by least valuable piece capturing most valuable

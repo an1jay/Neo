@@ -42,7 +42,10 @@
     - [x] Alpha Beta
       - [x] Better move ordering (i.e. promotions / captures / checks upfront) for more cutoffs
         - [ ] Think about ordering captures - by lowest value capturer capturing highest value target
+      - [ ] Use alpha / beta information in the getPly method
+    - [ ] Transposition Table
     - [ ] Quiescence Search
+      - [ ] Bug fix for Quiescen ordering
     - [ ] MTD-f / Negascout
   - [ ] Evaluation
     - [x] Material

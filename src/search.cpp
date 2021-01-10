@@ -9,9 +9,14 @@
 #include <chrono>
 #include <vector>
 
-ClassicalPlayer::ClassicalPlayer(int depth, std::function<Score(Position&)> evaluator, bool verbose)
+ClassicalPlayer::ClassicalPlayer(int depth,
+				 int maxDepth,
+				 std::function<Score(Position&)> evaluator,
+				 bool verbose)
 {
+	// assert(maxDepth >= depth);
 	_depth = depth;
+	_maxDepth = maxDepth;
 	_eval = evaluator;
 	_verbose = verbose;
 }
@@ -19,22 +24,25 @@ ClassicalPlayer::ClassicalPlayer(int depth, std::function<Score(Position&)> eval
 Ply
 ClassicalPlayer::_getPly()
 {
+	std::vector<Ply> legalPlies = _pos.generateLegalPlies().first;
+	// TODO whether we should do something different with quiet / loud moves
 
-	std::vector<Ply> legalPlies = _pos.generateLegalPlies();
 	std::vector<Score> plyScores;
 	plyScores.reserve(legalPlies.size());
 	Color sideToMove = _pos.sideToMove();
 	Score currentScore = 0;
 	Score bestScore = Eval::evalCoeff(sideToMove) * Eval::MIN_SCORE;
 	Ply bestPly = INVALID_PLY;
+	int totalNodeCount = 0;
 	int nodeCount = 0;
 
 	const int pieceCount = _pos.pieceCount();
-	int searchDepth = (pieceCount < 7) ? _depth + 3 : ((pieceCount < 13) ? _depth + 1 : _depth);
+	int addtlDepth = (pieceCount < 7) ? 3 : ((pieceCount < 13) ? 1 : 0);
+	int searchDepth = _depth + addtlDepth;
 
 	if (_verbose)
-		std::cout << "Classical player thinks (at depth " << searchDepth << ")..."
-			  << std::endl;
+		std::cout << "Classical player thinks (at depth [" << searchDepth << ", "
+			  << _maxDepth + addtlDepth << "])..." << std::endl;
 
 	std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
 	if (legalPlies.size() == 1) {
@@ -42,12 +50,17 @@ ClassicalPlayer::_getPly()
 		bestScore = 0;
 		if (_verbose)
 			std::cout << "Move: " << asPlyString(bestPly)
-				  << " | Score: [only move] | Cum. Nodes: [n/a]" << std::endl;
+				  << " | Score: [only move] | Nodes: [n/a]" << std::endl;
 	} else
 		for (Ply p : legalPlies) {
 			_pos.doPly(p);
-			nodeCount++;
+
+			if (_verbose)
+				std::cout << "Searching Ply: " << asPlyString(p) << std::flush;
+
+			nodeCount = 1;
 			currentScore = _search(searchDepth,
+					       _maxDepth + addtlDepth,
 					       otherColor(sideToMove),
 					       nodeCount,
 					       Eval::MIN_SCORE,
@@ -55,12 +68,12 @@ ClassicalPlayer::_getPly()
 					       1);
 			_pos.undoPly(p);
 			plyScores.push_back(currentScore);
-
+			totalNodeCount += nodeCount;
 			if (_verbose)
-				std::cout << "Move: " << asPlyString(p)
-					  << " | Score: " << formatNumber(currentScore, 2, 16)
-					  << " | Cum. Nodes: " << formatNumber(nodeCount, 2, 16)
-					  << " | [depth " << searchDepth << "]" << std::endl;
+				std::cout << " | Score: " << formatNumber(currentScore, 2, 11)
+					  << " | Nodes: " << formatNumber(nodeCount, 2, 11)
+					  << " | Depth: [" << searchDepth << ", "
+					  << _maxDepth + addtlDepth << "]" << std::endl;
 
 			if (sideToMove == Color::White) {
 				// If found a mate already, reduce depth for later searches
@@ -91,11 +104,15 @@ ClassicalPlayer::_getPly()
 		     std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin).count()) /
 		   1000000000.0);
 
-		std::cout << "Chosen Move " << asPlyString(bestPly) << " | Score "
-			  << formatNumber(bestScore, 2, 16) << " | Time taken "
-			  << formatNumber(timeDelta, 3, 16) << "[s] | Nodes "
-			  << formatNumber(nodeCount, 2, 16) << " | Nodes/s "
-			  << static_cast<double>(nodeCount) / static_cast<double>(timeDelta)
+		std::cout << "Chosen Move: " << asPlyString(bestPly)
+			  << " | Score: " << formatNumber(bestScore, 2, 5)
+			  << " | Time Taken: " << formatNumber(timeDelta, 3, 7)
+			  << "[s] | Nodes: " << formatNumber(totalNodeCount, 2, 11)
+			  << " | Nodes/s: "
+			  << formatNumber(static_cast<double>(totalNodeCount) /
+					    static_cast<double>(timeDelta),
+					  0,
+					  11)
 			  << std::endl
 			  << std::endl;
 	}
@@ -104,16 +121,13 @@ ClassicalPlayer::_getPly()
 
 Score
 ClassicalPlayer::_search(const int depth,
+			 const int maxDepth,
 			 Color sideToPlay,
 			 int& nodeCount,
 			 Score alpha,
 			 Score beta,
 			 int pliesFromRoot)
 {
-	if (depth == 0) {
-		return _eval(_pos);
-	}
-
 	const GameResult currentGR = _pos.currentGameResult();
 	if (currentGR != GameResult::NB_NONE) {
 		if (currentGR == GameResult::WhiteWin)
@@ -124,36 +138,58 @@ ClassicalPlayer::_search(const int depth,
 			return 0;
 	}
 
+	if (depth == 0) {
+		return _eval(_pos);
+	}
+
 	assert(sideToPlay != Color::NB_NONE);
 
 	Score value = Eval::evalCoeff(sideToPlay) * Eval::BlackWinScore;
-	std::vector<Ply> legalPlies = _pos.generateLegalPlies();
 
-	for (Ply p : legalPlies) {
-		_pos.doPly(p);
+	std::pair<std::vector<Ply>, int> legalPliesAndQuietMoveIndex = _pos.generateLegalPlies();
+	std::vector<Ply> legalPlies = legalPliesAndQuietMoveIndex.first;
+	const int quietMoveIndex = legalPliesAndQuietMoveIndex.second;
+
+	int quiescenceAwareDepth;
+	for (int i = 0; i < static_cast<int>(legalPlies.size()); i++) {
+		_pos.doPly(legalPlies[i]);
 		nodeCount++;
+
+		// Search non quiet moves more
+		quiescenceAwareDepth = (i < quietMoveIndex) && (pliesFromRoot < maxDepth)
+					 ? std::max(depth - 1, 1)
+					 : depth - 1;
+
 		if (sideToPlay == Color::White) {
-			value = std::max(
-			  value,
-			  _search(
-			    depth - 1, Color::Black, nodeCount, alpha, beta, pliesFromRoot + 1));
+			value = std::max(value,
+					 _search(quiescenceAwareDepth,
+						 maxDepth,
+						 Color::Black,
+						 nodeCount,
+						 alpha,
+						 beta,
+						 pliesFromRoot + 1));
 			alpha = std::max(alpha, value);
 			if (alpha >= beta) {
-				_pos.undoPly(p);
+				_pos.undoPly(legalPlies[i]);
 				break;
 			}
 		} else {
-			value = std::min(
-			  value,
-			  _search(
-			    depth - 1, Color::White, nodeCount, alpha, beta, pliesFromRoot + 1));
+			value = std::min(value,
+					 _search(quiescenceAwareDepth,
+						 maxDepth,
+						 Color::White,
+						 nodeCount,
+						 alpha,
+						 beta,
+						 pliesFromRoot + 1));
 			beta = std::min(beta, value);
 			if (beta <= alpha) {
-				_pos.undoPly(p);
+				_pos.undoPly(legalPlies[i]);
 				break;
 			}
 		}
-		_pos.undoPly(p);
+		_pos.undoPly(legalPlies[i]);
 	}
 	return value;
 }

@@ -71,7 +71,10 @@ struct RandomPlayer : Player
 struct ClassicalPlayer : Player
 {
       public:
-	ClassicalPlayer(int depth, std::function<Score(Position&)> evaluator, bool _verbose);
+	ClassicalPlayer(int depth,
+			int maxDepth,
+			std::function<Score(Position&)> evaluator,
+			bool _verbose);
 	~ClassicalPlayer() = default;
 	void updatePosition(Ply p) override { _pos.doPly(p); }
 
@@ -79,10 +82,12 @@ struct ClassicalPlayer : Player
 	Position _pos;
 	std::function<Score(Position&)> _eval;
 	int _depth;
+	int _maxDepth;
 	bool _verbose;
 
 	Ply _getPly() override;
 	Score _search(const int depth,
+		      const int maxDepth,
 		      Color sideToPlay,
 		      int& nodeCount,
 		      Score alpha,
